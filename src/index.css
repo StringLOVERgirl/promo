@@ -4,6 +4,24 @@
     padding: 0;
   }
 
+  .preloader {
+    height: 100svh;
+    width: 100vw;
+    position: fixed;
+    z-index: 999;
+    background: white;
+    display: flex;
+  }
+
+  .precentage{
+    align-self: flex-end;
+    margin-left: 3vw;
+  }
+
+  img,video {
+    border: solid;
+  }
+
   @font-face {
     font-family: AngelList;
     src: url('../public/font_promo');
@@ -23,6 +41,19 @@
     font-family: DMSans_18pt-ExtraLight;
     src: url('../public/DMSans_18pt-ExtraLight.ttf');
   }
+
+.App {
+  height: fit-content;
+}
+
+.content {
+}
+
+
+.hide_content {
+  display: none;
+}
+
 
   p {
     font-family: DMSans_18pt-ExtraLight;

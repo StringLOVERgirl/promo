@@ -1,13 +1,75 @@
-body {
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  @font-face {
+    font-family: AngelList;
+    src: url('../public/font_promo');
+  }
+
+  @font-face {
+    font-family: futura;
+    src: url('../public/FuturaCyrillicLight.ttf');
+  }
+
+  @font-face {
+    font-family: DMSans_18_pt-Thin;
+    src: url('../public/DMSans_18pt-Thin.ttf');
+  }
+
+  @font-face {
+    font-family: DMSans_18pt-ExtraLight;
+    src: url('../public/DMSans_18pt-ExtraLight.ttf');
+  }
+
+  p {
+    font-family: DMSans_18pt-ExtraLight;
+    font-size: 11em;
+    text-transform: uppercase;
+    letter-spacing: 0.1px;
+    color:  RGB(31, 30, 30);
+  }
+
+  html {
+    overflow-x: hidden;
+    min-height: 100%;
+    height:auto
+  }
+
+ body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /* overflow: hidden; */
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+
+.bg {
+  background-image: url('assets/08_3D_Receipt.png');
+  height: 50svh;
+  width: 50vw;
+background-size: contain;
+background-position: center;
+background-repeat: no-repeat;
+margin-left: auto;
+margin-right: auto;
+top: 2em;
+transition: top 1s, opacity 1s, clip-path 1s;
+clip-path: inset(0px 0px 0px);
+}
+
+
+.hidden {
+  /* top: -5em; */
+  clip-path: inset(0px 0px 100%);
 }

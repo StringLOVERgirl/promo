@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scroll</title>
+    <style>
+        *{
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            height: 300svh;
+        }
+        .child {
+            height: 100svh;
+            border: solid 1px;
+            margin: 3em;
+            background-size: contain;
+
+        }
+        .item1 {
+            background-image: url(08_3D_Receipt.png);
+        }
+        .item2 {
+            background-image: url(11_3D_Column.png);
+        }
+        .item3 {
+            background-image: url(Lifestyle_04.png);
+        }
+    </style>
+    <script type="importmap">
+        {
+            "imports": {
+                "lenis": "https://unpkg.com/@studio-freight/lenis@1.0.34/dist/lenis.mjs"
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="item1 child"></div>
+    <div class="item2 child"></div>
+    <div class="item3 child"></div>
+</body>
+</html>
+
+<script type="module">
+    import Lenis from 'lenis'; // Импортируем Lenis благодаря importmap
+// window.addEventListener('scroll',()=>console.log(window.scrollY))
+
+    // const lenis = new Lenis({
+    //     duration: 2,
+    //     smooth: true,
+    // });
+
+    // lenis.on('scroll', event => {
+    //     console.log(Math.floor(event.scroll))
+    // })
+
+    // function raf(time) {
+    //     lenis.raf(time)
+    //     requestAnimationFrame(raf)
+    // }
+    // requestAnimationFrame(raf)
+
+</script>

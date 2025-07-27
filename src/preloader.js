@@ -1,30 +1,18 @@
 import { useEffect, useState, useRef } from "react"
 
-export function Preloader({refs, contentState}){
+export function Preloader({refs,displayloader, precent}){
 
 
-    const preloaderRef = useRef()
-
-    let [isPreloader,setIsPreloader] = useState('')
-
-    useEffect(()=>{    
-        console.log(refs.current)
-        setTimeout(()=>{
-            setIsPreloader('hide_content')
-            contentState('')
-        },5000)
-
-  
-        
-    },[])
-
+    const [animationKey, setAnimationKey] = useState(0);
+    useEffect(()=>{
+        setAnimationKey(prevKey => prevKey + 1);
+},[precent])
 
     return(
         <>
-        <div className={`preloader ${isPreloader}`}
-        ref={preloaderRef}>
+        <div className={`preloader ${displayloader}`}>
             <div className="spin"></div>
-            <p className="precentage">100%</p>
+            <p key={animationKey} className={`precentage`}>{precent}</p>
         </div>
         </>
     )

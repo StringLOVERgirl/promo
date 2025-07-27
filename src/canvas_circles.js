@@ -6,7 +6,10 @@ export function Canvas({parentRef, lenis}){
     const observerRef = useRef(null)
     const intersectionRef = useRef(null)
     const animatingIdRef = useRef(null)
+    const circlesRef = useRef(null)
     const [isAnimating, setIsAnimating] = useState('')
+    const stopObserverRef = useRef(false)
+    const canvasContRef = useRef(null)
 
     const sizeRef = useRef({
         width: 0,
@@ -88,15 +91,24 @@ export function Canvas({parentRef, lenis}){
         intersectionRef.current = new IntersectionObserver((elements)=>{
             if(elements[0].isIntersecting){
                 // drawCircle(contextRef.current,sizeRef.current)
+                if(!stopObserverRef.current){
+                stopObserverRef.current = true
                 setIsAnimating('animateCircles')
+                }
             } else {
                 // cancelAnimationFrame(animatingIdRef.current);
+                if (stopObserverRef.current){
+                    stopObserverRef.current = false
+                setIsAnimating('animateCirclesBack')
+                }
             }
         },{
             threshold: 0.5
+            ,
+            root: null
         })
 
-        intersectionRef.current.observe(canvasRef.current)
+        intersectionRef.current.observe(canvasContRef.current)
     },[])
 
     
@@ -108,8 +120,10 @@ export function Canvas({parentRef, lenis}){
     
     return(<>
     <section className="canvas_section">
-    <div className="canvas_cont">
-        <div className={`circles ${isAnimating}`}></div>
+    <div className="canvas_cont"
+    ref={canvasContRef}>
+        <div className={`circles ${isAnimating}`}
+        ref={circlesRef}></div>
         <canvas ref={canvasRef}></canvas>
     </div>
     </section>

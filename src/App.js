@@ -144,8 +144,8 @@ const lenisRef = useRef(new Lenis({
       <Preloader displayloader={isPreloader}
       precent={precentage}
        refs={mediaRefs}></Preloader>
-       <Runningline></Runningline>
         <div className={`content ${isContent}`}>
+        <Runningline></Runningline>
         <Child></Child>
         <Canvas lenis={lenisRef} parentRef={appRef}></Canvas>
         {elements}

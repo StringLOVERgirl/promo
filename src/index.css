@@ -14,6 +14,7 @@ video, audio, img {
 .running_line_cont {
   height: 100svh;
   padding-top: 3em;
+  background-color: rgb(255, 251, 244);
 }
 
 .line_cont {
@@ -50,7 +51,7 @@ video, audio, img {
 
 .line2 {
   transform: translateX(-50%) translateZ(0);
-  animation: line2 35s linear infinite;
+  animation: line2 37s linear infinite;
 }
 
 @keyframes line1 {
@@ -72,6 +73,9 @@ video, audio, img {
   justify-content: center;
   
 }
+
+canvas {display: none;}
+
 .canvas_cont {
   width: 96vw;
   border: solid;
@@ -80,7 +84,58 @@ video, audio, img {
   overflow: hidden;
   height: 80svh;
   align-self: flex-end;
+  display: flex;
+  justify-content: center;
 }
+
+.circles{
+  /* height: inherit; */
+  width: 50%;
+   aspect-ratio: 1/1;
+  border: solid #3C3F42 1px;
+  border-radius: 50%;
+  position: relative;
+  transition: width 1s, height 1s;
+  /* display: flex;
+  justify-content: center; */
+}
+
+.animateCircles {
+width: 70%;
+}
+
+.animateCirclesBack {
+width: 50%;
+
+}
+
+.circles::before{
+  content: '';
+  width: 50%;
+  border: inherit;
+  aspect-ratio: 1;
+  display: block;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+  border-radius: inherit;
+}
+
+.circles::after{
+  content: '';
+  width: 12.5%;
+  border: inherit ;
+  aspect-ratio: 1;
+  display: block;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+  border-radius: inherit;
+}
+
+
 
 .preloader {
   height: 100svh;

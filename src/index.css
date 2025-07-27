@@ -65,6 +65,23 @@ video, audio, img {
   }
 }
 
+.canvas_section{
+  height: 100svh;
+  background-color: rgb(255, 251, 244);
+  display: flex;
+  justify-content: center;
+  
+}
+.canvas_cont {
+  width: 96vw;
+  border: solid;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  height: 80svh;
+  align-self: flex-end;
+}
+
 .preloader {
   height: 100svh;
   width: 100vw;
@@ -72,7 +89,7 @@ video, audio, img {
   z-index: 999;
   background: white;
   display: flex;
-  transition: clip-path 0.8s ease-in;
+  transition: clip-path 1s ease-in;
   /* transition: clip-path 1s linear; шторы*/
   /* will-change: clip-path; */
   clip-path: inset(0 0 0%);

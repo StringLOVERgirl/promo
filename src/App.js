@@ -34,7 +34,7 @@ const Child = memo(function () {
 
 function App() {
 
-  console.log('render')
+  console.log('App is on render')
 
   const appRef = useRef(null)
 
@@ -87,7 +87,10 @@ function App() {
 
   // totalCount.current = elements.length 
 
-
+const lenisRef = useRef(new Lenis({
+  duration: 2,
+  smooth: true,
+}))
 
   useEffect(() => {
     totalCount.current = elements.length 
@@ -96,17 +99,19 @@ function App() {
 
     console.log(mediaRefs.current[0])
 
-    const lenis = new Lenis({
-      duration: 2,
-      smooth: true,
-    });
+    // lenisRef.current = new Lenis({
+    //   duration: 2,
+    //   smooth: true,
+    // });
 
     // lenis.on('scroll', event => {
-    //     console.log(Math.floor(event.scroll))
+    //   if (!animationFlagRef.current){
+    //     animationFlagRef.current = true
+    //   }
     // })
 
     function raf(time) {
-      lenis.raf(time)
+      lenisRef.current.raf(time)
       requestAnimationFrame(raf)
     }
 
@@ -142,7 +147,7 @@ function App() {
        <Runningline></Runningline>
         <div className={`content ${isContent}`}>
         <Child></Child>
-        <Canvas parentRef={appRef}></Canvas>
+        <Canvas lenis={lenisRef} parentRef={appRef}></Canvas>
         {elements}
       </div>
     </div>

@@ -45,11 +45,11 @@ function App() {
   let [isPreloader,setIsPreloader] = useState('')
 
 
-  const addRef = useCallback((element) => {
+  const addRef = (element) => {
     if (!mediaRefs.current.includes(element)) {
       mediaRefs.current.push(element)
     }
-  }, []) // обернули т к это реф при каждом рендере будет пересоздаваться 
+  }  // обернули т к это реф при каждом рендере будет пересоздаваться 
   // значит рефы потеряют ссылку
 
   const totalCount = useRef()
@@ -57,6 +57,9 @@ function App() {
   let [precentage, setprecentage] = useState(0)
 
   const updateprecentage = useCallback(async ()=>{
+// колбек нужен в купе с состоянием или прпосами которые могут измениться 
+// и что бы то к чему прявязан эт а функция получило доступ 
+// к функции с реальынм состоянми данными
     loadedMedia.current+=1
     let delay = loadedMedia.current
     await new Promise((resolve)=>setTimeout(resolve,delay*100))
@@ -145,7 +148,7 @@ const lenisRef = useRef(new Lenis({
       precent={precentage}
        refs={mediaRefs}></Preloader>
         <div className={`content ${isContent}`}>
-        <Runningline></Runningline>
+        <Runningline lenis={lenisRef}></Runningline>
         <Child></Child>
         <Canvas lenis={lenisRef} parentRef={appRef}></Canvas>
         {elements}

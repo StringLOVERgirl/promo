@@ -10,11 +10,20 @@
 video, audio, img {
    display: none;
 }
-
+.video{
+  height: 100svh;
+  object-fit: cover;
+  width:100vw;
+  /* width: 100vw; */
+  /* border: solid; */
+  position: absolute;
+  display: block;
+}
 .running_line_cont {
   height: 100svh;
-  padding-top: 3em;
+  /* padding-top: 3em; */
   background-color: rgb(255, 251, 244);
+  /* background-video: url('../public/assets/63fca69523dfba725518d390_68399bcc53dcba2367185502_hero-4k-transcode.webm'); */
 }
 
 .line_cont {
@@ -23,12 +32,23 @@ video, audio, img {
   width: fit-content;
   height: fit-content;
   display: flex;
+  /* position: relative; */
+  align-self: center;
+  /* border:solid 1px #2e1437; */
+  /* padding-top:3em */
 }
 
 .line_bg {
   width: 100vw;
   height: fit-content;
   background-image: linear-gradient(to right, #948e99, #2e1437);
+  display: flex;
+  flex-direction: column;
+  /* margin-top: 3em; */
+  position: absolute;
+  top:3em;
+  /* backdrop-filter: blur(5px); */
+
 }
 
 .line_cont > p {
@@ -43,61 +63,83 @@ video, audio, img {
   font-size: 13vw;
   font-family: DMSans_18pt-ExtraLight;
   font-weight: 570;
+  transform: none;
+  /* border: solid 1px green; */
+  
 }
 
-.line1 {
-  animation: line1 25s linear infinite;
+.first {
+  background-color: red;
+
 }
+.line1 {
+  transform: translateX(var(--translateLine1)) translateZ(0);
+   /* transition: transform .05s; */
+}
+
 
 .line2 {
-  transform: translateX(-50%) translateZ(0);
-  animation: line2 37s linear infinite;
+  transform: translateX(var(--translateLine2)) translateZ(0);
 }
 
-@keyframes line1 {
-  to {
-    transform: translateX(-50%) translateZ(0);
-  }
-}
-
-@keyframes line2 {
-  to {
-    transform: translateX(0) translateZ(0);
-  }
-}
 
 .canvas_section{
-  height: 100svh;
+  height: 250svh;
   background-color: rgb(255, 251, 244);
   display: flex;
   justify-content: center;
-  
+  /* overflow-y: hidden; */
 }
 
 canvas {display: none;}
 
-.canvas_cont {
+.circles_bg_cont{
+  position: relative;
+  border: solid blue 1px;
+  height: 200svh;
+  top: 30svh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* overflow-y: hidden; */
+}
+
+.bg_circles_cont {
   width: 96vw;
   border: solid;
   display: flex;
   align-items: center;
   overflow: hidden;
+  position: sticky;
   height: 80svh;
-  align-self: flex-end;
-  display: flex;
+  /* margin-top:50% ; */
+  /* align-self: flex-start; */
+  top: 0;
+  /* align-self: baseline; */
+  /* transform: translateY(-50%); */
   justify-content: center;
+  background-image: linear-gradient(to right,#6a9113
+, #141517 );
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  
 }
 
 .circles{
   /* height: inherit; */
   width: 50%;
    aspect-ratio: 1/1;
-  border: solid #3C3F42 1px;
+  /* border: solid #3C3F42 1px;
+   */
+    border: rgba(172, 255, 47, 0.808) solid 1px;
   border-radius: 50%;
-  position: relative;
+  /* position: relative; */
   transition: width 1s, height 1s;
   /* display: flex;
   justify-content: center; */
+  filter: drop-shadow(0px 0px 5px greenyellow)
 }
 
 .animateCircles {
@@ -182,7 +224,7 @@ width: 50%;
 
 img,
 video {
-  border: solid;
+  /* border: solid; */
 }
 
 @font-face {

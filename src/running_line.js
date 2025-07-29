@@ -20,6 +20,7 @@ export function Runningline({ lenis }) {
   const lastTimeRef = useRef(0)
   let [velocity,setVelocity] = useState (1)
   let [leniss, setLenis] = useState(0)
+  
 
   const обнуление = (transRef,line) => {
     const width = Math.floor(sizeRefs.current[line].clientWidth)
@@ -120,6 +121,7 @@ export function Runningline({ lenis }) {
             setTimeout(()=>{
               velocityDebaunceRef.current=false
               velocityRef.current = 0
+              setVelocity( velocityRef.current)
             },300) // ограничитель на срабатывания дерганий при скорости скролла
          }
     })
@@ -137,8 +139,9 @@ export function Runningline({ lenis }) {
         <div className="line_bg">
            <p className="velocity"
            >
-            {/* {velocity} */}
-            {leniss}</p>
+            {velocity}
+            {/* {leniss} */}
+            </p>
           <div className={`line_cont line1`}
             // ref={line1Ref}
             ref={(el)=>lineRefs.current.line = el}

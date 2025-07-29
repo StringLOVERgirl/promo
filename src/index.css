@@ -180,7 +180,7 @@ canvas {display: none;}
     }
 }
 
-@media (max-height: 650px) {
+@media (max-height: 650px) and (max-width: 1000px) {
   .inner_area_cont{
     width: 70%;
 } 

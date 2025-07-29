@@ -19,6 +19,7 @@ export function Runningline({ lenis }) {
   const velocityRef = useRef(1)
   const lastTimeRef = useRef(0)
   let [velocity,setVelocity] = useState (1)
+  let [leniss, setLenis] = useState(0)
 
   const обнуление = (transRef,line) => {
     const width = Math.floor(sizeRefs.current[line].clientWidth)
@@ -109,7 +110,7 @@ export function Runningline({ lenis }) {
     lenis.current.on('scroll', event => {
 
       updateDirection(event, scrollDirection)
-      // console.log(event.velocity)
+       setLenis(prev=>prev+1)
       if (!velocityDebaunceRef.current){
 
             velocityDebaunceRef.current = true
@@ -135,7 +136,9 @@ export function Runningline({ lenis }) {
 {/* ></video> */}
         <div className="line_bg">
            <p className="velocity"
-           >{velocity}</p>
+           >
+            {/* {velocity} */}
+            {leniss}</p>
           <div className={`line_cont line1`}
             // ref={line1Ref}
             ref={(el)=>lineRefs.current.line = el}

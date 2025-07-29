@@ -60,7 +60,7 @@ video, audio, img {
   color: transparent;
   background-image: linear-gradient(to right, #948e99, #2e1437, #948e99);
   letter-spacing: 0.1px;
-  font-size: 13vw;
+  font-size: clamp(25svh,13vw,65vw);
   font-family: DMSans_18pt-ExtraLight;
   font-weight: 570;
   transform: none;

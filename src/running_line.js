@@ -14,11 +14,12 @@ export function Runningline({ lenis }) {
   // const line1Ref = useRef(null)
   // const line2Ref = useRef(null)
   const lineRefs = useRef({line:null, line2:null})
-  const sizeRef = useRef(0)
+  // const sizeRef = useRef(0)
+  const sizeRefs = useRef({line:null,line2:null})
   const velocityRef = useRef(1)
 
-  const обнуление = (transRef) => {
-    const width = Math.floor(sizeRef.current.clientWidth)
+  const обнуление = (transRef,line) => {
+    const width = Math.floor(sizeRefs.current[line].clientWidth)
     if (transRef.current >= width
       || transRef.current <= -width){
         transRef.current = 0
@@ -27,8 +28,8 @@ export function Runningline({ lenis }) {
 
   function translate() {
 
-    обнуление(translateRef)
-    обнуление(translateRef2)
+    обнуление(translateRef,'line')
+    обнуление(translateRef2,'line2')
 
     const line = lineRefs.current.line
     // console.log(line)
@@ -91,7 +92,7 @@ export function Runningline({ lenis }) {
             // ref={line1Ref}
             ref={(el)=>lineRefs.current.line = el}
             >
-            <p ref={sizeRef}>
+            <p ref={(el)=>sizeRefs.current.line = el}>
               REACT{"\u00A0"}·{"\u00A0"}JS{"\u00A0"}·{"\u00A0"}2025 YEAR{"\u00A0"}·{"\u00A0"}
             </p>
             <p>
@@ -105,7 +106,7 @@ export function Runningline({ lenis }) {
             // ref={line2Ref}
             ref={(el)=>lineRefs.current.line2 = el}
             >
-            <p>
+            <p ref={(el)=>sizeRefs.current.line2 = el}>
               {"\u00A0"}·{"\u00A0"}DESIGN{"\u00A0"}·{"\u00A0"}DEVELOPMENT
               {"\u00A0"}·{"\u00A0"}PROMO
             </p>

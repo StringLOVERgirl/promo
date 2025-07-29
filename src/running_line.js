@@ -50,9 +50,9 @@ export function Runningline({ lenis }) {
     // узнаем сколько прошло делить на кадры корректируем 
     // на один кадр и в слеюущем вызове уже будет снова умножить на один тк перезаписали
     // в конце функции реф на актульное 
-    console.log(delta, currentTime)
+    // console.log(delta, currentTime)
      
-    const speed = 1.5 * index * (delta/16) // т е кадр в 1 милесекунд (60 кадров в секунду)
+    const speed = 0.5 * index * (delta/16) // т е кадр в 1 милесекунд (60 кадров в секунду)
     // 1000 / 60 =16 с небольшим 
     // и поэтому обычно это будет ну примерно 1 
     
@@ -65,16 +65,16 @@ export function Runningline({ lenis }) {
     // console.log(line)
     const line2 = lineRefs.current.line2
     if (!scrollDirection.current){
-      translateRef.current -= speed + velocityRef.current/3
+      translateRef.current -= speed + velocityRef.current/4
       line.style.setProperty('--translateLine1', translateRef.current + 'px')
 
-      translateRef2.current += speed + velocityRef.current/3
+      translateRef2.current += speed + velocityRef.current/4
       line2.style.setProperty('--translateLine2', translateRef2.current + 'px')
     } else {
-      translateRef.current += speed - velocityRef.current/3
+      translateRef.current += speed - velocityRef.current/4
       line.style.setProperty('--translateLine1', translateRef.current + 'px')
 
-      translateRef2.current -= speed - velocityRef.current/3
+      translateRef2.current -= speed - velocityRef.current/4
       line2.style.setProperty('--translateLine2', translateRef2.current + 'px')
     }
 
@@ -109,7 +109,7 @@ export function Runningline({ lenis }) {
             setTimeout(()=>{
               velocityDebaunceRef.current=false
               velocityRef.current = 0
-            },200)
+            },300) // ограничитель на срабатывания дерганий при скорости скролла
          }
     })
     // translate(currentTime)

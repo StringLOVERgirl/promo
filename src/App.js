@@ -5,6 +5,7 @@ import { Preloader } from './preloader';
 import { src,collectMedia } from './createMedia';
 import { Runningline } from './running_line';
 import { Canvas } from './canvas_circles';
+import { Refs } from './refs'
 
 
 const Child = memo(function () {
@@ -152,6 +153,7 @@ const lenisRef = useRef(new Lenis({
         <Child></Child>
         <Canvas lenis={lenisRef} parentRef={appRef}></Canvas>
         {elements}
+        <Refs lenis={lenisRef}></Refs>
       </div>
     </div>
   );

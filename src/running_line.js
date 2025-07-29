@@ -52,7 +52,7 @@ export function Runningline({ lenis }) {
     // в конце функции реф на актульное 
     // console.log(delta, currentTime)
      
-    const speed = 0.5 * index * (delta/16) // т е кадр в 1 милесекунд (60 кадров в секунду)
+    const speed = 1.5 * index * (delta/16) // т е кадр в 1 милесекунд (60 кадров в секунду)
     // 1000 / 60 =16 с небольшим 
     // и поэтому обычно это будет ну примерно 1 
     

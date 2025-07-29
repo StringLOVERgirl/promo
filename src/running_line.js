@@ -101,15 +101,16 @@ export function Runningline({ lenis }) {
     if (preScrollRef.current > targetScroll) {
       state.current = true
     } else if (targetScroll > preScrollRef.current) { state.current = false }
-    preScrollRef.current = targetScroll // in any case 
+    preScrollRef.current = targetScroll // in any case
+    // scroll direction + prevscroll
 
-  }  // direction logic 
+  }
 
   const velocityDebaunceRef = useRef(false)
   useEffect(() => {
 
     lenis.current.on('scroll', event => {
-      velocityRef.current = Math.abs(event.targetScroll - preScrollRef.current)
+      velocityRef.current = Math.abs(event.targetScroll - preScrollRef.current)/2
 
       updateDirection(event, scrollDirection)
        setLenis(prev=>prev+1)
@@ -117,11 +118,13 @@ export function Runningline({ lenis }) {
 
             velocityDebaunceRef.current = true
             // velocityRef.current = Math.abs(event.targetScroll - preScrollRef.current)
+            // event.velocity
             setVelocity( velocityRef.current)
 
             setTimeout(()=>{
               velocityDebaunceRef.current=false
-              velocityRef.current = 0
+              velocityRef.current = 1 // убрали 0 стало 1чтобы расчет не скакали т к 
+              // инициализировано с 1 и для логики надо 1 
               setVelocity( velocityRef.current)
             },300) // ограничитель на срабатывания дерганий при скорости скролла
          }

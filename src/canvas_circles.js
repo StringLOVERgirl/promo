@@ -60,7 +60,7 @@ export function Canvas({parentRef, lenis}){
     
     return(<>
         <section className="canvas_section">
-            <div className="circles_bg_cont">
+            <div className="inner_area_cont">
                 <div className="bg_circles_cont"
                     ref={canvasContRef}>
                     <div className={`circles ${isAnimating}`}

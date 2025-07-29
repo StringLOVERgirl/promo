@@ -39,6 +39,7 @@ video, audio, img {
   align-self: center;
   /* border:solid 1px #2e1437; */
   /* padding-top:3em */
+  overflow-x: hidden;
 }
 
 .line_bg {

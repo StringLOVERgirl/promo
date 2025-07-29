@@ -7,19 +7,16 @@ import { useEffect, useRef, useState } from "react";
 
 export function Runningline({ lenis }) {
 // console.log(video)
-  const preScrollRef = useRef(0)
+  const prevScrollRef = useRef(0)
   const scrollDirection = useRef(false)
   const translateRef = useRef(0)
   const translateRef2 = useRef(0)
-  // const line1Ref = useRef(null)
-  // const line2Ref = useRef(null)
+
   const lineRefs = useRef({line:null, line2:null})
-  // const sizeRef = useRef(0)
   const sizeRefs = useRef({line:null,line2:null})
   const velocityRef = useRef(1)
   const lastTimeRef = useRef(0)
   let [velocity,setVelocity] = useState (1)
-  let [leniss, setLenis] = useState(0)
   
 
   const обнуление = (transRef,line) => {
@@ -67,26 +64,31 @@ export function Runningline({ lenis }) {
     const line = lineRefs.current.line
     console.log(velocity)
     const line2 = lineRefs.current.line2
+
     if (!scrollDirection.current){
+
       translateRef.current -= speed 
       + velocityRef.current
-      /3.5
+      /4
       line.style.setProperty('--translateLine1', translateRef.current + 'px')
 
       translateRef2.current += speed 
       + velocityRef.current
-      /3.5
+      /4
       line2.style.setProperty('--translateLine2', translateRef2.current + 'px')
+
     } else {
+
       translateRef.current += speed 
-      - velocityRef.current
-      /3.5
+      + velocityRef.current // знак заменен на плюс т к модуль это помогло 
+      /4
       line.style.setProperty('--translateLine1', translateRef.current + 'px')
 
       translateRef2.current -= speed 
-      - velocityRef.current
-      /3.5
+      + velocityRef.current // знак заменен на плюс т к модуль это помогло 
+      /4
       line2.style.setProperty('--translateLine2', translateRef2.current + 'px')
+      
     }
 
     // console.log(scrollDirection.current)
@@ -98,38 +100,30 @@ export function Runningline({ lenis }) {
 
   const updateDirection = ({ targetScroll }, state) => {
 
-    if (preScrollRef.current > targetScroll) {
+    if (prevScrollRef.current > targetScroll) {
       state.current = true
-    } else if (targetScroll > preScrollRef.current) { state.current = false }
-    preScrollRef.current = targetScroll // in any case
-    // scroll direction + prevscroll
+    } else if (targetScroll > prevScrollRef.current) { state.current = false }
+    prevScrollRef.current = targetScroll // in any case
+    // scroll direction + prevscroll logic
 
   }
 
-  const velocityDebaunceRef = useRef(false)
+  
   useEffect(() => {
 
     lenis.current.on('scroll', event => {
-      velocityRef.current = Math.abs(event.targetScroll - preScrollRef.current)/2
 
-      updateDirection(event, scrollDirection)
-       setLenis(prev=>prev+1)
-      if (!velocityDebaunceRef.current){
+      requestAnimationFrame(() => {
 
-            velocityDebaunceRef.current = true
-            // velocityRef.current = Math.abs(event.targetScroll - preScrollRef.current)
-            // event.velocity
-            setVelocity( velocityRef.current)
+        velocityRef.current = Math.abs(event.targetScroll - prevScrollRef.current) / 2
+        if (velocityRef.current == 0) { velocityRef.current = 1 }
+        // это вы ше так мы обновляем 
+        updateDirection(event, scrollDirection)
 
-            setTimeout(()=>{
-              velocityDebaunceRef.current=false
-              velocityRef.current = 1 // убрали 0 стало 1чтобы расчет не скакали т к 
-              // инициализировано с 1 и для логики надо 1 
-              setVelocity( velocityRef.current)
-            },300) // ограничитель на срабатывания дерганий при скорости скролла
-         }
-    })
-    // translate(currentTime)
+        setVelocity(velocityRef.current) // отладка
+
+      }) // emd of raf inner
+    }) // end of raf outter or timeout
     requestAnimationFrame(translate)
 
   }, [])
@@ -144,10 +138,8 @@ export function Runningline({ lenis }) {
            <p className="velocity"
            >
             {velocity}
-            {/* {leniss} */}
             </p>
           <div className={`line_cont line1`}
-            // ref={line1Ref}
             ref={(el)=>lineRefs.current.line = el}
             >
             <p ref={(el)=>sizeRefs.current.line = el}>
@@ -161,7 +153,6 @@ export function Runningline({ lenis }) {
             </p>
           </div>
           <div className="line_cont line2"
-            // ref={line2Ref}
             ref={(el)=>lineRefs.current.line2 = el}
             >
             <p ref={(el)=>sizeRefs.current.line2 = el}>

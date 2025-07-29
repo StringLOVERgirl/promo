@@ -1,3 +1,4 @@
+/*  накинуть м83 саунд как оенто сбоку */
 /* · точка  */
 /* design development promo */
 /* react js 2025 year */
@@ -52,10 +53,10 @@ video, audio, img {
   /* margin-top: 3em; */
   position: absolute;
   top:3em;
-  overflow-x: hidden;
+  overflow: hidden;
   /* scroll-behavior: ; */
   /* backdrop-filter: blur(5px); */
-pointer-events: none;
+/* pointer-events: none; */
 }
 
 .line_cont > p {
@@ -124,38 +125,62 @@ canvas {display: none;}
   height: 80svh;
   /* margin-top:50% ; */
   /* align-self: flex-start; */
-  top: 0;
+  /* top: 0; orign*/
+  top: 10svh;
   /* align-self: baseline; */
   /* transform: translateY(-50%); */
   justify-content: center;
-  background-image: linear-gradient(to right,#6a9113
-, #141517 );
-  background-position: center;
+  /* background-image: linear-gradient(to right,#6a9113
+, #141517 ); origun*/
+background: url('./assets/1ea0f73fc0c9e8869fd32a5ff62b982f.gif'
+) fixed center / contain no-repeat,
+ url('./assets/27e62d217c81325dc738585497eef626.gif')  fixed 10% 10% / 10% no-repeat,
+ url('./assets/39b98fd9cfae359c9d1fbee154bd279a.gif') fixed 100% 70% / 30% no-repeat;
+  /* background-position: center;
   background-size: contain;
   background-repeat: no-repeat;
-  background-attachment: fixed;
+  background-attachment: fixed; */
 }
 
 .section_links {
-  /* height: 300svh; */
+  height: 400svh;
   /* background: pink; */
-  padding-top: 20svh;
-  border: solid purple;
+  /* padding-top: 20svh; */
+  /* border: solid purple; */
   position: relative;
   /* height: fit-content; */
+  /* overflow: hidden; */
+}
+
+
+/* контролирует высоту секции и область срабатывания анимации */
+.element_zero {
+  top: 50%;
+  height: 200svh;
+  /* background-image: linear-gradient(to right,#8E0E00,#1F1C18); */
+  position: absolute;
+  /* z-index: 2 ; */
+  width: 100%;
+  /* background-color: pink; */
 }
 
 .link_cont {
-  position: relative;
-  width: 100%;
-  height: 150svh;
-  border: #6a9113 solid;
+  position: absolute;
+  /* высота 100 прцоентов от родителя чтобы элементы прилепали
+   на всем протяжени скролла*/
+  width: 100%; 
+  height: 100%;
+  /* border: #6a9113 solid; */
 
 }
 
 .link1_cont {
-  background: pink;
-  transition: clip-path 1s 4s ease-in;
+background-image: linear-gradient(to right, #304352,#d7d2cc);
+  /* border: red; */
+  clip-path: polygon(0% 0%, 0% 100%, 50% 100%, 50% 0, 50% 0, 50% 100%, 100% 100%, 100% 0%);
+  transition: clip-path 1.5s  ;
+  z-index: 2;
+  
 }
 
 .hide_link1_cont {
@@ -171,23 +196,38 @@ canvas {display: none;}
 }
 
 .link2_cont {
-  background: grey;
-  /* transform: translateY(-100%); */
-  position: absolute;
-  top: 20svh;
-  z-index: -1;
+  /* background: grey; */
+  background-image: linear-gradient(to right, #948e99
+
+  , #2e1437);
+  /* filter: drop-shadow(0 0 30px ); */
+  z-index: 1;
 }
 
 .link {
   top: 0;
   height: 100svh;
   position: sticky;
-  background: white;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat  ;
+}
+
+.link1 {
+  /* background: greenyellow; */
+  background-image: url('./assets/11475351.png');
+  background-image: url('./assets/d830f3658ac29ca896d6ccb143b1b8a7.gif');
+  background-size: 24%;
+
+    /* filter: drop-shadow(0 0 30px pink) drop-shadow(-20px 0 60px pink); */
+
 }
 
 .link2 {
-  background: blue;
-  /* position: sticky; */
+  /* background: blue; */
+  background-size: 24%;
+
+  background-image: url('./assets/61e2e59a077a3375e4f7f72939750ca9.gif');
 }
 
 .circles{
@@ -196,13 +236,15 @@ canvas {display: none;}
    aspect-ratio: 1/1;
   /* border: solid #3C3F42 1px;
    */
-    border: rgba(172, 255, 47, 0.808) solid 1px;
+    /* border: rgba(172, 255, 47, 0.808) solid 1px;origin */
+    border: black solid 1px;
+    filter: drop-shadow(0 0 5px black);
   border-radius: 50%;
   /* position: relative; */
   transition: width 1s, height 1s;
   /* display: flex;
   justify-content: center; */
-  filter: drop-shadow(0px 0px 5px greenyellow)
+  /* filter: drop-shadow(0px 0px 5px greenyellow) origin*/
 }
 
 .animateCircles {

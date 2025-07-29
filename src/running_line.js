@@ -82,7 +82,7 @@ export function Runningline({ lenis }) {
 
       translateRef2.current -= speed 
       + velocityRef.current // знак заменен на плюс т к модуль это помогло 
-      /4
+      /4  
       line2.style.setProperty('--translateLine2', translateRef2.current + 'px')
       
     }
@@ -113,6 +113,9 @@ export function Runningline({ lenis }) {
 
         velocityRef.current = Math.abs(event.targetScroll - prevScrollRef.current) / 2
         if (velocityRef.current == 0) { velocityRef.current = 1 }
+        setTimeout(()=>{
+          velocityRef.current = 1
+        },400)
         // это вы ше так мы обновляем 
         updateDirection(event, scrollDirection)
 

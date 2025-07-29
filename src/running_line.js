@@ -16,7 +16,7 @@ export function Runningline({ lenis }) {
   const sizeRefs = useRef({line:null,line2:null})
   const velocityRef = useRef(1)
   const lastTimeRef = useRef(0)
-  let [velocity,setVelocity] = useState (1)
+  // let [velocity,setVelocity] = useState (1)
   
 
   const обнуление = (transRef,line) => {
@@ -120,7 +120,7 @@ export function Runningline({ lenis }) {
         // это вы ше так мы обновляем 
         updateDirection(event, scrollDirection)
 
-        setVelocity(velocityRef.current) // отладка
+        // setVelocity(velocityRef.current) // отладка
 
       }) // emd of raf inner
     }) // end of raf outter or timeout
@@ -137,7 +137,7 @@ export function Runningline({ lenis }) {
         <div className="line_bg">
            <p className="velocity"
            >
-            {velocity}
+            {/* {velocity} */}
             </p>
           <div className={`line_cont line1`}
             ref={(el)=>lineRefs.current.line = el}

@@ -100,7 +100,8 @@ video, audio, img {
 
 canvas {display: none;}
 
-.circles_bg_cont{
+
+.inner_area_cont{
   position: relative;
   border: solid blue 1px;
   height: 200svh;
@@ -109,10 +110,11 @@ canvas {display: none;}
   align-items: center;
   justify-content: center;
   /* overflow-y: hidden; */
+  width: 95vw;
 }
 
 .bg_circles_cont {
-  width: 96vw;
+  width: 100%;
   border: solid;
   display: flex;
   align-items: center;
@@ -131,8 +133,8 @@ canvas {display: none;}
   background-size: contain;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  
 }
+
 
 .circles{
   /* height: inherit; */
@@ -150,13 +152,41 @@ canvas {display: none;}
 }
 
 .animateCircles {
-width: 70%;
+  width: 70%;
+  }
+  
+  .animateCirclesBack {
+  width: 50%;
+  }
+
+
+@media (max-width: 600px) {
+  .inner_area_cont{
+    width: 90%;
 }
 
-.animateCirclesBack {
-width: 50%;
+  .animateCircles {
+    width: 100%;
+    }
 
+    .bg_circles_cont {
+      height: auto;
+      aspect-ratio: 1/1;
+    }
+
+    .circles{
+      transition: width 1.5s, height 1.5s;
+
+    }
 }
+
+@media (max-height: 650px) {
+  .inner_area_cont{
+    width: 70%;
+} 
+}
+
+
 
 .circles::before{
   content: '';

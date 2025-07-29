@@ -7,6 +7,9 @@
   padding: 0;
 }
 
+.root {  overflow-x: hidden;
+}
+
 video, audio, img {
    display: none;
 }

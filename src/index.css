@@ -42,6 +42,14 @@ video, audio, img {
   /* border:solid 1px #2e1437; */
   /* padding-top:3em */
   /* overflow-x: hidden; */
+  /* transition:  transform 0.1s; */
+}
+
+.velocity {
+  font-size: 5em;
+  color: red;
+  align-self: center;
+  position: fixed;
 }
 
 .line_bg {

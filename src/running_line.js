@@ -2,7 +2,7 @@
 // на фон канаваса можно докинуть синус через перлин 
 // накинуть сайз на вторую строку - решено
 // ухожу с сайта браузера взвращаюсбь строка леьтит почему  - решено
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 // import video from 'assets/63fca69523dfba725518d390_68399bcc53dcba2367185502_hero-4k-transcode.webm'
 
 export function Runningline({ lenis }) {
@@ -18,6 +18,7 @@ export function Runningline({ lenis }) {
   const sizeRefs = useRef({line:null,line2:null})
   const velocityRef = useRef(1)
   const lastTimeRef = useRef(0)
+  let [velocity,setVelocity] = useState (1)
 
   const обнуление = (transRef,line) => {
     const width = Math.floor(sizeRefs.current[line].clientWidth)
@@ -62,27 +63,27 @@ export function Runningline({ lenis }) {
     обнуление(translateRef2,'line2')
 
     const line = lineRefs.current.line
-    console.log(speed - velocityRef.current/3.5)
+    console.log(velocity)
     const line2 = lineRefs.current.line2
     if (!scrollDirection.current){
       translateRef.current -= speed 
       + velocityRef.current
-      /3.5*index
+      /3.5
       line.style.setProperty('--translateLine1', translateRef.current + 'px')
 
       translateRef2.current += speed 
       + velocityRef.current
-      /3.5*index
+      /3.5
       line2.style.setProperty('--translateLine2', translateRef2.current + 'px')
     } else {
       translateRef.current += speed 
       - velocityRef.current
-      /3.5*index
+      /3.5
       line.style.setProperty('--translateLine1', translateRef.current + 'px')
 
       translateRef2.current -= speed 
       - velocityRef.current
-      /3.5*index
+      /3.5
       line2.style.setProperty('--translateLine2', translateRef2.current + 'px')
     }
 
@@ -113,6 +114,7 @@ export function Runningline({ lenis }) {
 
             velocityDebaunceRef.current = true
             velocityRef.current = event.velocity
+            setVelocity( velocityRef.current)
 
             setTimeout(()=>{
               velocityDebaunceRef.current=false
@@ -132,6 +134,8 @@ export function Runningline({ lenis }) {
         {/* <video className="video" muted autoPlay loop src='assets/63fca69523dfba725518d390_68399bcc53dcba2367185502_hero-4k-transcode.webm' */}
 {/* ></video> */}
         <div className="line_bg">
+           <p className="velocity"
+           >{velocity}</p>
           <div className={`line_cont line1`}
             // ref={line1Ref}
             ref={(el)=>lineRefs.current.line = el}

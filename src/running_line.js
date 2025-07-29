@@ -30,7 +30,7 @@ export function Runningline({ lenis }) {
   function translate(currentTime) { // нужен аргумент т к обернутый во раф по умолчанию
     // дает аргумент времене currentTime 
 
-    const index = (window.innerWidth / 1280) * 0.8
+    const index = window.innerWidth / 1280
     // вычисляем отношение ширины к ширине монитроа на котором 1.5  была хорошая 
     // скорость и индексируем скорость во сколько ширина больше или меньше 
     // во столько же и сокрость - чтобы всегда была равной
@@ -52,7 +52,7 @@ export function Runningline({ lenis }) {
     // в конце функции реф на актульное 
     // console.log(delta, currentTime)
      
-    const speed =index * (delta/16) // т е кадр в 1 милесекунд (60 кадров в секунду)
+    const speed =index * (delta/16) * 0.8// т е кадр в 1 милесекунд (60 кадров в секунду)
     // 1000 / 60 =16 с небольшим 
     // и поэтому обычно это будет ну примерно 1 
     
@@ -67,22 +67,22 @@ export function Runningline({ lenis }) {
     if (!scrollDirection.current){
       translateRef.current -= speed 
       + velocityRef.current
-      // /3.5
+      /3.5*index
       line.style.setProperty('--translateLine1', translateRef.current + 'px')
 
       translateRef2.current += speed 
       + velocityRef.current
-      // /3.5
+      /3.5*index
       line2.style.setProperty('--translateLine2', translateRef2.current + 'px')
     } else {
       translateRef.current += speed 
       - velocityRef.current
-      // /3.5
+      /3.5*index
       line.style.setProperty('--translateLine1', translateRef.current + 'px')
 
       translateRef2.current -= speed 
       - velocityRef.current
-      //  /3.5
+      /3.5*index
       line2.style.setProperty('--translateLine2', translateRef2.current + 'px')
     }
 

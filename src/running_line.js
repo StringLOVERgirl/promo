@@ -3,7 +3,6 @@
 // накинуть сайз на вторую строку - решено
 // ухожу с сайта браузера взвращаюсбь строка леьтит почему  - решено
 import { useEffect, useRef, useState } from "react";
-// import video from 'assets/63fca69523dfba725518d390_68399bcc53dcba2367185502_hero-4k-transcode.webm'
 
 export function Runningline({ lenis }) {
 // console.log(video)
@@ -36,10 +35,7 @@ export function Runningline({ lenis }) {
     // во столько же и сокрость - чтобы всегда была равной
   
     let delta = !lastTimeRef.current ? 16 : currentTime - lastTimeRef.current
-    //   if (!lastTimeRef.current){
-    //  delta = 16 
-    // } else 
-    // currentTime - lastTimeRef.current
+
     if (currentTime - lastTimeRef.current > 300) {
       delta = 100
     } // а тут мы вычисляем если разница большая то пересчет времени 

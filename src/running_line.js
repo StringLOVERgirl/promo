@@ -62,7 +62,7 @@ export function Runningline({ lenis }) {
     обнуление(translateRef2,'line2')
 
     const line = lineRefs.current.line
-    console.log(velocity)
+    // console.log(velocity)
     const line2 = lineRefs.current.line2
 
     if (!scrollDirection.current){

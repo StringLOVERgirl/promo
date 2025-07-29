@@ -125,14 +125,14 @@ const lenisRef = useRef(new Lenis({
   useEffect(()=>{
     mediaRefs.current.forEach(el => {
       if (el.tagName === 'IMG') {
-        if (el.complete && el.dataset.processed !== 'true') { 
+        if (el.complete ) { 
 // вторая проверка нужна на случай если онлоад сработает первый и не вызвалос
 // дважды
           el.dataset.processed = 'true';
           updateprecentage();
         }
       } else if (el.tagName === 'VIDEO') {
-        if (el.readyState >= 4 && el.dataset.processed !== 'true') {
+        if (el.readyState ) {
           el.dataset.processed = 'true';
           updateprecentage();
         }

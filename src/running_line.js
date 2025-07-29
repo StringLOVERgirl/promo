@@ -65,16 +65,16 @@ export function Runningline({ lenis }) {
     // console.log(line)
     const line2 = lineRefs.current.line2
     if (!scrollDirection.current){
-      translateRef.current -= speed + velocityRef.current/4
+      translateRef.current -= speed + velocityRef.current/3
       line.style.setProperty('--translateLine1', translateRef.current + 'px')
 
-      translateRef2.current += speed + velocityRef.current/4
+      translateRef2.current += speed + velocityRef.current/3
       line2.style.setProperty('--translateLine2', translateRef2.current + 'px')
     } else {
-      translateRef.current += speed - velocityRef.current/4
+      translateRef.current += speed - velocityRef.current/3
       line.style.setProperty('--translateLine1', translateRef.current + 'px')
 
-      translateRef2.current -= speed - velocityRef.current/4
+      translateRef2.current -= speed - velocityRef.current/3
       line2.style.setProperty('--translateLine2', translateRef2.current + 'px')
     }
 

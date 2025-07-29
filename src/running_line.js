@@ -89,6 +89,7 @@ export function Runningline({ lenis }) {
 
     // console.log(scrollDirection.current)
     lastTimeRef.current = currentTime;
+    velocityRef.current = 1
 
     requestAnimationFrame(translate)
   }
@@ -104,7 +105,7 @@ export function Runningline({ lenis }) {
 
   }
 
-  const debaunceRef = useRef(false)
+  // const debaunceRef = useRef(false)
   useEffect(() => {
 
     lenis.current.on('scroll', event => {
@@ -113,14 +114,13 @@ export function Runningline({ lenis }) {
 
         velocityRef.current = Math.abs(event.targetScroll - prevScrollRef.current) / 2
         if (velocityRef.current == 0) { velocityRef.current = 1 }
-        if (!debaunceRef){
-          debaunceRef = true
-          velocityRef.current = 1
+       
 
-        }
-        setTimeout(()=>{
-          debaunceRef.current = false
-        },300)
+        // setTimeout(()=>{
+        //   velocityRef.current = 1
+
+        //   // debaunceRef.current = false
+        // },300)
         // это вы ше так мы обновляем 
         updateDirection(event, scrollDirection)
 

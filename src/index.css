@@ -323,7 +323,7 @@ background-image: linear-gradient(to right, #304352,#d7d2cc);
   z-index: 999;
   background: white;
   display: flex;
-  transition: clip-path 1s ease-in;
+  transition: clip-path 1.5s ease-in;
   /* transition: clip-path 1s linear; шторы*/
   /* will-change: clip-path; */
   clip-path: inset(0 0 0%);

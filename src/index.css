@@ -553,6 +553,10 @@ transform:   translate(-50%, -50%) /* Центрирование для 3д*/
 rotateY(calc(var(--i) * (360deg / 14)))  
 translateZ(300px)
 scale(0.7); 
+-moz-transform:   translate(-50%, -50%) /* Центрирование для 3д*/
+rotateY(calc(var(--i) * (360deg / 14)))  
+translateZ(300px)
+scale(0.7); 
 /* верхние 2 контролирует размер и перспектива но старшем блоке */
 /* раскидываем  */
 }
@@ -560,9 +564,13 @@ scale(0.7);
 @keyframes rotate_footer {
   from {
     transform: rotateX(20deg) rotateZ(-10deg) rotateY(0);
+    -moz-transform: rotateX(20deg) rotateZ(-10deg) rotateY(0);
+
   }
   to {
-    transform: rotateX(20deg) rotateZ(-10deg) rotateY(360deg) 
+    transform: rotateX(20deg) rotateZ(-10deg) rotateY(360deg) ;
+    -moz-transform: rotateX(20deg) rotateZ(-10deg) rotateY(360deg) 
+
   };
   
 }

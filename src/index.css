@@ -542,7 +542,7 @@ to { transform: rotate(360deg);
   /* background: white; */
 }
 .threedspan{
-font-family: DMSans_18_pt-Thin;
+font-family: Arial, Helvetica, sans-serif;
 font-size: 3em;
 background-clip: text;
 -webkit-background-clip: text;

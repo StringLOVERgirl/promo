@@ -542,6 +542,7 @@ font-family: DMSans_18_pt-Thin;
 font-size: 3em;
 background-clip: text;
 -webkit-background-clip: text;
+-moz-background-clip: text;
 color: transparent;
 background-image: linear-gradient(to right, #948e99, #2e1437, #948e99);
 text-transform: uppercase;
@@ -549,6 +550,7 @@ text-decoration: overline 1px #2e1437;
 position: absolute;
 top: 50%;
 left: 50%;
+will-change: transform;
 /* Центрируем каждый span относительно своей собственной точки */
 transform:   translate(-50%, -50%) /* Центрирование для 3д*/
 rotateY(calc(var(--i) * (360deg / 14)))  

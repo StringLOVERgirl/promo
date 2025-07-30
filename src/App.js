@@ -154,24 +154,50 @@ const lenisRef = useRef(new Lenis({
         <Canvas lenis={lenisRef} parentRef={appRef}></Canvas>
         {elements}
         <Refs lenis={lenisRef}></Refs>
+
         <div className='footer'>
+          <a  href='#' aria-label='скрол наверх'>
+            <div className='arrow_cont'>
+            <svg class="arrow" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M12 20L12 4" stroke="currentColor" stroke-width="0.2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M12 4L5 11M12 4L19 11" stroke="currentColor" stroke-width="0.2" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>            </div>
+          </a>
+          <div className='nav_cont'>
+            <nav className='footer_nav'>
+              <div className='h2_cont'>
+                <h2 className='origin_h2'>projects</h2>
+              <h2 className='fake_h2'>projects</h2>
+              </div>
+              {/* <h2 className='origin_h2'>projects</h2>
+              <h2 className='fake_h2'>projects</h2> */}
+              <a>3d the boys</a>
+              <a>canvas mini-game</a>
+              <a>running line</a>
+            </nav>
+          </div>
+          <div className='bottom_cont'>
+            <p className='bottom_text'>
+Design and Development by Megan </p>
+          </div>
           <div className='middle'>
-          <span style={{'--i':"1"}} className='threedspan el1'>megan</span>
-          <span style={{'--i':"2"}} className='threedspan el2'>megan</span>
-          <span style={{'--i':"3"}} className='threedspan el3'>megan</span>
-          <span style={{'--i':"4"}} className='threedspan el4'>megan</span>
-          <span style={{'--i':"5"}} className='threedspan el5'>megan</span>
-          <span style={{'--i':"6"}} className='threedspan el5'>megan</span>
-          <span style={{'--i':"7"}} className='threedspan el5'>megan</span>
-          <span style={{'--i':"8"}} className='threedspan el5'>megan</span>
-          <span style={{'--i':"9"}} className='threedspan el5'>megan</span>
-          <span style={{'--i':"10"}} className='threedspan el5'>megan</span>
-          <span style={{'--i':"11"}} className='threedspan el5'>megan</span>
-          <span style={{'--i':"12"}} className='threedspan el5'>megan</span>
-          <span style={{'--i':"13"}} className='threedspan el5'>megan</span>
-          <span style={{'--i':"14"}} className='threedspan el5'>megan</span>
+            <span style={{ '--i': "1" }} className='threedspan el1'>megan</span>
+            <span style={{ '--i': "2" }} className='threedspan el2'>megan</span>
+            <span style={{ '--i': "3" }} className='threedspan el3'>megan</span>
+            <span style={{ '--i': "4" }} className='threedspan el4'>megan</span>
+            <span style={{ '--i': "5" }} className='threedspan el5'>megan</span>
+            <span style={{ '--i': "6" }} className='threedspan el5'>megan</span>
+            <span style={{ '--i': "7" }} className='threedspan el5'>megan</span>
+            <span style={{ '--i': "8" }} className='threedspan el5'>megan</span>
+            <span style={{ '--i': "9" }} className='threedspan el5'>megan</span>
+            <span style={{ '--i': "10" }} className='threedspan el5'>megan</span>
+            <span style={{ '--i': "11" }} className='threedspan el5'>megan</span>
+            <span style={{ '--i': "12" }} className='threedspan el5'>megan</span>
+            <span style={{ '--i': "13" }} className='threedspan el5'>megan</span>
+            <span style={{ '--i': "14" }} className='threedspan el5'>megan</span>
           </div>
         </div>
+
       </div>
     </div>
   );

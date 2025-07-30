@@ -26,7 +26,7 @@ export function Runningline({ lenis }) {
       || transRef.current <= -width){
         transRef.current = 0
     }
-    
+
   }
   }
 
@@ -131,7 +131,7 @@ export function Runningline({ lenis }) {
         // setVelocity(velocityRef.current) // отладка
 
       }) // emd of raf inner
-    }) // end of raf outter or timeout
+    }) // end of listener
     requestAnimationFrame(translate)
 
   }, [])

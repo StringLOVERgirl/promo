@@ -474,6 +474,7 @@ background-color: black;
   align-items: center;
   /* центрируем все элементы  */
   overflow: hidden;
+  transform-style: preserve-3d; /* Добавить */
 }
 
 .arrow_cont{

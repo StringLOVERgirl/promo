@@ -527,7 +527,11 @@ to { transform: rotate(360deg);
 .middle {
   pointer-events: none;
   transform-style: preserve-3d;
-  transform: rotateX(-20deg) rotateZ(0deg);
+  transform: rotateX(-20deg) rotateZ(0deg) translateZ(0);
+  -moz-transform: rotateX(-20deg) rotateZ(0deg) translateZ(0);
+  -webkit-transform: rotateX(-20deg) rotateZ(0deg) translateZ(0);
+
+
   position: relative;
   z-index: -1;
   width: 100%; /* Расширяем дочерний контейнер на всю ширину родителя */
@@ -560,6 +564,10 @@ scale(0.7);
 rotateY(calc(var(--i) * (360deg / 14)))  
 translateZ(300px)
 scale(0.7); 
+-webkit-transform:   translate(-50%, -50%) /* Центрирование для 3д*/
+rotateY(calc(var(--i) * (360deg / 14)))  
+translateZ(300px)
+scale(0.7); 
 /* верхние 2 контролирует размер и перспектива но старшем блоке */
 /* раскидываем  */
 }
@@ -568,11 +576,12 @@ scale(0.7);
   from {
     transform: rotateX(20deg) rotateZ(-10deg) rotateY(0);
     -moz-transform: rotateX(20deg) rotateZ(-10deg) rotateY(0);
-
+    -webkit-transform: rotateX(20deg) rotateZ(-10deg) rotateY(0);
   }
   to {
     transform: rotateX(20deg) rotateZ(-10deg) rotateY(360deg) ;
-    -moz-transform: rotateX(20deg) rotateZ(-10deg) rotateY(360deg) 
+    -moz-transform: rotateX(20deg) rotateZ(-10deg) rotateY(360deg) ;
+    -webkit-transform: rotateX(20deg) rotateZ(-10deg) rotateY(360deg) ;
 
   };
   
@@ -596,6 +605,9 @@ scale(0.7);
   letter-spacing: 1px;
   width: fit-content;
   backdrop-filter: blur(2px);
+  -moz-backdrop-filter: blur(2px);
+-webkit-backdrop-filter: blur(2px);
+
   background-color: rgba(46, 20, 55, 0.1);
   font-family: DMSans_24pt-Light
 }

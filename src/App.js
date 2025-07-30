@@ -154,6 +154,24 @@ const lenisRef = useRef(new Lenis({
         <Canvas lenis={lenisRef} parentRef={appRef}></Canvas>
         {elements}
         <Refs lenis={lenisRef}></Refs>
+        <div className='footer'>
+          <div className='middle'>
+          <span style={{'--i':"1"}} className='threedspan el1'>megan</span>
+          <span style={{'--i':"2"}} className='threedspan el2'>megan</span>
+          <span style={{'--i':"3"}} className='threedspan el3'>megan</span>
+          <span style={{'--i':"4"}} className='threedspan el4'>megan</span>
+          <span style={{'--i':"5"}} className='threedspan el5'>megan</span>
+          <span style={{'--i':"6"}} className='threedspan el5'>megan</span>
+          <span style={{'--i':"7"}} className='threedspan el5'>megan</span>
+          <span style={{'--i':"8"}} className='threedspan el5'>megan</span>
+          <span style={{'--i':"9"}} className='threedspan el5'>megan</span>
+          <span style={{'--i':"10"}} className='threedspan el5'>megan</span>
+          <span style={{'--i':"11"}} className='threedspan el5'>megan</span>
+          <span style={{'--i':"12"}} className='threedspan el5'>megan</span>
+          <span style={{'--i':"13"}} className='threedspan el5'>megan</span>
+          <span style={{'--i':"14"}} className='threedspan el5'>megan</span>
+          </div>
+        </div>
       </div>
     </div>
   );

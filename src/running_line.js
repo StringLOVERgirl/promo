@@ -19,11 +19,15 @@ export function Runningline({ lenis }) {
   
 
   const обнуление = (transRef,line) => {
+    if (transRef.current){
+
     const width = Math.floor(sizeRefs.current[line].clientWidth)
     if (transRef.current >= width
       || transRef.current <= -width){
         transRef.current = 0
     }
+    
+  }
   }
 
   function translate(currentTime) { // нужен аргумент т к обернутый во раф по умолчанию

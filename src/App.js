@@ -6,6 +6,8 @@ import { src,collectMedia } from './createMedia';
 import { Runningline } from './running_line';
 import { Canvas } from './canvas_circles';
 import { Refs } from './refs'
+import label from './assets/laberl_audio.jpeg'
+import m83 from './assets/M83 - By The Kiss.mp3'
 
 
 const Child = memo(function () {
@@ -123,7 +125,29 @@ const lenisRef = useRef(new Lenis({
 
   }, [])
 
+let [browser,setBrowser] = useState(null)
+let [isPlaying, setIsPlaying] = useState(false)
+const m83Ref = useRef(null)
+
+const play = () => {
+
+    if (m83Ref.current){
+      if (!isPlaying){
+        m83Ref.current.play()
+        setIsPlaying(!isPlaying)
+      } else {
+        m83Ref.current.pause()
+        setIsPlaying(!isPlaying)
+      }
+}
+}
+
   useEffect(()=>{
+
+    if (navigator.userAgent.includes("Firefox")) {
+      setBrowser('Firefox')
+    }
+
     mediaRefs.current.forEach(el => {
       if (el.tagName === 'IMG') {
         if (el.complete && el.dataset.processed !== 'true') { 
@@ -155,50 +179,92 @@ const lenisRef = useRef(new Lenis({
         {elements}
         <Refs lenis={lenisRef}></Refs>
 
-        <div className='footer'>
-          <a  href='#' aria-label='скрол наверх'>
-            <div className='arrow_cont'>
-            <svg class="arrow" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M12 20L12 4" stroke="currentColor" stroke-width="0.2" stroke-linecap="round" stroke-linejoin="round"/>
-    <path d="M12 4L5 11M12 4L19 11" stroke="currentColor" stroke-width="0.2" stroke-linecap="round" stroke-linejoin="round"/>
-  </svg>            </div>
-          </a>
-          <div className='nav_cont'>
-            <nav className='footer_nav'>
-              <div className='h2_cont'>
-                <h2 className='origin_h2'>projects</h2>
-              <h2 className='fake_h2'>projects</h2>
-              </div>
-              {/* <h2 className='origin_h2'>projects</h2>
-              <h2 className='fake_h2'>projects</h2> */}
-              <a>3d the boys</a>
-              <a>canvas mini-game</a>
-              <a>running line</a>
-            </nav>
-          </div>
-          <div className='bottom_cont'>
-            <p className='bottom_text'>
-Design and Development by Megan </p>
-          </div>
-          <div className='middle'>
-            <span style={{ '--i': "1" }} className='threedspan el1'>megan</span>
-            <span style={{ '--i': "2" }} className='threedspan el2'>megan</span>
-            <span style={{ '--i': "3" }} className='threedspan el3'>megan</span>
-            <span style={{ '--i': "4" }} className='threedspan el4'>megan</span>
-            <span style={{ '--i': "5" }} className='threedspan el5'>megan</span>
-            <span style={{ '--i': "6" }} className='threedspan el5'>megan</span>
-            <span style={{ '--i': "7" }} className='threedspan el5'>megan</span>
-            <span style={{ '--i': "8" }} className='threedspan el5'>megan</span>
-            <span style={{ '--i': "9" }} className='threedspan el5'>megan</span>
-            <span style={{ '--i': "10" }} className='threedspan el5'>megan</span>
-            <span style={{ '--i': "11" }} className='threedspan el5'>megan</span>
-            <span style={{ '--i': "12" }} className='threedspan el5'>megan</span>
-            <span style={{ '--i': "13" }} className='threedspan el5'>megan</span>
-            <span style={{ '--i': "14" }} className='threedspan el5'>megan</span>
-          </div>
-        </div>
-
+       
       </div>
+<div className='footer_area'></div>
+      <div className='footer'>
+{/* аудиопанель */}
+<div className='toppanel_outter'>
+  <div className='toppanel_inner'>
+
+    <button className={`audio_control  ${isPlaying ? 'active' : '' }`}
+     onClick={play}>
+      <audio src={m83} ref={m83Ref}></audio>
+                    <img className='label' src={label}></img>
+     </button>
+
+
+     <div className='rinning_line_footer'>
+      {[`${"\u00A0"}Dynamic${"\u00A0"}`,
+      `·${"\u00A0"}Clean${"\u00A0"}`,
+    `·${"\u00A0"}Creative${"\u00A0"}·${"\u00A0"}`,
+  `Elegant${"\u00A0"}`,`·${"\u00A0"}Minimalist${"\u00A0"}`].map((e,i)=>{
+        return <p className='text_line_bottom' key={i+'line+bottom'}>{e}</p>
+      })}
+    </div>
+
+  </div>
+</div>
+
+{/* стрелка навернх */}
+<a  href='#' aria-label='скрол наверх'>
+  <div className='arrow_cont'> 
+  <svg class="arrow" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 20L12 4" stroke="currentColor" stroke-width="0.2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M12 4L5 11M12 4L19 11" stroke="currentColor" stroke-width="0.2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>      
+</div>
+</a>
+
+{/* проекты */}
+<div className='nav_cont'>
+  <nav className='footer_nav'>
+    <div className='h2_cont'>
+      <h2 className='origin_h2'>VOID</h2>
+    <h2 className='fake_h2'>VOID</h2>
+  
+    </div>
+    {/* <h2 className='origin_h2'>projects</h2>
+    <h2 className='fake_h2'>projects</h2> */}
+
+  </nav>
+</div>
+
+<nav className='a_cont'>
+    <a>3d the boys</a>
+    <a>canvas mini-game</a>
+    <a>running line</a>
+    </nav>
+
+{/* собственность */}
+<div className='bottom_cont'>
+  <p className='bottom_text'>
+Design and Development by Megan </p>
+</div>
+
+{/* вращенеи */}
+<div className='middle'>
+  {Array.from({length:14}).map((_,i)=>{ return <span style={{ '--i': `${i+1}` }} 
+     className={`threedspan ${browser == 'Firefox' ? 'firefox_span':'' }`}
+    key={'3span'+i}>megan</span>  
+  })}
+  {/* <span style={{ '--i': "1" }} className='threedspan el1'>megan</span>
+  <span style={{ '--i': "2" }} className='threedspan el2'>megan</span>
+  <span style={{ '--i': "3" }} className='threedspan el3'>megan</span>
+  <span style={{ '--i': "4" }} className='threedspan el4'>megan</span>
+  <span style={{ '--i': "5" }} className='threedspan el5'>megan</span>
+  <span style={{ '--i': "6" }} className='threedspan el5'>megan</span>
+  <span style={{ '--i': "7" }} className='threedspan el5'>megan</span>
+  <span style={{ '--i': "8" }} className='threedspan el5'>megan</span>
+  <span style={{ '--i': "9" }} className='threedspan el5'>megan</span>
+  <span style={{ '--i': "10" }} className='threedspan el5'>megan</span>
+  <span style={{ '--i': "11" }} className='threedspan el5'>megan</span>
+  <span style={{ '--i': "12" }} className='threedspan el5'>megan</span>
+  <span style={{ '--i': "13" }} className='threedspan el5'>megan</span>
+  <span style={{ '--i': "14" }} className='threedspan el5'>megan</span> */}
+</div>
+</div>
+
     </div>
   );
 }

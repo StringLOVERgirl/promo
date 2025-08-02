@@ -3,6 +3,7 @@
 // накинуть сайз на вторую строку - решено
 // ухожу с сайта браузера взвращаюсбь строка леьтит почему  - решено
 import { useEffect, useRef, useState } from "react";
+import video from './assets/5704_Dust_Particles_1920x1080.mp4'
 
 export function Runningline({ lenis }) {
 // console.log(video)
@@ -142,6 +143,9 @@ export function Runningline({ lenis }) {
       <div className="running_line_cont">
         {/* <video className="video" muted autoPlay loop src='assets/63fca69523dfba725518d390_68399bcc53dcba2367185502_hero-4k-transcode.webm' */}
 {/* ></video> */}
+
+<div className="top_line_outter">
+  
         <div className="line_bg">
            <p className="velocity"
            >
@@ -177,6 +181,7 @@ export function Runningline({ lenis }) {
             </p>
           </div>
         </div>
+      </div>
       </div>
     </>
   );

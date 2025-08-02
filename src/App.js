@@ -8,6 +8,7 @@ import { Canvas } from './canvas_circles';
 import { Refs } from './refs'
 import label from './assets/laberl_audio.jpeg'
 import m83 from './assets/M83 - By The Kiss.mp3'
+import revenant from './assets/Ryuichi_Sakamoto_-_The_Revenant_Main_Theme_(SkySound.cc).mp3'
 
 
 const Child = memo(function () {
@@ -127,19 +128,40 @@ const lenisRef = useRef(new Lenis({
 
 let [browser,setBrowser] = useState(null)
 let [isPlaying, setIsPlaying] = useState(false)
-const m83Ref = useRef(null)
+// const m83Ref = useRef(null)
+// const revenantRef = useRef(null)
+const tracksRef = useRef({m83:null, revenant:null})
+
+const currentTrackRef = useRef(null)
+const prevTrackRef = useRef(null)
+const newTrack = () =>{
+  currentTrackRef.current = 1
+}
 
 const play = () => {
+  const entry = Object.entries(tracksRef.current)
 
-    if (m83Ref.current){
+  // if (currentTrackRef.current != 1 ){    
+    let track_ndex = Math.floor(Math.random() * (entry.length-1 - 0 + 1)) + 0
+    currentTrackRef.current = entry[track_ndex][1]
+    // prevTrackRef.current = entry[track_ndex][1]
+  // }
+
+  // else {
+  //   currentTrackRef.current = entry[Number(!prevTrackRef.current)][1]
+  // }
+  
+ 
+    // if (m83Ref.current){
       if (!isPlaying){
-        m83Ref.current.play()
+        console.log(currentTrackRef.current)
+        currentTrackRef.current.play()
         setIsPlaying(!isPlaying)
       } else {
-        m83Ref.current.pause()
+        currentTrackRef.current.pause()
         setIsPlaying(!isPlaying)
       }
-}
+// }
 }
 
   useEffect(()=>{
@@ -181,26 +203,36 @@ const play = () => {
 
        
       </div>
-<div className='footer_area'></div>
+<div className='footer_area'>
+  <div className='footer_bg'></div>
+</div>
       <div className='footer'>
+        <div className='decor_snow'></div>
 {/* аудиопанель */}
 <div className='toppanel_outter'>
   <div className='toppanel_inner'>
 
     <button className={`audio_control  ${isPlaying ? 'active' : '' }`}
      onClick={play}>
-      <audio src={m83} ref={m83Ref}></audio>
+      <audio src={m83} ref={(el)=> tracksRef.current.m83 = el} onEnded={newTrack}></audio>
+      <audio src={revenant} ref={(el)=> tracksRef.current.revenant = el} onEnded={newTrack}></audio>
+
                     <img className='label' src={label}></img>
      </button>
 
 
      <div className='rinning_line_footer'>
-      {[`${"\u00A0"}Dynamic${"\u00A0"}`,
-      `·${"\u00A0"}Clean${"\u00A0"}`,
-    `·${"\u00A0"}Creative${"\u00A0"}·${"\u00A0"}`,
-  `Elegant${"\u00A0"}`,`·${"\u00A0"}Minimalist${"\u00A0"}`].map((e,i)=>{
-        return <p className='text_line_bottom' key={i+'line+bottom'}>{e}</p>
-      })}
+      {[1,2].map(()=> {return(
+      [`${"\u00A0"}`,'·',`${"\u00A0"}Dynamic${"\u00A0"}`,
+      `${"\u00A0"}Clean${"\u00A0"}`,
+      '·',`${"\u00A0"}Creative${"\u00A0"}`,`·${"\u00A0"}`,
+  `Elegant${"\u00A0"}`,`·`,`${"\u00A0"}Minimalist${"\u00A0"}`].map((e,i)=>{
+        return <p className={`bottom-line-elements ${e.includes('·')?'':"text_line_bottom"}`} key={i+'line+bottom'}>{e}</p>})
+
+      )}
+      
+      )}
+  
     </div>
 
   </div>
@@ -211,7 +243,7 @@ const play = () => {
   <div className='arrow_cont'> 
   <svg class="arrow" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M12 20L12 4" stroke="currentColor" stroke-width="0.2" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M12 4L5 11M12 4L19 11" stroke="currentColor" stroke-width="0.2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M12 4L6 10M12 4L18 10" stroke="currentColor" stroke-width="0.2" stroke-linecap="rund" stroke-linejoin="round"/>
 </svg>      
 </div>
 </a>
@@ -220,8 +252,10 @@ const play = () => {
 <div className='nav_cont'>
   <nav className='footer_nav'>
     <div className='h2_cont'>
-      <h2 className='origin_h2'>VOID</h2>
-    <h2 className='fake_h2'>VOID</h2>
+      <h2 className='origin_h2'>TYRELL</h2>
+    <h2 className='fake_h2'>TYRELL
+        {/* <h2 className='fake_h2 d'>D</h2> */}
+</h2>
   
     </div>
     {/* <h2 className='origin_h2'>projects</h2>
@@ -231,9 +265,9 @@ const play = () => {
 </div>
 
 <nav className='a_cont'>
-    <a>3d the boys</a>
-    <a>canvas mini-game</a>
-    <a>running line</a>
+    <a>Idea</a>
+    <a>2025 Year</a>
+    <a>In process</a>
     </nav>
 
 {/* собственность */}

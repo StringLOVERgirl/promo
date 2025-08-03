@@ -3,7 +3,7 @@
 // накинуть сайз на вторую строку - решено
 // ухожу с сайта браузера взвращаюсбь строка леьтит почему  - решено
 import { useEffect, useRef, useState } from "react";
-import video from './assets/5704_Dust_Particles_1920x1080.mp4'
+import video from './assets/7186017_Paint_Ink_1920x1080.mp4'
 
 export function Runningline({ lenis }) {
 // console.log(video)
@@ -53,7 +53,8 @@ export function Runningline({ lenis }) {
     // в конце функции реф на актульное 
     // console.log(delta, currentTime)
      
-    const speed =index * (delta/16) * 0.8// т е кадр в 1 милесекунд (60 кадров в секунду)
+    const speed =index * (delta/16) * 0.8
+    // т е кадр в 1 милесекунд (60 кадров в секунду)
     // 1000 / 60 =16 с небольшим 
     // и поэтому обычно это будет ну примерно 1 
     
@@ -141,29 +142,25 @@ export function Runningline({ lenis }) {
   return (
     <>
       <div className="running_line_cont">
-        {/* <video className="video" muted autoPlay loop src='assets/63fca69523dfba725518d390_68399bcc53dcba2367185502_hero-4k-transcode.webm' */}
-{/* ></video> */}
+        <video className="video" muted autoPlay loop src={video}
+ ></video> 
 
 <div className="top_line_outter">
   
         <div className="line_bg">
-           <p className="velocity"
-           >
-            {/* {velocity} */}
-            </p>
+
+           <p className="velocity">
+            {/* {velocity} */}</p>
+
           <div className={`line_cont line1`}
-            ref={(el)=>lineRefs.current.line = el}
-            >
-            <p ref={(el)=>sizeRefs.current.line = el}>
-              REACT{"\u00A0"}·{"\u00A0"}JS{"\u00A0"}·{"\u00A0"}2025 YEAR{"\u00A0"}·{"\u00A0"}
-            </p>
-            <p>
-            REACT{"\u00A0"}·{"\u00A0"}JS{"\u00A0"}·{"\u00A0"}2025 YEAR{"\u00A0"}·{"\u00A0"}
-            </p>
-            <p>
-            REACT{"\u00A0"}·{"\u00A0"}JS{"\u00A0"}·{"\u00A0"}2025 YEAR{"\u00A0"}·{"\u00A0"}
-            </p>
+            ref={(el)=>lineRefs.current.line = el}>
+              {Array.from({length:3}).map((_,i)=>{ return (
+                <p ref={i==0?(el)=>sizeRefs.current.line = el:null}>               
+                  REACT{"\u00A0"}·{"\u00A0"}JS{"\u00A0"}·{"\u00A0"}2025 YEAR{"\u00A0"}·{"\u00A0"}
+                  </p>
+              )})}
           </div>
+
           <div className="line_cont line2"
             ref={(el)=>lineRefs.current.line2 = el}
             >

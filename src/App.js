@@ -8,7 +8,10 @@ import { Canvas } from './canvas_circles';
 import { Refs } from './refs'
 import label from './assets/laberl_audio.jpeg'
 import m83 from './assets/M83 - By The Kiss.mp3'
+import video from './assets/0_Sun_Egg_3840x2160 (online-video-cutter.com) (1).mp4'
 import revenant from './assets/Ryuichi_Sakamoto_-_The_Revenant_Main_Theme_(SkySound.cc).mp3'
+import br2049 from'./assets/2049.mp3'
+import toALPD from './assets/Flight to LAPD.mp3'
 
 
 const Child = memo(function () {
@@ -130,29 +133,27 @@ let [browser,setBrowser] = useState(null)
 let [isPlaying, setIsPlaying] = useState(false)
 // const m83Ref = useRef(null)
 // const revenantRef = useRef(null)
-const tracksRef = useRef({m83:null, revenant:null})
+const tracksRef = useRef({m83:null, 
+  // br2049:null,toALPD:null
+})
 
-const currentTrackRef = useRef(null)
+const currentTrackRef = useRef('void')
 const prevTrackRef = useRef(null)
+
 const newTrack = () =>{
-  currentTrackRef.current = 1
+  currentTrackRef.current = null
 }
 
 const play = () => {
+
   const entry = Object.entries(tracksRef.current)
 
-  // if (currentTrackRef.current != 1 ){    
+  if (currentTrackRef.current == 'void' || !currentTrackRef.current ){
     let track_ndex = Math.floor(Math.random() * (entry.length-1 - 0 + 1)) + 0
     currentTrackRef.current = entry[track_ndex][1]
-    // prevTrackRef.current = entry[track_ndex][1]
-  // }
+    console.log(111)
+    }
 
-  // else {
-  //   currentTrackRef.current = entry[Number(!prevTrackRef.current)][1]
-  // }
-  
- 
-    // if (m83Ref.current){
       if (!isPlaying){
         console.log(currentTrackRef.current)
         currentTrackRef.current.play()
@@ -161,10 +162,80 @@ const play = () => {
         currentTrackRef.current.pause()
         setIsPlaying(!isPlaying)
       }
-// }
 }
 
+const videoRef = useRef(null)
+const selectRef = useRef(
+  {
+    first:null,
+    middle:null,
+    last:null
+  }
+  )
+  const distanceRef = useRef({
+    first:null,
+    middle:null,
+    last:null
+  })
+
+  const acontRef = useRef(null)
+
+
+  function select(event){
+    console.log(event.clientX, selectRef.current.first, selectRef.current )
+    if (event.clientX < distanceRef.current.middle){
+      console.log(1111)
+      selectRef.current.first.classList.add('right','center')
+      selectRef.current.middle.classList.remove('center','left')
+      selectRef.current.middle.classList.add('right')
+      selectRef.current.last.classList.add('right')
+    } 
+    if (event.clientX < distanceRef.current.last
+      && event.clientX > distanceRef.current.middle){    
+        console.log(22222)    
+        selectRef.current.first.classList.remove('center','left','right')
+        selectRef.current.middle.classList.remove('right','left')
+      selectRef.current.middle.classList.add('center')
+      selectRef.current.last.classList.remove('left','center','right')
+    } 
+    if (event.clientX > distanceRef.current.last){
+      console.log(3333)
+      selectRef.current.first.classList.add('left')
+      selectRef.current.middle.classList.remove('right','center')
+      selectRef.current.middle.classList.add('left')
+      selectRef.current.last.classList.add('center','left')
+
+    } 
+    
+    }
+
+    const unmove = () => {
+      for (let key in selectRef.current){
+          console.log(selectRef.current[key])
+          selectRef.current[key].classList.remove('left')
+          selectRef.current[key].classList.remove('right')
+          selectRef.current[key].classList.remove('center')
+    }}
+
   useEffect(()=>{
+    
+    function setDistanceSelect(el){
+      let rec = selectRef.current[el].getBoundingClientRect(selectRef.current[el])
+      let distance = Math.floor(rec.left)
+      console.log(distance)
+      distanceRef.current[el] = distance 
+    console.log('distance to ' +el +' is' +distance)
+    }
+
+for (let key in selectRef.current){
+setDistanceSelect(key)
+}
+
+console.log(selectRef.current)
+
+
+
+    // videoRef.current.playbackRate = 0.9
 
     if (navigator.userAgent.includes("Firefox")) {
       setBrowser('Firefox')
@@ -196,17 +267,23 @@ const play = () => {
        refs={mediaRefs}></Preloader>
         <div className={`content ${isContent}`}>
         <Runningline lenis={lenisRef}></Runningline>
-        <Child></Child>
-        <Canvas lenis={lenisRef} parentRef={appRef}></Canvas>
+        {/* <Child></Child> */}
+        {/* <Canvas lenis={lenisRef} parentRef={appRef}></Canvas> */}
         {elements}
         <Refs lenis={lenisRef}></Refs>
 
        
       </div>
 <div className='footer_area'>
-  <div className='footer_bg'></div>
+  {/* <div className='footer_bg'>
+  </div> */}
 </div>
       <div className='footer'>
+      <div className='footer_bg'>
+      {/* <video className='sun'  */}
+      {/* // ref={videoRef} autoPlay muted loop src={video}></video> */}
+      {/* {[1,2,3].map((e,i)=><div style={{'--i':(i+1/2)+"s"}} className={`circle_animation circle${i}`} key={'circle'+i}></div>)} */}
+      </div>
         <div className='decor_snow'></div>
 {/* аудиопанель */}
 <div className='toppanel_outter'>
@@ -215,7 +292,10 @@ const play = () => {
     <button className={`audio_control  ${isPlaying ? 'active' : '' }`}
      onClick={play}>
       <audio src={m83} ref={(el)=> tracksRef.current.m83 = el} onEnded={newTrack}></audio>
-      <audio src={revenant} ref={(el)=> tracksRef.current.revenant = el} onEnded={newTrack}></audio>
+      {/* <audio src={toALPD} ref={(el)=> tracksRef.current.toALPD = el} onEnded={newTrack}></audio> */}
+      {/* <audio src={br2049} ref={(el)=> tracksRef.current.br2049 = el} onEnded={newTrack}></audio> */}
+      {/* <audio src={revenant} ref={(el)=> tracksRef.current.revenant = el} onEnded={newTrack}></audio> */}
+      
 
                     <img className='label' src={label}></img>
      </button>
@@ -223,10 +303,10 @@ const play = () => {
 
      <div className='rinning_line_footer'>
       {[1,2].map(()=> {return(
-      [`${"\u00A0"}`,'·',`${"\u00A0"}Dynamic${"\u00A0"}`,
+      [`${"\u00A0"}`,'·',`${"\u00A0"}Dynamic${"\u00A0"}`,'·',
       `${"\u00A0"}Clean${"\u00A0"}`,
       '·',`${"\u00A0"}Creative${"\u00A0"}`,`·${"\u00A0"}`,
-  `Elegant${"\u00A0"}`,`·`,`${"\u00A0"}Minimalist${"\u00A0"}`].map((e,i)=>{
+  `Elegant${"\u00A0"}`,`·`,`${"\u00A0"}Advanced${"\u00A0"}`].map((e,i)=>{
         return <p className={`bottom-line-elements ${e.includes('·')?'':"text_line_bottom"}`} key={i+'line+bottom'}>{e}</p>})
 
       )}
@@ -252,8 +332,8 @@ const play = () => {
 <div className='nav_cont'>
   <nav className='footer_nav'>
     <div className='h2_cont'>
-      <h2 className='origin_h2'>TYRELL</h2>
-    <h2 className='fake_h2'>TYRELL
+      <h2 className='origin_h2'>VOID</h2>
+    <h2 className='fake_h2'>VOID
         {/* <h2 className='fake_h2 d'>D</h2> */}
 </h2>
   
@@ -264,10 +344,10 @@ const play = () => {
   </nav>
 </div>
 
-<nav className='a_cont'>
-    <a>Idea</a>
-    <a>2025 Year</a>
-    <a>In process</a>
+<nav className='a_cont' ref={acontRef} onMouseMove={select} onMouseLeave={unmove}>
+    <a style={{'--i':1}} ref={(el)=>selectRef.current.first = el}>Our Products</a>
+    <a style={{'--i':1}} ref={(el)=>selectRef.current.middle = el}>2025 Year</a>
+    <a style={{'--i':1}} ref={(el)=>selectRef.current.last = el}>In process</a>
     </nav>
 
 {/* собственность */}

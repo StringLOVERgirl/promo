@@ -7,6 +7,12 @@
 /* 1440 4k - размер букв бг кольца  */
 /* заменить цвет при наведении  */
 /* убирать границу при наведении нижних скейлить подсвечивать добавить 1 пункт и подпись для стрелки */
+
+/* адаптив  */
+/* футер лай н фон 7вв во всю строку  */
+/* убрать лого справа  */
+/* добавит комплект нижних ссылок других на моб версию по раскрывающемуся меню  */
+/* тексит ссылок большой во всю ширину  */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -27,17 +33,25 @@ video, audio, img {
    display: none;
 }
 
-
+.video {
+  /* display: block; */
+  position: absolute;
+  height: 100svh;
+  width: 100vw;
+  object-fit: cover;
+}
 .top_line_outter {
   width: 95%;
-  height: 70%;
+  height: 80%;
+  border: 1px solid #cccccc6e;
   position: relative;
   top: 5%;
   left: 50%;
   transform: translateX(-50%);
   border-radius: 25px;
   overflow: hidden;
-  background: url(assets/397024371_11538707.jpg) center 0 /contain no-repeat;
+  backdrop-filter:blur(5px);
+  /* background: url(assets/397024371_11538707.jpg) center 0 /contain no-repeat; */
   /* background: rgb(0, 0, 0); */
 
   backdrop-filter: blur(4px);
@@ -102,11 +116,15 @@ video, audio, img {
   line-height: 0.8;
   background-clip: text;
   -webkit-background-clip: text;
+  /* width: 0 ; */
   color: transparent;
+  /* background: transparent; */
+  
+    
   background-image: linear-gradient(to right, #948e99, #2e1437, #948e99);
   letter-spacing: 0.1px;
   font-size: clamp(13svh,13vw,13vw);
-  font-family: DMSans_18pt-ExtraLight;
+  font-family: Futura;
   font-weight: 570;
   transform: none;
   /* overflow-x: hidden; */
@@ -705,8 +723,9 @@ height: 40svh;
   /* margin-bottom: 0.25em; */
   display: flex;
   -webkit-background-clip: text;
-  font-family: DMSans_18_pt-Thin !important;
+  font-family: Futura !important;
   /* font-size: 11vw; */
+  letter-spacing: 4px;
   top: 50%;
 }
 
@@ -935,7 +954,7 @@ background: black;
   color: #cccccccf;
   white-space: nowrap;
   font-family: Futura;
-  font-size: 1.6em;
+  font-size: 2vw;
   /* 2vw for wide  */
   display: flex;
   align-items: center;
@@ -974,6 +993,10 @@ background: black;
   border-bottom: 0;
 }
 
+
+/* на моб высота 7свх */
+/* контенйнер ниже  */
+/* строку во всю ширину  */
 .label {
   display: block;
   height: 10svh;
@@ -1031,8 +1054,73 @@ background: black;
  }  
 
  .footer_bg {
+/* height: fit-content; */
+/* width: fit-content; */
+width: 7%;
+height: 5%;
+z-index: -1;
+/* transform: translateX(25%); */
+top: 5%;
+right: 3%;
+position: absolute;
+filter:  brightness(75%) ;
+background: linear-gradient(to right,#948e99b1, #2e1437,transparent );
+/* 315; */
+/* border: solid 1px red; */
+display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 5%;
+  clip-path: polygon(15% 0, 100% 0%, 85% 100%, 0% 100%); }
+
+ .footer_bg::after {
+  content: '';
+  height: 100%;
+  width: 100%;
+  background: black;
+  display: block;
+  position: absolute;
+  clip-path: polygon(35% 0, 20% 100%, 25% 100%, 40% 0, 30% 0, 15% 100%, 10% 100%, 25% 0);;
+}
+
+ .circle_animation {
+  width: 10%;
+  aspect-ratio: 1;
+  background: beige;
+  border-radius: 50%;
+  /* position: relative; */
+  animation: identifier 1s infinite;
+  animation-delay: var(--i) ;
 
  }
+
+ @keyframes identifier {
+  from {
+    transform: translateY(0);
+  }
+  25% {
+    transform: translateY(-50%);
+  }
+  50% {
+    transform: translateY(0);
+  }
+  75% {
+    transform: translateY(-50%);
+  }
+  to {
+    transform: translateY(0);
+  }
+  
+ }
+
+ .sun {
+ display: block ;
+ width: 25vw;
+/* object-fit: content; */
+/* clip-path: polygon(20% 0, 80% 0, 80% 100%, 20% 100%); */
+}
+
 
 @media (max-width:600px) {
   .footer_area {
@@ -1054,17 +1142,45 @@ background: black;
 
 .a_cont{
   position: absolute;
-  left: 3%;
+  left: 50%;
+  transform: translateX(-50%);
   bottom: 5%;
   white-space: nowrap;
 display: flex;
-width: 50vw;
-justify-content: space-evenly;
+/* width: 50vw; */
+/* justify-content: space-evenly; */
 font-size: 1.1em;
 /* text-decoration: overline; */
 /* text-decoration-color: ; */
-transform: translateX(44%);
 color: #cccccc78; 
 padding-bottom: 0.5em;
 border-bottom: #cccccc78 1px solid ;
+text-align: center;
+overflow: hidden;
 }
+
+.a_cont  a {
+  transition: transform 1s, scsle 0.3s, color 0.3s, font-size 0.3s;
+  position: relative;
+  width: 10vw;
+}
+
+.right {
+  transform: translateX(30%) ;
+}
+
+.left {
+  transform: translateX(-30%) ;
+}
+
+.center {
+  transform: scale(1.2) ;
+  color:#ccccccbe;
+  
+}
+.unmove {
+  transform: translateX(0%);
+
+}
+
+

@@ -37,13 +37,13 @@ export function Refs (){
     return(<>
         <section className="section_links">
             <div className={`link_cont link1_cont ${link1Hidden ? 'hide_link1_cont' : ''}`}
-            // ref={cont1Ref}
+            
             >
                 <div className="link link1"></div>
-                {/* <video className="gg" src='assets/63fca69523dfba725518d390_68399bcc53dcba2367185502_hero-4k-transcode.webm' autoPlay muted loop></video> */}
+    
             </div>
             <div className="link_cont link2_cont "
-            //    ref={cont2Ref}
+            
                >
                 <div className="link link2"></div>
             </div>

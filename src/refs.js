@@ -1,6 +1,7 @@
 import { useRef, useState,useEffect } from "react";
+import { forwardRef } from 'react';
 
-export function Refs (){
+export function Refs ({trans}){
 
     const observerRef = useRef(null)
     const cont1Ref = useRef(null)
@@ -24,7 +25,7 @@ export function Refs (){
 
         if (zeroRef.current){
             console.log('zero')
-          observerRef.current.observe(zeroRef.current)
+        //   observerRef.current.observe(zeroRef.current)
         }
 
         return(()=>{
@@ -33,9 +34,9 @@ export function Refs (){
 
     },[])
 
-
     return(<>
         <section className="section_links">
+            <div className="transition_point" ref={trans}></div>
             <div className={`link_cont link1_cont ${link1Hidden ? 'hide_link1_cont' : ''}`}
             
             >

@@ -12,6 +12,7 @@ import video from './assets/0_Sun_Egg_3840x2160 (online-video-cutter.com) (1).mp
 import revenant from './assets/Ryuichi_Sakamoto_-_The_Revenant_Main_Theme_(SkySound.cc).mp3'
 import br2049 from'./assets/2049.mp3'
 import toALPD from './assets/Flight to LAPD.mp3'
+import { Header } from './header';
 
 
 const Child = memo(function () {
@@ -134,7 +135,6 @@ let [isPlaying, setIsPlaying] = useState(false)
 // const m83Ref = useRef(null)
 // const revenantRef = useRef(null)
 const tracksRef = useRef({m83:null, 
-  // br2049:null,toALPD:null
 })
 
 const currentTrackRef = useRef('void')
@@ -217,6 +217,7 @@ const selectRef = useRef(
           selectRef.current[key].classList.remove('center')
     }}
 
+    
   useEffect(()=>{
     
     function setDistanceSelect(el){
@@ -241,6 +242,8 @@ console.log(selectRef.current)
       setBrowser('Firefox')
     }
 
+    if (mediaRefs.current) {
+    
     mediaRefs.current.forEach(el => {
       if (el.tagName === 'IMG') {
         if (el.complete && el.dataset.processed !== 'true') { 
@@ -256,21 +259,57 @@ console.log(selectRef.current)
         }
       }
     });
+
+  }
   },[])
 
+const cp_pointRef = useRef(null)
+const decorRef = useRef('')
 
+const transs = useRef(null)
   return (
     <div className="App" data-lenis
     ref={appRef}>
       <Preloader displayloader={isPreloader}
       precent={precentage}
        refs={mediaRefs}></Preloader>
+
+
+          <Header >
+
+           </Header>
+           <div className="cp_point"
+     ref={cp_pointRef}></div>
+
+{/* <div className="decor_cont" ref={decorRef}>
+  <div className="decor_inner">
+    <span className="decor_text">Promo</span>
+  </div>
+  
+  <div className="decor_inner">
+    <span className="decor_text">Work</span>
+  </div>
+</div> */}
+
+
+
+
+
+
         <div className={`content ${isContent}`}>
-        <Runningline lenis={lenisRef}></Runningline>
+
+
+          <Runningline lenis={lenisRef}
+          cppoint={cp_pointRef}
+          decor={decorRef}
+          trans={transs}
+           >
+
+           </Runningline>
         {/* <Child></Child> */}
         {/* <Canvas lenis={lenisRef} parentRef={appRef}></Canvas> */}
         {elements}
-        <Refs lenis={lenisRef}></Refs>
+        <Refs trans={transs} lenis={lenisRef} ></Refs>
 
        
       </div>

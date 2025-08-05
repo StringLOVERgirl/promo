@@ -4,8 +4,9 @@
 // ухожу с сайта браузера взвращаюсбь строка леьтит почему  - решено
 import { useEffect, useRef, useState } from "react";
 import video from './assets/7186017_Paint_Ink_1920x1080.mp4'
+import { createObserver } from './observer';
 
-export function Runningline({ lenis }) {
+export function Runningline({ lenis,cppoint,trans }) {
 // console.log(video)
   const prevScrollRef = useRef(0)
   const scrollDirection = useRef(false)
@@ -20,7 +21,7 @@ export function Runningline({ lenis }) {
   
 
   const обнуление = (transRef,line) => {
-    if (transRef.current){
+    if (transRef.current && sizeRefs.current){
 
     const width = Math.floor(sizeRefs.current[line].clientWidth)
     if (transRef.current >= width
@@ -31,6 +32,7 @@ export function Runningline({ lenis }) {
   }
   }
 
+  
   function translate(currentTime) { // нужен аргумент т к обернутый во раф по умолчанию
     // дает аргумент времене currentTime 
 
@@ -71,29 +73,29 @@ export function Runningline({ lenis }) {
 
       translateRef.current -= speed 
       + velocityRef.current
-      /4
+      /5
       line.style.setProperty('--translateLine1', translateRef.current + 'px')
 
       translateRef2.current += speed 
       + velocityRef.current
-      /4
+      /5
       line2.style.setProperty('--translateLine2', translateRef2.current + 'px')
 
     } else {
 
       translateRef.current += speed 
-      + velocityRef.current // знак заменен на плюс т к модуль это помогло 
-      /4
+      + 
+      velocityRef.current // знак заменен на плюс т к модуль это помогло 
+      /5
       line.style.setProperty('--translateLine1', translateRef.current + 'px')
 
       translateRef2.current -= speed 
       + velocityRef.current // знак заменен на плюс т к модуль это помогло 
-      /4  
+      /5
       line2.style.setProperty('--translateLine2', translateRef2.current + 'px')
       
     }
 
-    // console.log(scrollDirection.current)
     lastTimeRef.current = currentTime;
     velocityRef.current = 1
 
@@ -111,75 +113,183 @@ export function Runningline({ lenis }) {
 
   }
 
-  // const debaunceRef = useRef(false)
   useEffect(() => {
 
     lenis.current.on('scroll', event => {
 
+      console.log(event.targetScroll)
+      if (event.targetScroll < 4) {
+        setCp('')
+    } else {setCp('cp')}
+    
+
       requestAnimationFrame(() => {
 
+        // if (event.targetScroll <= 4) {
+        //     setCp('cp') 
+        // }
+
         velocityRef.current = Math.abs(event.targetScroll - prevScrollRef.current) / 2
+        
         if (velocityRef.current == 0) { velocityRef.current = 1 }
        
-
-        // setTimeout(()=>{
-        //   velocityRef.current = 1
-
-        //   // debaunceRef.current = false
-        // },300)
-        // это вы ше так мы обновляем 
         updateDirection(event, scrollDirection)
 
-        // setVelocity(velocityRef.current) // отладка
 
       }) // emd of raf inner
     }) // end of listener
-    requestAnimationFrame(translate)
-
+requestAnimationFrame(translate)
   }, [])
+
+  const observerRef = useRef(null)
+  const cpFlag = useRef(false)
+  let [cp,setCp] = useState('')
+
+   observerRef.current = new IntersectionObserver((ar)=>{
+    if  (ar[0].isIntersecting){
+      // if (!cpFlag.current){
+      //   cpFlag.current = true
+      //   console.log('set cp')
+      //   setCp('cp') 
+      // } else {
+      //   cpFlag.current = false
+      // }
+    } else {
+      // if (!cpFlag.current){
+      setCp('') 
+    // }
+    }
+   },{threshold: 0.5, root: null
+   })
+
+// ()=>{
+//       if (cpFlag.current){
+//         cpFlag.current = false
+//         console.log('set cp')
+//         setCp('')
+//     }},
+// {threshold: 0.5, root: null
+// }, true)
+
+
+const transitionPointRef = useRef(null)
+const blinkObserver = useRef('')
+const transitionRef = useRef('')
+const isHidden = useRef(false)
+const onScreen = useRef(true)
+const outter = useRef(null)
+
+blinkObserver.current = createObserver(()=>{
+  
+    transitionRef.current.style.setProperty('--transition','-124svh')
+
+
+console.log(1111)
+}, 
+()=>{
+  console.log(222)
+
+  
+    transitionRef.current.style.setProperty('--transition','125svh')
+
+
+},
+{threshold: 0.3, root: null})
+
+
+
+useEffect(()=>{
+
+  if (cppoint.current && observerRef.current){
+    // console.log(cppoint.current)
+    // observerRef.current.observe(cppoint.current)
+    }
+
+    if (trans.current && blinkObserver.current){
+      blinkObserver.current.observe(trans.current)
+    }
+  
+  return(()=>{
+observerRef.current.disconnect()
+blinkObserver.current.disconnect()
+}
+  )
+},[])
+console.log(trans)
+
 
 
   return (
     <>
-      <div className="running_line_cont">
-        <video className="video" muted autoPlay loop src={video}
- ></video> 
-
-<div className="top_line_outter">
+      <div className="running_line_cont"  ref={outter}>
+      <div className="decor_cont" 
+      // ref={decorRef}
+      
+      >
+  <div className="decor_inner">
+    <span className="decor_text">Promo</span>
+  </div>
   
-        <div className="line_bg">
+  <div className="decor_inner">
+    <span className="decor_text">Work</span>
+  </div>
+</div> 
+      <div className='transition' ref={transitionRef}></div>
 
-           <p className="velocity">
-            {/* {velocity} */}</p>
+      <div className='aside_cont'>
+  <span className='aside_text'>void</span>
+</div>
 
-          <div className={`line_cont line1`}
-            ref={(el)=>lineRefs.current.line = el}>
-              {Array.from({length:3}).map((_,i)=>{ return (
-                <p ref={i==0?(el)=>sizeRefs.current.line = el:null}>               
-                  REACT{"\u00A0"}·{"\u00A0"}JS{"\u00A0"}·{"\u00A0"}2025 YEAR{"\u00A0"}·{"\u00A0"}
-                  </p>
-              )})}
-          </div>
+<div className={`top_line_outter ${cp}`}>
 
-          <div className="line_cont line2"
-            ref={(el)=>lineRefs.current.line2 = el}
-            >
-            <p ref={(el)=>sizeRefs.current.line2 = el}>
-              {"\u00A0"}·{"\u00A0"}DESIGN{"\u00A0"}·{"\u00A0"}DEVELOPMENT
-              {"\u00A0"}·{"\u00A0"}PROMO
-            </p>
-            <p>
-              {"\u00A0"}·{"\u00A0"}DESIGN{"\u00A0"}·{"\u00A0"}DEVELOPMENT
-              {"\u00A0"}·{"\u00A0"}PROMO
-            </p>
-            <p>
-              {"\u00A0"}·{"\u00A0"}DESIGN{"\u00A0"}·{"\u00A0"}DEVELOPMENT
-              {"\u00A0"}·{"\u00A0"}PROMO
-            </p>
-          </div>
-        </div>
+  <div className="line_bg">
+
+<div className={`line_cont line1`}
+ ref={(el)=>lineRefs.current.line = el}>
+   {Array.from({length:3}).map((_,i)=>{ return (
+     <p ref={i==0?(el)=>sizeRefs.current.line = el:null}>               
+       REACT{"\u00A0"}·{"\u00A0"}JS{"\u00A0"}·{"\u00A0"}2025 YEAR{"\u00A0"}·{"\u00A0"}
+       </p>
+   )})}
+</div>
+
+<div className="line_cont line2"
+ ref={(el)=>lineRefs.current.line2 = el}
+ >
+ <p ref={(el)=>sizeRefs.current.line2 = el}>
+   {"\u00A0"}·{"\u00A0"}DESIGN{"\u00A0"}·{"\u00A0"}DEVELOPMENT
+   {"\u00A0"}·{"\u00A0"}PROMO
+ </p>
+ <p>
+   {"\u00A0"}·{"\u00A0"}DESIGN{"\u00A0"}·{"\u00A0"}DEVELOPMENT
+   {"\u00A0"}·{"\u00A0"}PROMO
+ </p>
+ <p>
+   {"\u00A0"}·{"\u00A0"}DESIGN{"\u00A0"}·{"\u00A0"}DEVELOPMENT
+   {"\u00A0"}·{"\u00A0"}PROMO
+ </p>
+</div>
+{/* </div>  */}
+
+{/* // end of line bg  */} 
+     </div>
+      {/* end of top cont */}
+      {/* <div className='first_bg'></div> */}
+
+
+
       </div>
+
+      
+
+<p className="velocity">
+ {/* {velocity} */}</p>
+
+ {/* <div className="transition_point"
+ ref={transitionPointRef}></div> */}
       </div>
+
+      
     </>
   );
 }

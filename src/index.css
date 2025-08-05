@@ -165,7 +165,7 @@ will-change: clip-path ;
   left: 0;
   /* нужен лефт убрать полосу слева отступ непонятный */
   width: 100%;
-  height: 100%;
+  height: 100svh;
   background: 
   url('assets/2148817520.jpg') top / cover;
   /* z-index: -1; */

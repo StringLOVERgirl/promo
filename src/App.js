@@ -212,9 +212,9 @@ const selectRef = useRef(
     const unmove = () => {
       for (let key in selectRef.current){
           console.log(selectRef.current[key])
-          selectRef.current[key].classList.remove('left')
-          selectRef.current[key].classList.remove('right')
-          selectRef.current[key].classList.remove('center')
+          selectRef.current[key].classList.remove('left', 'right', 'center')
+          // selectRef.current[key].classList.remove('right')
+          // selectRef.current[key].classList.remove('center')
     }}
 
     
@@ -264,159 +264,122 @@ console.log(selectRef.current)
   },[])
 
 const cp_pointRef = useRef(null)
-const decorRef = useRef('')
 
 const transs = useRef(null)
+
   return (
     <div className="App" data-lenis
     ref={appRef}>
+
       <Preloader displayloader={isPreloader}
-      precent={precentage}
+       precent={precentage}
        refs={mediaRefs}></Preloader>
 
+          <Header></Header>
 
-          <Header >
-
-           </Header>
            <div className="cp_point"
      ref={cp_pointRef}></div>
 
-{/* <div className="decor_cont" ref={decorRef}>
-  <div className="decor_inner">
-    <span className="decor_text">Promo</span>
-  </div>
-  
-  <div className="decor_inner">
-    <span className="decor_text">Work</span>
-  </div>
-</div> */}
-
-
-
-
-
-
         <div className={`content ${isContent}`}>
 
-
           <Runningline lenis={lenisRef}
-          cppoint={cp_pointRef}
-          decor={decorRef}
-          trans={transs}
+          cppoint={cp_pointRef}          
            >
 
            </Runningline>
         {/* <Child></Child> */}
         {/* <Canvas lenis={lenisRef} parentRef={appRef}></Canvas> */}
         {elements}
-        <Refs trans={transs} lenis={lenisRef} ></Refs>
+        <Refs lenis={lenisRef} ></Refs>
 
        
       </div>
-<div className='footer_area'>
-  {/* <div className='footer_bg'>
-  </div> */}
-</div>
+
+     <div className='footer_area'></div>
+
       <div className='footer'>
-      <div className='footer_bg'>
-      {/* <video className='sun'  */}
-      {/* // ref={videoRef} autoPlay muted loop src={video}></video> */}
-      {/* {[1,2,3].map((e,i)=><div style={{'--i':(i+1/2)+"s"}} className={`circle_animation circle${i}`} key={'circle'+i}></div>)} */}
-      </div>
-        <div className='decor_snow'></div>
-{/* аудиопанель */}
-<div className='toppanel_outter'>
-  <div className='toppanel_inner'>
+     
+         <div className='footer_bg'></div>
+ 
+         <div className='decor_shadow'></div>
 
-    <button className={`audio_control  ${isPlaying ? 'active' : '' }`}
-     onClick={play}>
-      <audio src={m83} ref={(el)=> tracksRef.current.m83 = el} onEnded={newTrack}></audio>
-      {/* <audio src={toALPD} ref={(el)=> tracksRef.current.toALPD = el} onEnded={newTrack}></audio> */}
-      {/* <audio src={br2049} ref={(el)=> tracksRef.current.br2049 = el} onEnded={newTrack}></audio> */}
-      {/* <audio src={revenant} ref={(el)=> tracksRef.current.revenant = el} onEnded={newTrack}></audio> */}
+         <div className='toppanel_outter'>
+            
+            <div className='toppanel_inner'>
+
+              <button className={`audio_control  ${isPlaying ? 'active' : '' }`}
+              onClick={play}>
+
+                  <audio src={m83} ref={(el)=> tracksRef.current.m83 = el} onEnded={newTrack}></audio>
+                  {/* <audio src={toALPD} ref={(el)=> tracksRef.current.toALPD = el} onEnded={newTrack}></audio> */}
+                  {/* <audio src={br2049} ref={(el)=> tracksRef.current.br2049 = el} onEnded={newTrack}></audio> */}
+                  {/* <audio src={revenant} ref={(el)=> tracksRef.current.revenant = el} onEnded={newTrack}></audio> */}
       
+                  <img className='label' src={label}></img>
 
-                    <img className='label' src={label}></img>
-     </button>
+              </button>
 
 
-     <div className='rinning_line_footer'>
-      {[1,2].map(()=> {return(
-      [`${"\u00A0"}`,'·',`${"\u00A0"}Dynamic${"\u00A0"}`,'·',
-      `${"\u00A0"}Clean${"\u00A0"}`,
-      '·',`${"\u00A0"}Creative${"\u00A0"}`,`·${"\u00A0"}`,
-  `Elegant${"\u00A0"}`,`·`,`${"\u00A0"}Advanced${"\u00A0"}`].map((e,i)=>{
-        return <p className={`bottom-line-elements ${e.includes('·')?'':"text_line_bottom"}`} key={i+'line+bottom'}>{e}</p>})
+              <div className='rinning_line_footer'>
+         {/* возвращаем два одинаковых блока */}
+                 {[1,2].map(()=> {return(
+                   [`${"\u00A0"}`,'·',`${"\u00A0"}Dynamic${"\u00A0"}`,'·',
+                      `${"\u00A0"}Clean${"\u00A0"}`,
+                      '·',`${"\u00A0"}Creative${"\u00A0"}`,`·${"\u00A0"}`,
+                      `Elegant${"\u00A0"}`,`·`,`${"\u00A0"}Advanced${"\u00A0"}`]
+                      // есть массив выше - собирем массив по элементам в отдельные блоки по типам - текст или точка
+                      .map((e,i)=>{
+                           return <p className={`bottom-line-elements ${e.includes('·')?'':"text_line_bottom"}`} 
+                           key={i+'line+bottom'}>{e}</p>
+                      })
+                   )}      
+                 )} 
+                 {/* end of running line */}
+              </div>
+              {/* end of to panel inner */}
+            </div>
+            {/* end of top panel outter */}
+         </div>
 
-      )}
-      
-      )}
-  
+         {/* стрелка навернх */}
+         <a href='#' aria-label='скрол наверх'>
+           <div className='arrow_cont'>
+             <svg className="arrow" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+               <path d="M12 20L12 4" stroke="currentColor" stroke-width="0.2" stroke-linecap="round" stroke-linejoin="round" />
+               <path d="M12 4L6 10M12 4L18 10" stroke="currentColor" stroke-width="0.2" stroke-linecap="rund" stroke-linejoin="round" />
+             </svg>
+           </div>
+         </a>
+
+
+         <div className='footer_blur_cont'>
+           <div className='void_cont'>
+             <h2 className='origin_h2'>VOID</h2>
+             <h2 className='fake_h2'>VOID</h2>
+           </div>
+         </div>
+
+        <nav className='a_cont' ref={acontRef} onMouseMove={select} onMouseLeave={unmove}>
+           <a style={{'--i':1}} ref={(el)=>selectRef.current.first = el}>Our Products</a>
+           <a style={{'--i':1}} ref={(el)=>selectRef.current.middle = el}>2025 Year</a>
+           <a style={{'--i':1}} ref={(el)=>selectRef.current.last = el}>In process</a>
+        </nav>
+
+        {/* собственность */}
+        <div className='bottom_cont'>
+          <p className='bottom_text'> Design and Development by Megan </p>
+        </div>
+
+        {/* вращенеи */}
+        <div className='middle'>
+          {Array.from({length:14}).map((_,i)=>{ return <span style={{ '--i': `${i+1}` }} 
+             className={`threedspan ${browser == 'Firefox' ? 'firefox_span':'' }`}
+            key={'3span'+i}>megan</span>  
+          })}
+        </div>
+
+     {/* end of footer */}
     </div>
-
-  </div>
-</div>
-
-{/* стрелка навернх */}
-<a  href='#' aria-label='скрол наверх'>
-  <div className='arrow_cont'> 
-  <svg class="arrow" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M12 20L12 4" stroke="currentColor" stroke-width="0.2" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M12 4L6 10M12 4L18 10" stroke="currentColor" stroke-width="0.2" stroke-linecap="rund" stroke-linejoin="round"/>
-</svg>      
-</div>
-</a>
-
-{/* проекты */}
-<div className='nav_cont'>
-  <nav className='footer_nav'>
-    <div className='h2_cont'>
-      <h2 className='origin_h2'>VOID</h2>
-    <h2 className='fake_h2'>VOID
-        {/* <h2 className='fake_h2 d'>D</h2> */}
-</h2>
-  
-    </div>
-    {/* <h2 className='origin_h2'>projects</h2>
-    <h2 className='fake_h2'>projects</h2> */}
-
-  </nav>
-</div>
-
-<nav className='a_cont' ref={acontRef} onMouseMove={select} onMouseLeave={unmove}>
-    <a style={{'--i':1}} ref={(el)=>selectRef.current.first = el}>Our Products</a>
-    <a style={{'--i':1}} ref={(el)=>selectRef.current.middle = el}>2025 Year</a>
-    <a style={{'--i':1}} ref={(el)=>selectRef.current.last = el}>In process</a>
-    </nav>
-
-{/* собственность */}
-<div className='bottom_cont'>
-  <p className='bottom_text'>
-Design and Development by Megan </p>
-</div>
-
-{/* вращенеи */}
-<div className='middle'>
-  {Array.from({length:14}).map((_,i)=>{ return <span style={{ '--i': `${i+1}` }} 
-     className={`threedspan ${browser == 'Firefox' ? 'firefox_span':'' }`}
-    key={'3span'+i}>megan</span>  
-  })}
-  {/* <span style={{ '--i': "1" }} className='threedspan el1'>megan</span>
-  <span style={{ '--i': "2" }} className='threedspan el2'>megan</span>
-  <span style={{ '--i': "3" }} className='threedspan el3'>megan</span>
-  <span style={{ '--i': "4" }} className='threedspan el4'>megan</span>
-  <span style={{ '--i': "5" }} className='threedspan el5'>megan</span>
-  <span style={{ '--i': "6" }} className='threedspan el5'>megan</span>
-  <span style={{ '--i': "7" }} className='threedspan el5'>megan</span>
-  <span style={{ '--i': "8" }} className='threedspan el5'>megan</span>
-  <span style={{ '--i': "9" }} className='threedspan el5'>megan</span>
-  <span style={{ '--i': "10" }} className='threedspan el5'>megan</span>
-  <span style={{ '--i': "11" }} className='threedspan el5'>megan</span>
-  <span style={{ '--i': "12" }} className='threedspan el5'>megan</span>
-  <span style={{ '--i': "13" }} className='threedspan el5'>megan</span>
-  <span style={{ '--i': "14" }} className='threedspan el5'>megan</span> */}
-</div>
-</div>
 
     </div>
   );

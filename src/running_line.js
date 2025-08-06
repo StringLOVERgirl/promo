@@ -6,7 +6,7 @@ import { useEffect, useRef, useState } from "react";
 import video from './assets/7186017_Paint_Ink_1920x1080.mp4'
 import { createObserver } from './observer';
 
-export function Runningline({ lenis,cppoint,trans }) {
+export function Runningline({ lenis,cppoint }) {
 // console.log(video)
   const prevScrollRef = useRef(0)
   const scrollDirection = useRef(false)
@@ -120,14 +120,11 @@ export function Runningline({ lenis,cppoint,trans }) {
       console.log(event.targetScroll)
       if (event.targetScroll < 4) {
         setCp('')
-    } else {setCp('cp')}
+    } 
+    // else {setCp('cp')}
     
 
       requestAnimationFrame(() => {
-
-        // if (event.targetScroll <= 4) {
-        //     setCp('cp') 
-        // }
 
         velocityRef.current = Math.abs(event.targetScroll - prevScrollRef.current) / 2
         
@@ -142,154 +139,106 @@ requestAnimationFrame(translate)
   }, [])
 
   const observerRef = useRef(null)
-  const cpFlag = useRef(false)
   let [cp,setCp] = useState('')
 
    observerRef.current = new IntersectionObserver((ar)=>{
     if  (ar[0].isIntersecting){
-      // if (!cpFlag.current){
-      //   cpFlag.current = true
-      //   console.log('set cp')
-      //   setCp('cp') 
-      // } else {
-      //   cpFlag.current = false
-      // }
+      
     } else {
-      // if (!cpFlag.current){
-      setCp('') 
-    // }
+      
+      setCp('cp') 
+    
     }
    },{threshold: 0.5, root: null
    })
 
-// ()=>{
-//       if (cpFlag.current){
-//         cpFlag.current = false
-//         console.log('set cp')
-//         setCp('')
-//     }},
-// {threshold: 0.5, root: null
-// }, true)
 
 
-const transitionPointRef = useRef(null)
-const blinkObserver = useRef('')
-const transitionRef = useRef('')
-const isHidden = useRef(false)
-const onScreen = useRef(true)
 const outter = useRef(null)
-
-blinkObserver.current = createObserver(()=>{
-  
-    transitionRef.current.style.setProperty('--transition','-124svh')
-
-
-console.log(1111)
-}, 
-()=>{
-  console.log(222)
-
-  
-    transitionRef.current.style.setProperty('--transition','125svh')
-
-
-},
-{threshold: 0.3, root: null})
-
 
 
 useEffect(()=>{
 
   if (cppoint.current && observerRef.current){
-    // console.log(cppoint.current)
-    // observerRef.current.observe(cppoint.current)
-    }
-
-    if (trans.current && blinkObserver.current){
-      blinkObserver.current.observe(trans.current)
+    console.log(cppoint.current)
+    observerRef.current.observe(cppoint.current)
     }
   
   return(()=>{
 observerRef.current.disconnect()
-blinkObserver.current.disconnect()
+
 }
   )
 },[])
-console.log(trans)
+
 
 
 
   return (
     <>
-      <div className="running_line_cont"  ref={outter}>
-      <div className="decor_cont" 
-      // ref={decorRef}
-      
-      >
-  <div className="decor_inner">
-    <span className="decor_text">Promo</span>
-  </div>
-  
-  <div className="decor_inner">
-    <span className="decor_text">Work</span>
-  </div>
-</div> 
-      <div className='transition' ref={transitionRef}></div>
+      <div className="running_line_cont" ref={outter}>
 
-      <div className='aside_cont'>
-  <span className='aside_text'>void</span>
-</div>
+        <div className="decor_cont">
 
-<div className={`top_line_outter ${cp}`}>
+          <div className="decor_inner">
+            <span className="decor_text">Promo</span>
+          </div>
 
-  <div className="line_bg">
+          <div className="decor_inner">
+            <span className="decor_text">Work</span>
+          </div>
+          {/* end of decor cont  */}
+        </div>
 
-<div className={`line_cont line1`}
- ref={(el)=>lineRefs.current.line = el}>
-   {Array.from({length:3}).map((_,i)=>{ return (
-     <p ref={i==0?(el)=>sizeRefs.current.line = el:null}>               
-       REACT{"\u00A0"}·{"\u00A0"}JS{"\u00A0"}·{"\u00A0"}2025 YEAR{"\u00A0"}·{"\u00A0"}
-       </p>
-   )})}
-</div>
+        <div className='aside_cont'>
+          <span className='aside_text'>void</span>
+        </div>
 
-<div className="line_cont line2"
- ref={(el)=>lineRefs.current.line2 = el}
- >
- <p ref={(el)=>sizeRefs.current.line2 = el}>
-   {"\u00A0"}·{"\u00A0"}DESIGN{"\u00A0"}·{"\u00A0"}DEVELOPMENT
-   {"\u00A0"}·{"\u00A0"}PROMO
- </p>
- <p>
-   {"\u00A0"}·{"\u00A0"}DESIGN{"\u00A0"}·{"\u00A0"}DEVELOPMENT
-   {"\u00A0"}·{"\u00A0"}PROMO
- </p>
- <p>
-   {"\u00A0"}·{"\u00A0"}DESIGN{"\u00A0"}·{"\u00A0"}DEVELOPMENT
-   {"\u00A0"}·{"\u00A0"}PROMO
- </p>
-</div>
-{/* </div>  */}
+        <div className={`top_line_outter ${cp}`}>
 
-{/* // end of line bg  */} 
-     </div>
-      {/* end of top cont */}
-      {/* <div className='first_bg'></div> */}
+          <div className="line_bg">
 
+            <div className={`line_cont line1`}
+              ref={(el) => lineRefs.current.line = el}>
+              {Array.from({ length: 3 }).map((_, i) => {
+                return (
+                  <p ref={i == 0 ? (el) => sizeRefs.current.line = el : null}>
+                    REACT{"\u00A0"}·{"\u00A0"}JS{"\u00A0"}·{"\u00A0"}2025 YEAR{"\u00A0"}·{"\u00A0"}
+                  </p>
+                )
+              })}
+            </div>
 
+            <div className="line_cont line2"
+              ref={(el) => lineRefs.current.line2 = el}
+            >
+              <p ref={(el) => sizeRefs.current.line2 = el}>
+                {"\u00A0"}·{"\u00A0"}DESIGN{"\u00A0"}·{"\u00A0"}DEVELOPMENT
+                {"\u00A0"}·{"\u00A0"}PROMO
+              </p>
+              <p>
+                {"\u00A0"}·{"\u00A0"}DESIGN{"\u00A0"}·{"\u00A0"}DEVELOPMENT
+                {"\u00A0"}·{"\u00A0"}PROMO
+              </p>
+              <p>
+                {"\u00A0"}·{"\u00A0"}DESIGN{"\u00A0"}·{"\u00A0"}DEVELOPMENT
+                {"\u00A0"}·{"\u00A0"}PROMO
+              </p>
+            </div>
+            
 
+            {/* // end of line bg  */}
+          </div>
+          {/* end of line outter */}
+        </div>
+
+        <p className="velocity">
+          {/* {velocity} */}</p>
+
+     {/* end of running line cont */}
       </div>
 
-      
 
-<p className="velocity">
- {/* {velocity} */}</p>
-
- {/* <div className="transition_point"
- ref={transitionPointRef}></div> */}
-      </div>
-
-      
     </>
   );
 }

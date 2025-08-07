@@ -118,13 +118,17 @@ export function Runningline({ lenis,cppoint }) {
     lenis.current.on('scroll', event => {
 
       console.log(event.targetScroll)
-      if (event.targetScroll < 4) {
-        setCp('')
-    } 
+  
     // else {setCp('cp')}
     
 
       requestAnimationFrame(() => {
+
+        if (event.targetScroll < 4) {
+          setCp('')
+      } 
+
+
 
         velocityRef.current = Math.abs(event.targetScroll - prevScrollRef.current) / 2
         

@@ -9,7 +9,7 @@ import { Refs } from './refs'
 import label from './assets/laberl_audio.jpeg'
 import m83 from './assets/M83 - By The Kiss.mp3'
 import video from './assets/0_Sun_Egg_3840x2160 (online-video-cutter.com) (1).mp4'
-import revenant from './assets/Ryuichi_Sakamoto_-_The_Revenant_Main_Theme_(SkySound.cc).mp3'
+import revenant from './assets/The_Revenant_Theme_2.mp3'
 import br2049 from'./assets/2049.mp3'
 import toALPD from './assets/Flight to LAPD.mp3'
 import { Header } from './header';
@@ -134,7 +134,7 @@ let [browser,setBrowser] = useState(null)
 let [isPlaying, setIsPlaying] = useState(false)
 // const m83Ref = useRef(null)
 // const revenantRef = useRef(null)
-const tracksRef = useRef({m83:null, 
+const tracksRef = useRef({m83:null, revenant:null
 })
 
 const currentTrackRef = useRef('void')
@@ -313,7 +313,7 @@ const transs = useRef(null)
                   <audio src={m83} ref={(el)=> tracksRef.current.m83 = el} onEnded={newTrack}></audio>
                   {/* <audio src={toALPD} ref={(el)=> tracksRef.current.toALPD = el} onEnded={newTrack}></audio> */}
                   {/* <audio src={br2049} ref={(el)=> tracksRef.current.br2049 = el} onEnded={newTrack}></audio> */}
-                  {/* <audio src={revenant} ref={(el)=> tracksRef.current.revenant = el} onEnded={newTrack}></audio> */}
+                  <audio src={revenant} ref={(el)=> tracksRef.current.revenant = el} onEnded={newTrack}></audio>
       
                   <img className='label' src={label}></img>
 

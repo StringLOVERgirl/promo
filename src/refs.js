@@ -1,13 +1,11 @@
-import { useRef, useState,useEffect } from "react";
+import { useRef, useState,useEffect, useLayoutEffect } from "react";
 
-export function Refs (){
-
+export function Refs ({lenis, distancee}){
 
 
     const textRef = useRef(null)
 
     let [text, isText] = useState('')
-    let [inverse, isInverse] = useState('')
     const textFlag = useRef(false)
 
     const textObserver = useRef(new IntersectionObserver(arr => {
@@ -42,31 +40,71 @@ export function Refs (){
     
     const parallaxMetrics = useRef({
         scrollWay: null,
-        targetValue: null,
-        distance:{
-            distance1:null,
-            distance2:null,
-            distance3:null,
-        },
+        targetValue: 130,
+        // ускоряем но есть ограничтиель до 100
+        // УМЕНЬШАЕТ ШАГ который отвечате за отношение 1 процент прокрутки к 1 пикселю
+        step:null,
+        distance:[]
     })
 
     const addBgRefs = (el) => {
-        if (!bgRefs.current.includes(el)){
+        if (!bgRefs.current.includes(el)&& el){
             bgRefs.current.push(el)
         }
     }
 
-    const setMetrics = (el) => {
-
+    const setMetrics = (el,i) => {
+        let rec = el.getBoundingClientRect()
+        parallaxMetrics.current.distance[i] = rec.top - window.innerHeight + window.scrollY
     }
 
-    const parallax = (el) => {
+    const link_cont = useRef(null)
 
+    const parallax = (varbg,i) => {
+        // можно накинуть - 100 дабы инвертировать и больше закос под атачмент фиксд 
+        let value = (window.scrollY - parallaxMetrics.current.distance[i]) / parallaxMetrics.current.step - 10 
+        if (value > 100 ){ value = 100} 
+        // убираем выше нижний рвыок 
+        // ограничтиель до 100
+        value +="%"
+        link_cont.current.style.setProperty(varbg,value)
+        flag.current=false
     }
 
+const flag = useRef(false)
+    useLayoutEffect(()=>{
+        console.log('hhhhhhhhhhhhhhhhhhh')
+    
+        bgRefs.current.forEach((e,i)=>setMetrics(e,i))
+        console.log(parallaxMetrics.current.distance)
+        parallaxMetrics.current.scrollWay = window.innerHeight*2
+        parallaxMetrics.current.step = parallaxMetrics.current.scrollWay / parallaxMetrics.current.targetValue 
 
-    useEffect(()=>{
+        console.log(parallaxMetrics.current.scrollWay )
 
+
+        lenis.current.on('scroll', event => {
+            if (!flag.current){
+                flag.current=true
+            parallaxMetrics.current.distance.forEach((e,i)=>{
+        if (event.targetScroll >= parallaxMetrics.current.distance[i] - 100
+            //  - 100 чтобы начиналс движение немного спустя как появится в поле видимости 
+            //  что бы юзер расссмотрел что сверху
+            && event.targetScroll <= parallaxMetrics.current.distance[i]+parallaxMetrics.current.scrollWay 
+            ){
+                requestAnimationFrame(()=>{
+                parallax('--bg'+(i+1),i)
+                console.log('prarl')
+                })
+        } else{
+            flag.current = false
+        }
+    })
+    }
+        })
+
+
+    
         if(textObserver.current && textRef.current){
             textObserver.current.observe(textRef.current)
         }
@@ -78,7 +116,7 @@ export function Refs (){
             }
         )
 
-    },[])
+    },[distancee])
 
     return (<>
 
@@ -104,7 +142,7 @@ export function Refs (){
 
             </div>
 
-            <div className="workds_cont">
+            <div className="workds_cont" ref={link_cont}>
 
 
                {/* <div className="counter_cont">
@@ -120,7 +158,7 @@ export function Refs (){
                         <div className={`counter_cont counter${i+1}`}>
                             {/* фон цифры при появлении секции */}
                             <span className={`counter_text`}>{i+1}</span>
-                            <div className={`counterbg bg${i+1} ${animteCounterBg}`} ref={addBgRefs}></div>
+                            <div className={`counterbg bg${i+1} ${animteCounterBg}`} key={'bg'+(i+1)}></div>
                             {/* <span className={`counter_text`}>{i+1}</span> */}
                         </div> 
                         {/* цифра сбоку */}
@@ -130,7 +168,7 @@ export function Refs (){
                                {/* имя проекта */}
                            </div>
    
-                           <div className={`linkbg link${i + 1}bg`}></div>
+                           <div className={`linkbg link${i + 1}bg`} ref={addBgRefs}></div>
                        </div>
                    </>
                })}

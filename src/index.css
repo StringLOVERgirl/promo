@@ -484,7 +484,7 @@ video {
 }
 
 .hide_content {
-  display: none;
+  opacity:  0;
 }
 
 .precentage {

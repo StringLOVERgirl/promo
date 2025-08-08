@@ -37,6 +37,7 @@ overflow: hidden;
     mix-blend-mode: difference;
     position: relative;
     will-change: transform;
+    /* border-radius: 25px; */
     transition: transform 0.5s cubic-bezier(0.17, 0.88, 0.44, 1.25);
     /*  эффект пружины */
     /* cubic-bezier(0.65, 0, 0.35, 1) интересна я лаьтертаивы */
@@ -55,6 +56,8 @@ overflow: hidden;
     position: absolute;
     display: block;
     z-index: -1;
+    /* border-radius: 35px; */
+
     width: 100%;
     height: 100%;
     background: white;
@@ -99,8 +102,14 @@ transition: transform 0.5s 0.1s ease-out;
 /* end of inspired section */
 
 .workds_cont {
+        --bg1:50%;
+    --bg2:0;
+    --bg3:0;
+    --bgY:0;
     height: fit-content;
     border: solid 1px;
+    /* overflow: hidden; */
+
 
 }
 
@@ -148,6 +157,8 @@ display: none;
 .link_cont {
     height: 125svh;
     display: flex;
+    /* overflow: hidden; */
+
     border: solid 1px rgba(0, 0, 0, 0.54);
 
 }
@@ -184,9 +195,9 @@ font-family: FuturaMedium;
 color: whitesmoke;
 }
 
-.title1 {
+    /* .title1 {
 
-}
+    } */
 
 .title2 {
     display: flex;
@@ -205,23 +216,64 @@ line-height: 1.5;
     height: 80svh;
     width: 65%;
     border-radius: 35px;
+    overflow: hidden;
+    /* background-attachment: fixed; */
 }
 
 .link1bg{
     margin-top: 20svh;
+    height: 80svh;
+    /* position: fixed; */
+    /* top: 0; */
+    /* top: auto; */
+    /* z-index: 0; */
     margin-left: auto;
-    background: url('assets/k72.jpeg') center  0 / auto 130% no-repeat;
+    /* transform: translateY(var(--bgY)); */
+    background: url('assets/k72.jpeg') ;
+    /* background-image: url('assets/k72.jpeg'); */
+/* background-attachment: fixed; */
+/* transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, -120, 0, 1); */
+    background-size: auto 130%;
+    background-repeat: no-repeat; 
+    background-position-x: center;
+    /* 160px; */
+    /* формула центраированияя
+    если 110 размер = в позишн 100 процентов - 10 процентов выхода за экраны т е 10 
+    процентов от ширины экарна (или высоты)
+    чтобы центрировать нужно взять 0 левую координату сдвинуть на полэкрана 
+    640 тогда картинка начентся с середни это нас не страивает мы хотим центрирвоао между 
+    середино и првым крайем 
+    поэтому делим это на 2 (аналог лефт 50 и трансформ транслейт -50)
+    но 2 фактора допнительно учесть - оффсет в 10 процентов и ширину области контейнера в окторой
+    центрируемя 
+    тиак 
+    1280 / 2 = 640 / 2 = 320 
+    ширина 65 процентов окна значит надо сместить еще на половин от 15 процентов 
+    еще 96 пикселей - и 10 процентов оффсета так же половину от этого числа 64 итого 
+    320 - 96 - 64 = примерно 160
+  */
+    background-position-y: var(--bg1);
+     transition: background-position-y 0.2.s 
+
 }
 .link2bg{
     margin-left: auto;
     margin-right: auto;
     margin-top: auto;
     margin-bottom: auto;
-    background: url('assets/link2.jpeg') center  0 / auto 130% no-repeat;
+    background: url('assets/link2.jpeg') ;
+    background-position-y: var(--bg2) ;
+    background-size: auto 130%;
+    background-repeat: no-repeat; 
+    background-position-x: center;
 }
 .link3bg{
     margin-top: auto;
     margin-bottom: 10svh;
     margin-right: auto;
-    background: url('assets/havenstudios-SOTD-2.jpeg') center  0 / auto 130% no-repeat;
+    background: url('assets/havenstudios-SOTD-2.jpeg') ;
+    background-position-y: var(--bg3) ;
+    background-size: auto 130%;
+    background-repeat: no-repeat; 
+    background-position-x: center;
 }

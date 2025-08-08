@@ -63,6 +63,7 @@ function App() {
   const totalCount = useRef()
   const loadedMedia = useRef(0)
   let [precentage, setprecentage] = useState(0)
+  let [distance,setDistance] = useState(false)
 
   const updateprecentage = useCallback(async ()=>{
 // колбек нужен в купе с состоянием или прпосами которые могут измениться 
@@ -80,6 +81,7 @@ function App() {
       setprecentage(99)
       setTimeout(()=>{
         setIsContent('')
+        setDistance(true)
         setIsPreloader('hide_preloader')
       },100)
       return
@@ -290,7 +292,7 @@ const transs = useRef(null)
         {/* <Child></Child> */}
         {/* <Canvas lenis={lenisRef} parentRef={appRef}></Canvas> */}
         {elements}
-        <Refs lenis={lenisRef} ></Refs>
+        <Refs lenis={lenisRef} distancee={distance}></Refs>
 
        
       </div>

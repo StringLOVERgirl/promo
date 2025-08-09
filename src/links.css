@@ -6,12 +6,51 @@
 
   .h1cont {
     --translateY: 100% ;
+    --translateX: 100%;
     --scaleX: 0;
+    --scale: 0;
+    overflow: hidden;
     padding-top: 30svh;
     padding-bottom: 10svh;
     display: flex;
     flex-direction: column;
+    position: relative;
+    background: linear-gradient(to right, #D3CCE3,#E9E4F0);
+    /* background: url(assets/356350758_2de15e56-9f88-4eaa-b759-8502153c8c0d.svg) left center / 40% no-repeat; */
   }
+
+  .decor_snow_outter {
+    /* overflow: hidden; */
+    position: absolute;
+    right: 0vw;
+    top: 0svh;
+    width: 11%;
+    aspect-ratio: 1/1;
+    /* opacity: 0.7; */
+    transition: transform 0.8s ease-out;
+    transform: scale(var(--scale));
+  }
+
+  .decor_snow_inner {
+    /* transition: transform 1s ease-out;
+    transform: scale(var(--scale)); */
+  }
+
+  .decor_snow {
+    background: url(assets/snow.png) center / cover no-repeat;
+    width: 100%;
+    aspect-ratio: 1/1;
+    display: block;
+    transform: rotate(0);
+    will-change: transform;
+    transition: transform 5.7s cubic-bezier(0.17, 0.88, 0.44, 1.25) ;
+  }
+
+  .decor_snow:hover{
+    transform: rotate(360deg)
+  }
+
+  
 
   /* текст внутри инспайред */
    /* убратьобщий цвет вынести во тдельные цвета  */
@@ -60,7 +99,7 @@ overflow: hidden;
 
     width: 100%;
     height: 100%;
-    background: white;
+    background: rgba(255, 255, 255, 0.218);
     will-change: transform;
     transform: scaleX(var(--scaleX)); /* Исходное состояние: масштабирование по X до 0 */
     transform-origin: left; /* Точка отсчета для масштабирования */
@@ -75,15 +114,17 @@ height: auto;
 transform: translateY(var(--translateY)) translateZ(0);
 /* следующие два свойства нужный ТОЛЬКО ПРИ АНИМАЦИИ И ПРИМЕНЕНИИ КЛАССА ХУЕВЕР ТАК 
 как без них не работает инвертирование цвета как без включения в хувер */
-mix-blend-mode: difference;
-filter: invert(1);
+mix-blend-mode: normal;
+filter: invert(0);
 transition: transform 0.5s 0.1s ease-out;
+opacity: 0.9;
  }
 
 
 .locomotive {
     margin-left: auto;
-    color: black;
+    
+    color: rgba(0, 0, 0, 0.792);
     transform: translateY(var(--translateY)) translateZ(0);
     transition: transform 0.5s 0.2s
 }
@@ -99,6 +140,81 @@ transition: transform 0.5s 0.1s ease-out;
     transition: transform 0.5s 0.3s
 }
 
+.description_cont {
+    position: absolute;
+    bottom: 13svh;
+    font-family: Futura;
+    font-size: 1.5vw;
+    padding-left: 2vw;
+}
+
+
+.des_top_cont span {
+    transition: transform 0.5s 0.3s;
+    transform: translateY(var(--translateY));
+    display: block;
+}
+
+.des_top_cont {
+    overflow: hidden;
+}
+
+.des_bottom_cont {
+    position: relative;
+    width: fit-content;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.des_bottom_cont a {
+    transition: transform 0.5s 0.4s;
+    transform: translateY(var(--translateY));
+    text-decoration: none;
+    color: black;
+    display: block;
+}
+
+.des_bottom_cont::after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 1px;
+    transition: transform 0.5s 0.4s;
+    transform: translateY(var(--translateY));
+    background: rgba(0, 0, 0, 0.343);
+}
+
+.w_cont{
+    overflow: hidden;
+    
+}
+
+.w_link {
+    position: relative;
+    overflow: hidden;
+    display: block;
+    transition: transform 0.5s 0.5s;
+transform: translateY(var(--translateY));
+}
+
+.w_link svg {
+    box-sizing: content-box;
+padding-top: 5%;
+
+overflow: hidden;
+height: fit-content;
+transition: fill 0.3s;
+
+}
+
+.w_link svg:hover  path{
+    fill: rgb(134, 106, 128)
+}
+
+.w_link svg path{
+fill: rgba(0, 0, 0, 0.8);
+}
+
 /* end of inspired section */
 
 .workds_cont {
@@ -107,9 +223,9 @@ transition: transform 0.5s 0.1s ease-out;
     --bg3:0;
     --bgY:0;
     height: fit-content;
-    border: solid 1px;
+    border: solid 1px rgba(0, 0, 0, 0.335);
     /* overflow: hidden; */
-
+    background: linear-gradient(to right, #D3CCE3,#E9E4F0);
 
 }
 
@@ -158,9 +274,12 @@ display: none;
     height: 125svh;
     display: flex;
     /* overflow: hidden; */
-
     border: solid 1px rgba(0, 0, 0, 0.54);
 
+}
+
+.linkcont1 {
+    /* background: url(assets/18929247_rm167-sasi-72.svg) center / contain no-repeat; */
 }
 
 .link_inner_cont {

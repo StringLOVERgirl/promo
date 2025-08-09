@@ -29,6 +29,7 @@ background: white;
 z-index: 3;
 justify-content: center;
 height: 13svh;
+background: linear-gradient(to right, #D3CCE3,#E9E4F0);
 
 }
 
@@ -88,9 +89,10 @@ letter-spacing: 0.05em;
 aspect-ratio: 1/1;
   background: url('assets/203195-abstract-purple-and-black-blur-gradient-background (2).jpg') center / cover  ;
   filter: brightness(70%);
-  border-radius: 50%;
+  /* border-radius: 50%; */
   /* animation: mini 20s infinite; */
   position: relative;
+  clip-path: polygon(0% 0%, 0% 100%, 25% 100%, 25% 25%, 75% 25%, 75% 75%, 25% 75%, 25% 100%, 100% 100%, 100% 0%);
 }
 
 
@@ -200,6 +202,7 @@ will-change: clip-path ;
 .running_line_cont {
   height: 125svh;
   background: white;
+  background: linear-gradient(to right, #D3CCE3,#E9E4F0);
 position: relative;
 overflow: hidden;
 }

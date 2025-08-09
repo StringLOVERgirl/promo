@@ -10,10 +10,23 @@ export function Refs ({lenis, distancee}){
 
     const textObserver = useRef(new IntersectionObserver(arr => {
         console.log(arr[0].intersectionRatio)
+        let vars = [
+            {
+                name:'--translateY',
+                value: 0
+             },{
+                name:'--translateX',
+                value: 0
+             },{
+                name:'--scaleX',
+                value: 1.2
+             }, {
+                name: '--scale',
+                value: 1
+             }] 
         if (arr[0].intersectionRatio > 0.7){
           textFlag.current = true  
-          textRef.current.style.setProperty('--translateY', 0)
-          textRef.current.style.setProperty('--scaleX', 1.2)
+          vars.forEach(e=>textRef.current.style.setProperty(e.name, e.value))
         } 
         // else if (arr[0].intersectionRatio == 0 && textFlag.current){
         //   textRef.current.style.setProperty('--translateY', '100%')
@@ -124,6 +137,13 @@ const flag = useRef(false)
 
             <div className="h1cont" ref={textRef}>
 
+               <div className="decor_snow_outter">
+                  <div className="decor_snow_inner">
+                    <div className="decor_snow"></div>
+              </div> 
+               </div>
+                
+
                 <div className="top_line_inspired">
                     {/* нужно для микс бленд контейнер и псевдоэлемент с фоном а нимаицей ховер */}
                     <div className={`inspiredcont ${text}`}>
@@ -140,6 +160,33 @@ const flag = useRef(false)
                    <h2 className={`links_text e ${text}`}>e</h2>
                 </div>
 
+                <div className="description_cont">
+
+                    <div className="description des_top_cont">
+                        <span>Digital Design Agency</span>
+                    </div>
+
+                    <div className="description des_bottom_cont">
+                        <a href="https://locomotive.ca/en" target="_blank">Canada - Montréal</a>
+                    </div>
+
+<div className="w_cont">
+                    <a className="w_link" target="_blank" href="https://www.awwwards.com/locomotive/">
+                <svg className="awwwards" width="50" height="28" viewBox="0 0 30 16">
+                    <path d="m18.4 0-2.803 10.855L12.951 0H9.34L6.693 
+                    10.855 3.892 0H0l5.012 15.812h3.425l2.708-10.228 2.709 
+                    10.228h3.425L22.29 0h-3.892ZM24.77 13.365c0 1.506 1.12 
+                    2.635 2.615 2.635C28.879 16 30 14.87 30 
+                    13.365c0-1.506-1.12-2.636-2.615-2.636s-2.615 1.13-2.615 2.636Z">
+                    </path>
+                </svg>
+                </a>
+                </div>
+
+                </div>
+
+            
+
             </div>
 
             <div className="workds_cont" ref={link_cont}>
@@ -155,10 +202,11 @@ const flag = useRef(false)
                        <div className={`link_cont linkcont${i + 1}`}>
 
 
-                        <div className={`counter_cont counter${i+1}`}>
+                        <div className={`work_descr_cont des${i+1}`}>
                             {/* фон цифры при появлении секции */}
-                            <span className={`counter_text`}>{i+1}</span>
-                            <div className={`counterbg bg${i+1} ${animteCounterBg}`} key={'bg'+(i+1)}></div>
+                            <div className={`title_des titledes${i+1}`}></div>
+                            <div className={`des_main desmain${i+1} ${null}`}></div>
+                            <div className={`des_inverse desinverse${i+1} ${null}`}></div>
                             {/* <span className={`counter_text`}>{i+1}</span> */}
                         </div> 
                         {/* цифра сбоку */}

@@ -216,7 +216,13 @@ observerRef.current.disconnect()
             <div className="line_cont line2"
               ref={(el) => lineRefs.current.line2 = el}
             >
-              <p ref={(el) => sizeRefs.current.line2 = el}>
+              {[1,2,3].map((_,i)=>
+               <p ref={i==0?(el) => sizeRefs.current.line2 = el:null}>
+               {"\u00A0"}·{"\u00A0"}DESIGN{"\u00A0"}·{"\u00A0"}DEVELOPMENT
+               {"\u00A0"}·{"\u00A0"}PROMO
+             </p>
+             )}
+              {/* <p ref={(el) => sizeRefs.current.line2 = el}>
                 {"\u00A0"}·{"\u00A0"}DESIGN{"\u00A0"}·{"\u00A0"}DEVELOPMENT
                 {"\u00A0"}·{"\u00A0"}PROMO
               </p>
@@ -227,7 +233,7 @@ observerRef.current.disconnect()
               <p>
                 {"\u00A0"}·{"\u00A0"}DESIGN{"\u00A0"}·{"\u00A0"}DEVELOPMENT
                 {"\u00A0"}·{"\u00A0"}PROMO
-              </p>
+              </p> */}
             </div>
             
 

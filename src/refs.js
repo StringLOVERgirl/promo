@@ -4,16 +4,16 @@ import hiddenvideo from './assets/locomotive_mtl_logo.jpeg'
 
 
 
-
-export function Refs ({lenis, distancee}){
+// узнать как меняется дистанс это при ресайзе?
+// 
+// по компоненту на каждый
+export function Refs ({lenis}){
     
     const titleRefs = useRef([])
     
 
     const textRef = useRef(null)
 
-    let [text, isText] = useState('')
-    const textFlag = useRef(false)
 
     const textObserver = useRef(new IntersectionObserver(arr => {
         console.log(arr[0].intersectionRatio)
@@ -32,7 +32,6 @@ export function Refs ({lenis, distancee}){
                 value: 1
              }] 
         if (arr[0].intersectionRatio > 0.7){
-          textFlag.current = true  
           vars.forEach(e=>textRef.current.style.setProperty(e.name, e.value))
         } 
         // else if (arr[0].intersectionRatio == 0 && textFlag.current){
@@ -47,13 +46,11 @@ export function Refs ({lenis, distancee}){
     
 
 
-    let [animteCounterBg, setAnimteCounterBg] = useState('')
-
-    const addCounterRef = (el) => {
-        if (!titleRefs.current.includes(el)){
-            titleRefs.current.push(el)
-        }
-    }
+    // const addCounterRef = (el) => {
+    //     if (!titleRefs.current.includes(el)){
+    //         titleRefs.current.push(el)
+    //     }
+    // }
 
 // parallax
     const bgRefs = useRef([])
@@ -136,7 +133,8 @@ const flag = useRef(false)
             }
         )
 
-    },[distancee])
+    },[])
+    // выннести в рефы 
 const des = [['Design Agencies', 'Web & Interactive', 'Photo & Video', 'Lottie'],
 ['Business & Corporate', 'Technolog','Mobile & Apps' , 'Scrolling'],
 ['Games & Entertainment','GSAP','Three.js','Gestures / Interaction']]
@@ -145,8 +143,9 @@ const colors = [['#000','#ffffff'],
 ['#000000', '#E2E3E6'], 
 ['#000','#2779a7','#9C9C9C']]
 
+// эти ооставить в родительском копоненте передаать ссылку на реф 
 const inverseRef = useRef([])
-
+// передавать ад реф как пропс чтобы добавлять туда рефы 
 const addDesRef = (el)=>{
     if (!inverseRef.current.includes(el)){
         inverseRef.current.push(el)
@@ -154,33 +153,26 @@ const addDesRef = (el)=>{
 }
 
 let rec = useRef([null,null,null])
-const sizeindex = useRef(1)
-const prevHeight = useRef(null)
-function setIndex(){
 
-   if (prevHeight.current){
-    sizeindex.current =     inverseRef.current[0].clientHeight / prevHeight.current
-   }
-    prevHeight.current = inverseRef.current[0].clientHeight
-}
-// сделать обновление при ресайзе
+
 
 function setDistanceInverse(){
     rec.current = rec.current.map((_,i)=>inverseRef.current[i].getBoundingClientRect())
 console.log(rec.current)
 }
+//конец эти оставить
     
-let [inverse, setInverse] = useState('hideinvers')
+// в хелпер 3 функции
     function mouseout(el){
         inverseRef.current[el].style.setProperty(`--animation`, 'hideinvers 0.3s forwards')
     }
+
     function mouseenter(el){
         inverseRef.current[el].style.setProperty(`--animation`, 'appearinvers 0.5s forwards')
     }
 
 const moveInverse = (el,event) => {
 
-console.log(rec.current[el])
    let pageY = event.clientY + window.scrollY;
 //    позиция курсора 
    const parentRect = inverseRef.current[el].getBoundingClientRect();
@@ -225,18 +217,18 @@ useEffect(()=>{
 
                 <div className="top_line_inspired">
                     {/* нужно для микс бленд контейнер и псевдоэлемент с фоном а нимаицей ховер */}
-                    <div className={`inspiredcont ${text}`}>
-                       <h2 className={`links_text inspired ${text}`}>inspired by</h2>
+                    <div className='inspiredcont'>
+                       <h2 className='links_text inspired'>inspired by</h2>
                     </div>
-                    <div className={`logo ${text}`}></div>
+                    <div className='logo'></div>
                 </div>
                 
                 <div className="lokomotive_cont">
-                    <h2 className={`links_text locomotive ${text}`}>Locomotiv</h2>
+                    <h2 className='links_text locomotive'>Locomotiv</h2>
                 </div>
 
                 <div className="e_cont">
-                   <h2 className={`links_text e ${text}`}>e</h2>
+                   <h2 className='links_text e'>e</h2>
                 </div>
 
                 <div className="description_cont">
@@ -267,20 +259,24 @@ useEffect(()=>{
             
 
             </div>
-
+{/*  */}
             <div className="workds_cont" ref={link_cont}>
 
                {
                ['k72', 'WEBISOFT', 'HAVEN'].map((e, i) => {
                    return <>
                        <div className={`link_cont linkcont${i + 1}`}>
+
                        <div className="cube">
                         <div className="cube_inner_cont">
+                            {/* в куб передавать аргумент-пропс  */}
                            {Array.from({length:6}).map((_,i_side)=>{return <div className={`side side${i_side+1} side${i+1}-`+(i_side+1)}></div>})}
                         </div>
                             </div>
+
 {/* массив с доминирующими цветами так же сделать почеркивание с тем же цветом под названием цвета  */}
 
+{/* сюда тоже аргумент */}
                         <div  style={{[`--x`]:0, [`--y`]:0}} className={`work_descr_cont des${i+1}`} data-id={i} onMouseLeave={(event)=>mouseout(event.currentTarget.dataset.id,event)} onMouseEnter={(event)=>mouseenter(event.currentTarget.dataset.id,event)} onMouseMove={(event)=>moveInverse(event.currentTarget.dataset.id,event)} ref={addDesRef}>
                             {/* фон цифры при появлении секции */}
                             <div className={`title_des titledes${i+1}`}>color
@@ -297,7 +293,7 @@ palette</div>
                         </div> 
                         {/* цифра сбоку */}
 
-                           <div className={`link_inner_cont inner${i + 1}`} ref={addCounterRef}>
+                           <div className={`link_inner_cont inner${i + 1}`}>
                             
                                   <a className={`links_title title${i + 1}`}>{e}</a>
                                {/* имя проекта */}

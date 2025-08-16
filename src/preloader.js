@@ -1,6 +1,6 @@
-import { useEffect, useState, useRef } from "react"
+import { useEffect, useState } from "react"
 
-export function Preloader({refs,displayloader, precent}){
+export function Preloader({displayloader, precent}){
 
 
     const [animationKey, setAnimationKey] = useState(0);

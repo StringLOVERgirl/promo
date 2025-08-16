@@ -1,10 +1,9 @@
-import React, { useCallback, useEffect, useState, useRef, memo, use } from 'react'
+import React, { useCallback, useEffect, useState, useRef} from 'react'
 import Lenis from '@studio-freight/lenis'; // Импортируем Lenis благодаря importmap
 import { createObserver } from './observer';
 import { Preloader } from './preloader';
 import { src,collectMedia } from './createMedia';
 import { Runningline } from './running_line';
-import { Canvas } from './canvas_circles';
 import { Refs } from './refs'
 import label from './assets/laberl_audio.jpeg'
 import m83 from './assets/M83 - By The Kiss.mp3'
@@ -15,29 +14,7 @@ import toALPD from './assets/Flight to LAPD.mp3'
 import { Header } from './header';
 
 
-const Child = memo(function () {
 
-  let [isActive, setIsActive] = useState({ img: 'hidden', video: 'hidden' })
-  console.log(isActive)
-
-  const bgRef = useRef()
-
-  useEffect(() => {
-
-    const observer = createObserver(() =>
-      setIsActive(prevState => ({ ...prevState, img: '' }))
-    )
-
-    observer.observe(bgRef.current)
-
-  }, [])
-
-  console.log('render child')
-
-  return (<>
-    <div className={`bg ${isActive.img}`} ref={bgRef}></div>
-  </>)
-})
 
 
 function App() {
@@ -63,7 +40,6 @@ function App() {
   const totalCount = useRef()
   const loadedMedia = useRef(0)
   let [precentage, setprecentage] = useState(0)
-  let [distance,setDistance] = useState(false)
 
   const updateprecentage = useCallback(async ()=>{
 // колбек нужен в купе с состоянием или прпосами которые могут измениться 
@@ -81,7 +57,7 @@ function App() {
       setprecentage(99)
       setTimeout(()=>{
         setIsContent('')
-        setDistance(true)
+        // setDistance(true)
         setIsPreloader('hide_preloader')
       },100)
       return
@@ -112,16 +88,6 @@ const lenisRef = useRef(new Lenis({
 
     console.log(mediaRefs.current[0])
 
-    // lenisRef.current = new Lenis({
-    //   duration: 2,
-    //   smooth: true,
-    // });
-
-    // lenis.on('scroll', event => {
-    //   if (!animationFlagRef.current){
-    //     animationFlagRef.current = true
-    //   }
-    // })
 
     function raf(time) {
       lenisRef.current.raf(time)
@@ -166,7 +132,6 @@ const play = () => {
       }
 }
 
-const videoRef = useRef(null)
 const selectRef = useRef(
   {
     first:null,
@@ -180,8 +145,8 @@ const selectRef = useRef(
     last:null
   })
 
-  const acontRef = useRef(null)
-
+// добавить классовую типизацию состояние эктив для каждого а 
+// можно попробоват отдельный стейт офсет для состояние когда другой наведене добавка класса райт или лефт
 
   function select(event){
     console.log(event.clientX, selectRef.current.first, selectRef.current )
@@ -212,11 +177,10 @@ const selectRef = useRef(
     }
 
     const unmove = () => {
+      // очищать классовое состояние 
       for (let key in selectRef.current){
           console.log(selectRef.current[key])
           selectRef.current[key].classList.remove('left', 'right', 'center')
-          // selectRef.current[key].classList.remove('right')
-          // selectRef.current[key].classList.remove('center')
     }}
 
     
@@ -238,7 +202,6 @@ console.log(selectRef.current)
 
 
 
-    // videoRef.current.playbackRate = 0.9
 
     if (navigator.userAgent.includes("Firefox")) {
       setBrowser('Firefox')
@@ -267,8 +230,6 @@ console.log(selectRef.current)
 
 const cp_pointRef = useRef(null)
 
-const transs = useRef(null)
-
   return (
     <div className="App" data-lenis
     ref={appRef}>
@@ -289,10 +250,10 @@ const transs = useRef(null)
            >
 
            </Runningline>
-        {/* <Child></Child> */}
-        {/* <Canvas lenis={lenisRef} parentRef={appRef}></Canvas> */}
+
         {elements}
-        <Refs lenis={lenisRef} distancee={distance}></Refs>
+        
+        <Refs lenis={lenisRef}></Refs>
 
        
       </div>
@@ -361,7 +322,7 @@ const transs = useRef(null)
            </div>
          </div>
 
-        <nav className='a_cont' ref={acontRef} onMouseMove={select} onMouseLeave={unmove}>
+        <nav className='a_cont' onMouseMove={select} onMouseLeave={unmove}>
            <a style={{'--i':1}} ref={(el)=>selectRef.current.first = el}>Our Products</a>
            <a style={{'--i':1}} ref={(el)=>selectRef.current.middle = el}>2025 Year</a>
            <a style={{'--i':1}} ref={(el)=>selectRef.current.last = el}>In process</a>

@@ -48,6 +48,7 @@
     height: 20vmin;
     border-radius: 50%;
     backface-visibility: hidden;
+    will-change: transform;
     animation: move linear infinite;
   }
   
@@ -586,8 +587,21 @@ from {
     }
 }
 
+.linkcont1 .cube::after{
+    content: '';
+    position: absolute;
+    display: block;
+    height: 20svh;
+    width: 15svh;
+   transform: translate(-35%,-25%);
+   transform-style: preserve-3d;
+    background:url('./assets/gif.webp') center / contain;
+
+
+}
 .cube {
-    /* mix-blend-mode: normal; */
+    mix-blend-mode: normal;
+    /* display: none; */
     perspective: 1000px;
     transform-style: preserve-3d;  
     height: 12svh;
@@ -595,7 +609,7 @@ from {
     z-index: 2;
     top: 15svh;
     left: 15svh;
-    filter: blur(0.5px);
+    /* filter: blur(0.5px); */
     transition: transform 0.3s;
 }
 
@@ -610,6 +624,7 @@ from {
 
     align-items: center;
     justify-content: center;
+
 }
 .side {
     position: absolute;
@@ -665,7 +680,7 @@ from {
     border: solid #2e1437 1px;
 }
 .side1-1,.side1-3,.side1-5,.side1-6 {
-    background: #2e1437;
+    background: #441e51 ;
     filter: 
     /* blur(0.5px) */
     drop-shadow(0 0 1px #2e1437);
@@ -690,7 +705,8 @@ from {
   .side3 {
     /* background: blue; */
     height: 12svh;
-    width: 4svh;
+    width: 4svh;    opacity: 0.9;
+
     /* боковая */
     transform: rotateY(90deg) translateZ(7svh);
   }
@@ -706,6 +722,7 @@ from {
     height: 12svh;
     width: 4svh;
     /* боковая */
+    opacity: 0.9;
     transform: rotateY(-90deg) translateZ(7svh);
   }
   .side6 {
@@ -767,7 +784,6 @@ line-height: 1.5;
     overflow: hidden;
     pointer-events: none;
     
-    /* transform: translateZ(-7svh) translateX(5svh); */
 }
 
 .link1bg{
@@ -775,6 +791,8 @@ line-height: 1.5;
     height: 80svh;
     margin-left: auto;
     /* transform: translateY(var(--bgY)); */
+    transform: translateX(1svh);
+
     background: url('assets/k72.jpeg') ;
     /* background-image: url('assets/k72.jpeg'); */
 /* background-attachment: fixed; */
@@ -824,4 +842,6 @@ line-height: 1.5;
     background-size: auto 130%;
     background-repeat: no-repeat; 
     background-position-x: center;
+    transform: translateX(-1svh);
+
 }

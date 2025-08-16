@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        canvas {
+            /* filter: blur(2px); */
+        }
+    </style>
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://cdn.jsdelivr.net/npm/three@0.140.0/build/three.module.js",
+                "three/examples/jsm/": "https://cdn.jsdelivr.net/npm/three@0.140.0/examples/jsm/"
+            }
+        }
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
+<script src="perlin.js"></script>
+
+<script type="module">
+        import * as THREE from 'three';
+    import { TextGeometry } from 'three/examples/jsm/geometries/TextGeometry.js';
+    import { FontLoader } from 'three/examples/jsm/loaders/FontLoader.js';
+    import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
+
+    const scene = new THREE.Scene()
+    let w = window.innerWidth
+    let h = window.innerHeight
+    const render = new THREE.WebGLRenderer({alpha:true,antialias: true})
+    render.setSize (w,h)
+
+    const camera = new THREE.PerspectiveCamera(75, w/h, 0.1,1000)
+    document.body.append(render.domElement)
+
+
+const orbit = new OrbitControls(camera,render.domElement)
+orbit.target.set(0,0,0)
+orbit.update()
+
+    camera.position.z =5
+
+    const light = new THREE.DirectionalLight(0xffffff,1)
+    light.position.set( 5 , 5, 5)
+
+
+
+
+var sphere_geometry = new THREE.SphereGeometry(1, 128, 128);
+var material = new THREE.MeshNormalMaterial();
+var sphere = new THREE.Mesh(sphere_geometry, material);
+scene.add(sphere);
+render.render(scene,camera)
+var k = 3;
+var time = performance.now();
+
+var update = function() {
+    //go through vertices here and reposition them 
+    for (var i = 0; i < sphere.geometry.faces.length; i++) {
+        var uv = sphere.geometry.faceVertexUvs[0][i]; //faceVertexUvs is a huge arrayed stored inside of another array
+        var f = sphere.geometry.faces[i];
+        var p = sphere.geometry.vertices[f.a];//take the first vertex from each face
+        p.normalize().multiplyScalar(1+0.3*noise.perlin3(uv[0].x*k, uv[0].y*k, time));
+    }
+sphere.geometry.verticesNeedUpdate = true; //must be set or vertices will not update
+sphere.geometry.computeVertexNormals();
+sphere.geometry.normalsNeedUpdate = true;
+}
+update()
+render.render(scene,camera)
+
+</script>

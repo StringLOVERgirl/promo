@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Threejs</title>
+
+<script type="importmap">
+    {
+        "imports": {
+            "three": "https://cdn.jsdelivr.net/npm/three@0.140.0/build/three.module.js",
+            "three/examples/jsm/": "https://cdn.jsdelivr.net/npm/three@0.140.0/examples/jsm/"
+        }
+    }
+</script>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        canvas {
+            /* filter: drop-shadow( 0 0 2px rgba(0, 0, 0, 0.45)) */
+    }
+    </style>
+</head>
+<body>
+    
+</body>
+<script type="module">
+        import * as THREE from 'three';
+    import { TextGeometry } from 'three/examples/jsm/geometries/TextGeometry.js';
+    import { FontLoader } from 'three/examples/jsm/loaders/FontLoader.js';
+
+
+
+    function createGradientTexture() {
+    const canvas = document.createElement('canvas');
+    canvas.width = window.innerWidth; // Широкий градиент
+    canvas.height = window.innerHeight;
+    const ctx = canvas.getContext('2d');
+
+    const gradient = ctx.createLinearGradient(0, 0, canvas.width, 0); // по горизонтали
+
+
+    gradient.addColorStop(0, '#D3CCE3');      // первый цвет — с самого начала
+gradient.addColorStop(0.6, '#D3CCE3');    // почти до 90% оставляем первый цвет
+
+// Второй цвет — появляется только в последних 10%
+// gradient.addColorStop(0., '#8E2DE2');   // резко смена цвета после 90%
+gradient.addColorStop(1, '#8E2DE2');   
+
+    ctx.fillStyle = gradient;
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    const texture = new THREE.CanvasTexture(canvas);
+    return texture;
+}
+
+
+
+
+
+
+
+
+
+    const scene = new THREE.Scene();
+    console.log(scene)
+    const camera = new THREE.PerspectiveCamera(75,window.innerWidth / window.innerHeight, 0.1,1000)
+    const render = new THREE.WebGLRenderer({ antialias: true, alpha:true }
+    // ТУТ еще альфа тру для прозрачности
+    )
+    // сглаживание
+    // Линии выглядят "зубчатыми" или "ломаными" из-за алиасинга. Это эффект, который возникает при отображении диагональных линий на экране, состоящем из квадратных пикселей.
+
+// Чтобы исправить это, нужно включить сглаживание (anti-aliasing). Это делает края более плавными. Для этого нужно добавить в код всего одну строчку, когда вы создаёте рендерер:
+    render.setSize(window.innerWidth, window.innerHeight)
+    document.body.append(render.domElement)
+    camera.position.z = 5
+// Создание света
+
+// Загрузка шрифта
+const fontLoader = new FontLoader();
+    // Используем рабочий шрифт с CDN, так как локальный 'assets/Futura PT Book_Regular.json' не доступен убрать заполенние текста и вращение и гладкость по сторонам покраисвее разобрать код 
+    const gradientTexture = createGradientTexture();
+    fontLoader.load('assets/Futura PT Book_Regular(1).json', function(font) {
+        const textGeometry = new TextGeometry('VOID', {
+            font: font,
+            size: 1,
+            height: 0.2,
+            
+            curveSegments: 32,
+            // depth: 50,
+            // bevelEnabled: true,
+            // bevelThickness: 0.05,
+            // bevelSize: 0.02
+        });
+
+
+
+
+        const video = document.createElement('video');
+video.src = 'assets/nemo-LlU-B-1VJ6c-unsplash.jpg'; // или .gif, но желательно .mp4
+// video.loop = true;
+// video.muted = true;
+// video.play();
+const textureLoader = new THREE.TextureLoader();
+const texture = textureLoader.load('    assets/nemo-LlU-B-1VJ6c-unsplash.jpg');
+
+// const videoTexture = new THREE.VideoTexture(video);
+// videoTexture.minFilter = THREE.LinearFilter;
+// videoTexture.magFilter = THREE.LinearFilter;
+// videoTexture.format = THREE.RGBAFormat;
+
+const material = new THREE.MeshBasicMaterial({
+    map: texture,
+    side: THREE.DoubleSide,
+    transparent: true,
+    opacity: 0.99
+});
+
+
+
+
+
+
+    // const material = new THREE.MeshStandardMaterial({  color:'mistyrose',transparent: true,side: THREE.DoubleSide  });
+    
+
+
+    textGeometry.center();
+    // textGeometry.computeBoundingBox();
+// textGeometry.computeVertexNormals();
+
+    const bbox = textGeometry.boundingBox;
+const size = new THREE.Vector3();
+bbox.getSize(size);
+
+const uvs = textGeometry.attributes.uv;
+const positions = textGeometry.attributes.position;
+
+for (let i = 0; i < uvs.count; i++) {
+    const x = positions.getX(i);
+    const y = positions.getY(i);
+
+    const u = (x - bbox.min.x) / size.x; // от 0 до 1 по X
+    const v = (y - bbox.min.y) / size.y; // от 0 до 1 по Y
+
+    uvs.setXY(i, u, v);
+}
+uvs.needsUpdate = true;
+
+
+
+
+
+
+
+    const textMesh = new THREE.Mesh(textGeometry, material);
+    
+    textMesh.castShadow = true
+
+    scene.add(textMesh);
+
+
+    function animate() {
+        requestAnimationFrame(animate);
+        textMesh.rotation.y += 0.01; // вращение по оси Y
+        render.render(scene, camera);
+    }
+    animate();
+});
+
+
+    const geometry = new THREE.BoxGeometry(1,1); // Создаём куб с размерами 1x1x1    //  набор вершин ребер и граней 
+const planeg  = new THREE.PlaneGeometry(2,2)
+const planeMaterial = new THREE.MeshStandardMaterial({ color: 0xcccccc ,transparent: true, opacity: 0.5 });
+const plane = new THREE.Mesh(planeg, planeMaterial);
+plane.rotation.x = -Math.PI / 2;
+plane.position.y = -2
+plane.position.z = -1
+plane.receiveShadow = true;
+// что бы лежала горизонтально
+scene.add(plane)
+    const material = new THREE.MeshStandardMaterial({color:'red'})
+    // бейсик не реагирует свет
+    // стандарт отражения блики 
+    //wireframe: Если true отображение ввиде каркаса
+    // const sphere = new THREE.SphereGeometry
+    const cube = new THREE.Mesh(geometry, material)
+    // Меш — это финальный 3D-объект, который вы добавляете на сцену. Он берёт форму из геометрии и внешний вид из материала, чтобы создать что-то, что можно отобразить.
+    // scene.add(cube)
+     cube.rotation.x = 1 
+     render.shadowMap.enabled = true;
+    //  включаем тени для реедера
+     const light = new THREE.DirectionalLight(0xffffff, 1);
+    //  Сделать источник света, который будет отбрасывать тени: light.castShadow = true;
+     light.castShadow = true;
+    //  Сделать объект, который будет отбрасывать тень:
+     cube.castShadow = true;
+     light.position.set(0, 5, 5);
+     light.shadow.radius = 5;
+     light.shadow.bias = -0.001;
+     // убирает артекфакты тент
+
+     scene.add(light)
+    render.render(scene, camera);
+
+    const anim = ()=>{
+        // cube.rotation.x += 0.01 
+        // cube.rotation.y += 0.01    
+        render.render(scene, camera);
+        requestAnimationFrame(anim)
+    }
+    anim()
+    
+</script>
+</html>

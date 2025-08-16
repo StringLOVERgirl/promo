@@ -87,7 +87,7 @@ letter-spacing: 0.05em;
 .header_mini_bg {
   height: 7svh;
 aspect-ratio: 1/1;
-  background: url('assets/203195-abstract-purple-and-black-blur-gradient-background (2).jpg') center / cover  ;
+  background: url('assets/chase-yi-MG8tzq0l_0A-unsplash.jpg') center / cover  ;
   filter: brightness(70%);
   /* border-radius: 50%; */
   /* animation: mini 20s infinite; */
@@ -258,7 +258,9 @@ overflow: hidden;
   /* background: transparent; */
   
 /* mix-blend-mode: difference; */
-  background-image: linear-gradient(to right, #948e99, rgba(255, 228, 225, 0.802), #948e99);
+  background-image:
+  
+   linear-gradient(to right, #948e99, rgba(255, 228, 225, 0.802), #948e99);
   /* background-image: linear-gradient( 74deg, #d9a7c7cf, #fffcdc9e, #d9a7c7cc); */
   letter-spacing: 0.1px;
   font-size: 

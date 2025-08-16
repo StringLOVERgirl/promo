@@ -1,7 +1,14 @@
 import { useRef, useState,useEffect, useLayoutEffect } from "react";
+import hiddenvideo from './assets/locomotive_mtl_logo.jpeg'
+
+
+
+
 
 export function Refs ({lenis, distancee}){
-
+    
+    const titleRefs = useRef([])
+    
 
     const textRef = useRef(null)
 
@@ -37,7 +44,7 @@ export function Refs ({lenis, distancee}){
         threshold: 0.7,
     }))
 
-    const titleRefs = useRef([])
+    
 
 
     let [animteCounterBg, setAnimteCounterBg] = useState('')
@@ -130,18 +137,90 @@ const flag = useRef(false)
         )
 
     },[distancee])
+const des = [['Design Agencies', 'Web & Interactive', 'Photo & Video', 'Lottie'],
+['Business & Corporate', 'Technolog','Mobile & Apps' , 'Scrolling'],
+['Games & Entertainment','GSAP','Three.js','Gestures / Interaction']]
 
+const colors = [['#000','#ffffff'], 
+['#000000', '#E2E3E6'], 
+['#000','#2779a7','#9C9C9C']]
+
+const inverseRef = useRef([])
+
+const addDesRef = (el)=>{
+    if (!inverseRef.current.includes(el)){
+        inverseRef.current.push(el)
+    }
+}
+
+let rec = useRef([null,null,null])
+const sizeindex = useRef(1)
+const prevHeight = useRef(null)
+function setIndex(){
+
+   if (prevHeight.current){
+    sizeindex.current =     inverseRef.current[0].clientHeight / prevHeight.current
+   }
+    prevHeight.current = inverseRef.current[0].clientHeight
+}
+// сделать обновление при ресайзе
+
+function setDistanceInverse(){
+    rec.current = rec.current.map((_,i)=>inverseRef.current[i].getBoundingClientRect())
+console.log(rec.current)
+}
+    
+let [inverse, setInverse] = useState('hideinvers')
+    function mouseout(el){
+        inverseRef.current[el].style.setProperty(`--animation`, 'hideinvers 0.3s forwards')
+    }
+    function mouseenter(el){
+        inverseRef.current[el].style.setProperty(`--animation`, 'appearinvers 0.5s forwards')
+    }
+
+const moveInverse = (el,event) => {
+
+console.log(rec.current[el])
+   let pageY = event.clientY + window.scrollY;
+//    позиция курсора 
+   const parentRect = inverseRef.current[el].getBoundingClientRect();
+   const parentTop = parentRect.top + window.scrollY; // Координата top родителя относительно всей страницы
+   const parentLeft = parentRect.left ; // Координата top родителя относительно всей страницы
+   const newy = pageY - parentTop + 'px';
+   
+   
+   const newx =  event.clientX - parentLeft  + 'px';
+   console.log(newx, event.clientX, parentLeft+parentRect.width)
+    inverseRef.current[el].style.setProperty(`--y`, newy)
+    inverseRef.current[el].style.setProperty(`--x`, newx)
+
+}
+
+useEffect(()=>{
+
+    setDistanceInverse()
+    window.addEventListener('resize',setDistanceInverse
+)
+},[])
+
+// осталось логику смещение реализовать через переменные и настроить инверсию
     return (<>
 
         <section className="section_links">
 
             <div className="h1cont" ref={textRef}>
-
+            <span class="ball"></span>
+  <span class="ball"></span>
+  <span class="ball"></span>
+  <span class="ball"></span>
+  <span class="ball"></span>
+  <span class="ball"></span>
                <div className="decor_snow_outter">
                   <div className="decor_snow_inner">
-                    <div className="decor_snow"></div>
+                  <div className="decor_snow"></div>
               </div> 
-               </div>
+
+            </div>
                 
 
                 <div className="top_line_inspired">
@@ -170,9 +249,9 @@ const flag = useRef(false)
                         <a href="https://locomotive.ca/en" target="_blank">Canada - Montréal</a>
                     </div>
 
-<div className="w_cont">
+                 <div className="w_cont">
                     <a className="w_link" target="_blank" href="https://www.awwwards.com/locomotive/">
-                <svg className="awwwards" width="50" height="28" viewBox="0 0 30 16">
+                    <svg className="awwwards" width="50" height="28" viewBox="0 0 30 16">
                     <path d="m18.4 0-2.803 10.855L12.951 0H9.34L6.693 
                     10.855 3.892 0H0l5.012 15.812h3.425l2.708-10.228 2.709 
                     10.228h3.425L22.29 0h-3.892ZM24.77 13.365c0 1.506 1.12 
@@ -191,28 +270,36 @@ const flag = useRef(false)
 
             <div className="workds_cont" ref={link_cont}>
 
-
-               {/* <div className="counter_cont">
-                 <span className="counter_text dynamic" ref={counterRef}>{counter} -</span>
-                 <span className="counter_text total">3</span>
-               </div> */}
-
-               {['k72', 'WEBISOFT', 'HAVEN'].map((e, i) => {
+               {
+               ['k72', 'WEBISOFT', 'HAVEN'].map((e, i) => {
                    return <>
                        <div className={`link_cont linkcont${i + 1}`}>
+                       <div className="cube">
+                        <div className="cube_inner_cont">
+                           {Array.from({length:6}).map((_,i_side)=>{return <div className={`side side${i_side+1} side${i+1}-`+(i_side+1)}></div>})}
+                        </div>
+                            </div>
+{/* массив с доминирующими цветами так же сделать почеркивание с тем же цветом под названием цвета  */}
 
-
-                        <div className={`work_descr_cont des${i+1}`}>
+                        <div  style={{[`--x`]:0, [`--y`]:0}} className={`work_descr_cont des${i+1}`} data-id={i} onMouseLeave={(event)=>mouseout(event.currentTarget.dataset.id,event)} onMouseEnter={(event)=>mouseenter(event.currentTarget.dataset.id,event)} onMouseMove={(event)=>moveInverse(event.currentTarget.dataset.id,event)} ref={addDesRef}>
                             {/* фон цифры при появлении секции */}
-                            <div className={`title_des titledes${i+1}`}></div>
-                            <div className={`des_main desmain${i+1} ${null}`}></div>
-                            <div className={`des_inverse desinverse${i+1} ${null}`}></div>
-                            {/* <span className={`counter_text`}>{i+1}</span> */}
+                            <div className={`title_des titledes${i+1}`}>color
+palette</div>
+<div className={`colors_cont colorscont${i}`}>
+{colors[i].map((e,i)=><div style={{background:e, '--translateColor':i}} className={`des_color_div`}><span className={`des_color_text`}>{e}</span></div>)}
+</div>
+                            <div className={`des_main desmain${i+1}`}>
+                                {des[i].map(e=><span className="des_text">{e}</span>)}
+                            </div>
+                            <div className={`des_inverse desinverse${i+1}`} >
+                                <img src={hiddenvideo}></img>
+                            </div>
                         </div> 
                         {/* цифра сбоку */}
 
                            <div className={`link_inner_cont inner${i + 1}`} ref={addCounterRef}>
-                               <a className={`links_title title${i + 1}`}>{e}</a>
+                            
+                                  <a className={`links_title title${i + 1}`}>{e}</a>
                                {/* имя проекта */}
                            </div>
    
@@ -220,7 +307,7 @@ const flag = useRef(false)
                        </div>
                    </>
                })}
-
+{/* end of works cont */}
             </div>
            
 

@@ -3,6 +3,7 @@ import hiddenvideo from './assets/locomotive_mtl_logo.jpeg'
 
 
 
+// на мобильном пересчет дистанции паралакс при ресайзе  и вылезает за цвет название номер текста уменьшить фонт 
 
 // узнать как меняется дистанс это при ресайзе?
 // 
@@ -57,7 +58,7 @@ export function Refs ({lenis}){
     
     const parallaxMetrics = useRef({
         scrollWay: null,
-        targetValue: 130,
+        targetValue: 30,
         // ускоряем но есть ограничтиель до 100
         // УМЕНЬШАЕТ ШАГ который отвечате за отношение 1 процент прокрутки к 1 пикселю
         step:null,
@@ -78,12 +79,15 @@ export function Refs ({lenis}){
     const link_cont = useRef(null)
 
     const parallax = (varbg,i) => {
-        // можно накинуть - 100 дабы инвертировать и больше закос под атачмент фиксд 
-        let value = (window.scrollY - parallaxMetrics.current.distance[i]) / parallaxMetrics.current.step - 10 
-        if (value > 100 ){ value = 100} 
+        const speed = 30
+        let value = (window.scrollY - parallaxMetrics.current.distance[i]) / parallaxMetrics.current.step - speed
+        if (value > 0 ){ value = 0} 
+        if (value < -30 ){ value = -30} 
         // убираем выше нижний рвыок 
         // ограничтиель до 100
+        // value-=30
         value +="%"
+        // менять на тразишн добавлять оберточны элемент делать этот в 130 процентов высоты от того
         link_cont.current.style.setProperty(varbg,value)
         flag.current=false
     }
@@ -298,8 +302,10 @@ palette</div>
                                   <a className={`links_title title${i + 1}`}>{e}</a>
                                {/* имя проекта */}
                            </div>
-   
-                           <div className={`linkbg link${i + 1}bg`} ref={addBgRefs}></div>
+                            <div className={`bgcont bgcont${i+1}`} ref={addBgRefs}>
+                                <div className={`linkbg link${i + 1}bg`}></div>
+
+                            </div>
                        </div>
                    </>
                })}

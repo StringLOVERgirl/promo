@@ -1,6 +1,12 @@
-export function Header (){
+export function Header ({setMenu,setLink}){
 
+  function showmenu(){
+    setMenu('showmenu')
+  }
 
+  function showlink(){
+    setLink('showlink')
+  }
     return(
         <>
           <header>
@@ -29,7 +35,13 @@ export function Header (){
   {/* end of headet text cont */}
 
   <div className="header_right_cont">
-  
+    <div className="menu_desc">
+    <span className="more">something more</span>
+    <span className="cllickbelow">click below</span>
+    </div>
+  <div className="menu_icon">
+<div className='icon' onClick={()=>{showmenu(); showlink()}}></div>
+  </div>
   </div>
 
 </header>

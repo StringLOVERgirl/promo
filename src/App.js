@@ -12,6 +12,7 @@ import revenant from './assets/The_Revenant_Theme_2.mp3'
 import br2049 from'./assets/2049.mp3'
 import toALPD from './assets/Flight to LAPD.mp3'
 import { Header } from './header';
+import {Menu} from './components/menu'
 
 
 
@@ -230,6 +231,11 @@ console.log(selectRef.current)
 
 const cp_pointRef = useRef(null)
 
+let [menu, setMenu] = useState('hidemenu')
+
+let [link,setLink] = useState('hidelink')
+
+
   return (
     <div className="App" data-lenis
     ref={appRef}>
@@ -237,8 +243,8 @@ const cp_pointRef = useRef(null)
       <Preloader displayloader={isPreloader}
        precent={precentage}
        refs={mediaRefs}></Preloader>
-
-          <Header></Header>
+<Menu menu={menu} setMenu={setMenu} setLink={setLink} link={link}></Menu>
+          <Header setMenu={setMenu} setLink={setLink}></Header>
 
            <div className="cp_point"
      ref={cp_pointRef}></div>

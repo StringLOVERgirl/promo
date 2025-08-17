@@ -1,0 +1,124 @@
+.menu_section {
+    height: 100svh;
+    width: 100vw;
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    right: 0;
+    transform-origin: right;
+    z-index: 9;
+    transition: transform 1s cubic-bezier(0.65, 0, 0.35, 1);
+    background: black;
+    will-change: width;
+}
+
+.hidemenu {
+    
+    transform: translateX(100%);
+}
+.showmenu {
+    transform: translateX(0%);
+}
+
+.cross_cont {
+position: absolute;
+right: 0;
+height: 18svh;
+margin: 2px;
+aspect-ratio: 1;
+
+}
+.cross_cont:hover svg {
+    color: #8e7a96;
+}
+.cross_cont svg {
+    height: 100%;
+    width: 100%;
+    color: white;
+transition: color 0.2s ,transform 0.3s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+.menu_main {
+    border-bottom: 1px solid rgba(236, 220, 245, 0.463);
+}
+.menu_header{
+    height: 15svh;
+}
+.menu_link_cont {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    border-top: 1px solid rgba(236, 220, 245, 0.463);
+    line-height: 0.85;
+
+}
+.menu_link_inner_cont {
+    align-self: center;
+    overflow: hidden;
+    /* transition: opacity 0.3s cubic-bezier(0.65, 0, 0.35, 1); */
+}
+.menu_link{
+    font-size: 8vw;
+font-family: FuturaPTBook;
+background-clip: text;
+display: block;
+width: 100vw;
+-webkit-background-clip: text;
+color: transparent;
+background-image: linear-gradient(to right, #cbb4d4, #41264a);
+background-position: center;
+background-size: x;
+text-decoration: none;
+text-transform: uppercase;
+/* filter: hue-rotate(274deg); */
+}
+.showlink{
+    transform: translateY(0);
+}
+.hidelink{
+    transform: translateY(100%);
+}
+.alt_link_cont {
+    pointer-events: none;
+    transition: opacity 0.3s cubic-bezier(0.65, 0, 0.35, 1);
+    font-family: FuturaPTBook;
+    font-size: 8vw;
+    background: #ab9bac;
+    display: flex;
+    /* border: solid red 1px; */
+    text-align: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    will-change: transform;
+    animation: runningline 10s linear infinite;
+    text-transform: uppercase;
+    overflow: hidden;
+}
+
+@keyframes runningline {
+    from {
+        transform: translateX(0) translateZ(0);
+    }
+
+    to {
+        transform: translateX(-50%) translateZ(0);
+    }
+}
+
+.alt_inner_cont {
+    display: flex;
+}
+
+.alt_text{
+    white-space: nowrap;
+    color:transparent;
+    background-clip: text;
+    -webkit-background-clip: text;
+    /* mix-blend-mode: luminos; */
+    background-image: url('./assets/nemo-ZTfbbcBIsUg-unsplash.jpg');
+background-position: center;
+filter: hue-rotate(45deg);
+background-size: cover;
+}

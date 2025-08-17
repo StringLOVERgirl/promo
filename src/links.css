@@ -2,6 +2,7 @@
     height: fit-content;
     background: white;
     position: relative;
+    /* display: none; */
   }
 
   .h1cont {
@@ -33,7 +34,7 @@
   }
   
   .background {
-    position: fixed;
+    /* position: fixed; */
     width: 100vw;
     height: 100vh;
     top: 0;
@@ -333,6 +334,7 @@ fill: rgba(0, 0, 0, 0.8);
 /* end of inspired section */
 
 .workds_cont {
+    
         --bg1:50%;
     --bg2:0;
     --bg3:0;
@@ -779,27 +781,58 @@ line-height: 1.5;
 }
 
 .linkbg {
+    height: 130%;
+    width: 100%;
+    overflow: hidden;
+    pointer-events: none;
+    will-change: transform;    
+    
+}
+
+.bgcont{
     height: 85svh;
     width: 68%;
     overflow: hidden;
     pointer-events: none;
-    
+    position: relative;
+    overflow: hidden;
 }
-
-.link1bg{
+.bgcont1 {
     margin-top: 20svh;
-    height: 80svh;
     margin-left: auto;
     /* transform: translateY(var(--bgY)); */
     transform: translateX(1svh);
+}
+.bgcont2 {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+    /* transform: translateY(var(--bgY)); */
+    /* transform: translateX(1svh); */
+}
+.bgcont3 {
+    margin-top: auto;
+    margin-bottom: 10svh;
+    margin-right: auto;
+    /* transform: translateY(var(--bgY)); */
+    transform: translateX(-1svh);
+}
+
+.link1bg{
+    /* margin-top: 20svh; */
+    /* height: 80svh; */
+    /* margin-left: auto; */
+    transform: translateY(var(--bg1));
+    /* transform: translateX(1svh); */
 
     background: url('assets/k72.jpeg') ;
     /* background-image: url('assets/k72.jpeg'); */
 /* background-attachment: fixed; */
 /* transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, -120, 0, 1); */
-    background-size: auto 130%;
-    background-repeat: no-repeat; 
-    background-position-x: center;
+background-size: cover;
+background-repeat: no-repeat; 
+background-position: center;;
     /* 160px; */
     /* формула центраированияя
     если 110 размер = в позишн 100 процентов - 10 процентов выхода за экраны т е 10 
@@ -816,32 +849,26 @@ line-height: 1.5;
     еще 96 пикселей - и 10 процентов оффсета так же половину от этого числа 64 итого 
     320 - 96 - 64 = примерно 160
   */
-    background-position-y: var(--bg1);
-     transition: background-position-y 0.2.s ;
+    
+    
         /* background-attachment: fixed; */
 
 }
 .link2bg{
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: auto;
-    margin-bottom: auto;
+    
     background: url('assets/webi.jpeg') ;
-    background-position-y: var(--bg2) ;
-    background-size: auto 130%;
+    background-size: cover;
     background-repeat: no-repeat; 
-    background-position-x: center;
-    /* filter: grayscale(0.5); */
+    background-position: center;;
+    transform: translateY(var(--bg2));
+
+    
 }
 .link3bg{
-    margin-top: auto;
-    margin-bottom: 10svh;
-    margin-right: auto;
     background: url('assets/havenstudios-SOTD-2.jpeg') ;
-    background-position-y: var(--bg3) ;
-    background-size: auto 130%;
+    background-size: cover;
     background-repeat: no-repeat; 
-    background-position-x: center;
-    transform: translateX(-1svh);
+    background-position: center;;
+    transform: translateY(var(--bg3));
 
 }

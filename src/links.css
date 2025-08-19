@@ -5,6 +5,10 @@
     /* display: none; */
   }
 
+  .showtext{
+    transform: tratinslateY(0);
+  }
+
   .h1cont {
     --translateY: 100% ;
     --translateX: 100%;
@@ -419,17 +423,20 @@ fill: rgba(0, 0, 0, 0.8);
     position: relative;
     pointer-events: none;
     z-index: 2;
+    overflow: hidden;
 }
 .des_color_div {
     height: 25svh;
     width: 6vw;
         /* для накладки друг на друга */
-        transform: translateX(calc(var(--translateColor)*-40%));
+        transform: translateX(calc(var(--translateColor)*-40%)) translateY(var(--translate));
         display: flex;
 align-items: center;
 /* border-radius: 25px; */
 border-top-left-radius: 25px;
 border-bottom-right-radius: 25px;
+/* transform: translateY(var(--translate)); */
+transition: transform 1s cubic-bezier(0.65, 0, 0.35, 1);
 
 }
 
@@ -464,6 +471,13 @@ border-bottom-right-radius: 25px;
     /* color: rgb(146, 146, 146); */
     /* backdrop-filter: blur(2px); */
     background: transparent;
+    overflow: hidden;
+}
+.title_des span {
+    transform: translateY(var(--translate));
+    transition: transform 1s cubic-bezier(0.65, 0, 0.35, 1);
+    display: block;
+    
 }
 
 .colors_cont{
@@ -550,7 +564,7 @@ align-items: end;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    
+overflow: hidden;
 }
 
 
@@ -589,7 +603,7 @@ from {
     }
 }
 
-.linkcont1 .cube::after{
+/* .linkcont1 .cube::after{
     content: '';
     position: absolute;
     display: block;
@@ -600,7 +614,7 @@ from {
     background:url('./assets/gif.webp') center / contain;
 
 
-}
+} */
 .cube {
     mix-blend-mode: normal;
     /* display: none; */
@@ -747,7 +761,13 @@ canvas {
 font-family: FuturaMedium;
 color: whitesmoke;
 /* color: rgb(117, 117, 117) */
-/* pointer-events: none; */
+pointer-events: all;
+text-decoration: none;
+position: relative;
+z-index: 2;
+transform: translateY(var(--translate));
+transition: transform 1s cubic-bezier(0.65, 0, 0.35, 1);
+
 }
 
     .title1 {

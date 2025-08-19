@@ -5,7 +5,7 @@ export function Preloader({displayloader, precent}){
 
     const [animationKey, setAnimationKey] = useState(0);
     useEffect(()=>{
-        setAnimationKey(prevKey => prevKey + 1);
+        // setAnimationKey(prevKey => prevKey + 1);
 },[precent])
 
     return(

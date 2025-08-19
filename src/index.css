@@ -30,10 +30,12 @@ z-index: 3;
 justify-content: center;
 height: 13svh;
 background: linear-gradient(to right, #D3CCE3,#E9E4F0);
+/* background: white  url('./assets/noun-compact-powder-5732348.svg') center  / 10%  ; */
+
 
 }
 .menu_desc{
-  display: flex;
+  display: none;
   align-items: center;
   justify-content: center;
   font-family: futura;
@@ -43,6 +45,7 @@ background: linear-gradient(to right, #D3CCE3,#E9E4F0);
 }
 .more{
   font-size: 1vw;
+  display: none;
 }
 .menu_icon {
   height: 9svh;
@@ -51,6 +54,7 @@ background: linear-gradient(to right, #D3CCE3,#E9E4F0);
   justify-content: center;
   align-items: center;
   transition: clip-path 0.3s;
+  
 }
 .menu_icon:hover .icon::after, .menu_icon:hover .icon::before{
   background: unset;
@@ -65,6 +69,7 @@ background: linear-gradient(to right, #D3CCE3,#E9E4F0);
 }
 .icon {
   border-radius: 50%;
+  cursor: pointer;
   background: #9e8fab;
   height: 30%;
   aspect-ratio: 1;
@@ -98,6 +103,10 @@ background: linear-gradient(to right, #D3CCE3,#E9E4F0);
   flex-direction: column;
 }
 
+.header_left_cont{
+   /* background: url('./assets/noun-woman-7412393.svg') center  / 40% no-repeat ;  */
+   /* overflow: visible; */
+}
 
 .header_decor_cont {
   border-radius: 25px;
@@ -383,16 +392,18 @@ padding-inline: 2vw;
 display: flex;
   flex-direction: column;
   position: relative;
-transition: transform 0.25s ease-out;
+transition: transform 0.5s cubic-bezier(0.65, 0, 0.35, 1);
 will-change: transform;
 }
 
 .decor_inner:hover .decor_text { 
   transform: translateY(-100%);
 }
-
+.decor_inner:nth-child(2) span::before{
+  content: 'slow'; 
+}
 .decor_text::before{
-  content: 'work';
+  content: 'scroll';
   font-size: inherit;
   transform: translateY(100%);
   position: absolute; 

@@ -185,11 +185,11 @@ observerRef.current.disconnect()
         <div className="decor_cont">
 
           <div className="decor_inner">
-            <span className="decor_text">Promo</span>
+            <span className="decor_text">Scroll</span>
           </div>
 
           <div className="decor_inner">
-            <span className="decor_text">Work</span>
+            <span className="decor_text">Slow</span>
           </div>
           {/* end of decor cont  */}
         </div>

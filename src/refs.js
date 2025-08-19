@@ -2,7 +2,6 @@ import { useRef, useState,useEffect, useLayoutEffect } from "react";
 import hiddenvideo from './assets/locomotive_mtl_logo.jpeg'
 
 
-
 // на мобильном пересчет дистанции паралакс при ресайзе  и вылезает за цвет название номер текста уменьшить фонт 
 
 // узнать как меняется дистанс это при ресайзе?
@@ -10,7 +9,28 @@ import hiddenvideo from './assets/locomotive_mtl_logo.jpeg'
 // по компоненту на каждый
 export function Refs ({lenis}){
     
-    const titleRefs = useRef([])
+    const observingText = useRef([])
+    function toobserve(el){
+        if (!observingText.current.includes(el)){
+            observingText.current.push(el)
+        }
+    }
+
+    const textobserv = useRef(new IntersectionObserver(elements=>{
+        elements.forEach(e=>{
+            if (e.isIntersecting){
+                console.log(e)
+                e.target.style.setProperty('--translate',0)
+            }
+        })
+    }, {
+        threshold: 0.5,
+        root:null
+    }))
+
+    useEffect(()=>{
+        observingText.current.forEach(e=>textobserv.current.observe(e))
+    },[])
     
 
     const textRef = useRef(null)
@@ -65,6 +85,7 @@ export function Refs ({lenis}){
         distance:[]
     })
 
+    // используется в одном месте 
     const addBgRefs = (el) => {
         if (!bgRefs.current.includes(el)&& el){
             bgRefs.current.push(el)
@@ -75,6 +96,7 @@ export function Refs ({lenis}){
         let rec = el.getBoundingClientRect()
         parallaxMetrics.current.distance[i] = rec.top - window.innerHeight + window.scrollY
     }
+
 
     const link_cont = useRef(null)
 
@@ -93,7 +115,10 @@ export function Refs ({lenis}){
     }
 
 const flag = useRef(false)
+
     useLayoutEffect(()=>{
+        console.log(observingText.current)
+
         console.log('hhhhhhhhhhhhhhhhhhh')
     
         bgRefs.current.forEach((e,i)=>setMetrics(e,i))
@@ -105,23 +130,24 @@ const flag = useRef(false)
 
 
         lenis.current.on('scroll', event => {
-            if (!flag.current){
-                flag.current=true
-            parallaxMetrics.current.distance.forEach((e,i)=>{
-        if (event.targetScroll >= parallaxMetrics.current.distance[i] - 100
-            //  - 100 чтобы начиналс движение немного спустя как появится в поле видимости 
-            //  что бы юзер расссмотрел что сверху
-            && event.targetScroll <= parallaxMetrics.current.distance[i]+parallaxMetrics.current.scrollWay 
-            ){
-                requestAnimationFrame(()=>{
-                parallax('--bg'+(i+1),i)
-                console.log('prarl')
+            // if (!flag.current) {
+                // flag.current = true
+                parallaxMetrics.current.distance.forEach((e, i) => {
+                    if (event.targetScroll >= parallaxMetrics.current.distance[i]
+                        //  - 100 чтобы начиналс движение немного спустя как появится в поле видимости 
+                        //  что бы юзер расссмотрел что сверху
+                        && event.targetScroll <= parallaxMetrics.current.distance[i] + parallaxMetrics.current.scrollWay
+                    ) {
+                        requestAnimationFrame(() => {
+                            parallax('--bg' + (i + 1), i)
+                            console.log('prarl')
+                        })
+                    } 
+                    // else {
+                        // flag.current = false
+                    // }
                 })
-        } else{
-            flag.current = false
-        }
-    })
-    }
+            // }
         })
 
 
@@ -194,11 +220,20 @@ const moveInverse = (el,event) => {
 
 useEffect(()=>{
 
-    setDistanceInverse()
-    window.addEventListener('resize',setDistanceInverse
+    function resizedistance(){
+        bgRefs.current.forEach((e,i)=>setMetrics(e,i))
+        setDistanceInverse()
+    }
+
+    window.addEventListener('resize',resizedistance
 )
 },[])
 
+const links = [
+    'https://k72.ca/en',
+    'https://webisoft.com/',
+    'https://havenstudios.com/en'
+]
 // осталось логику смещение реализовать через переменные и настроить инверсию
     return (<>
 
@@ -266,7 +301,8 @@ useEffect(()=>{
 {/*  */}
             <div className="workds_cont" ref={link_cont}>
 
-               {
+               {// должеен принимать обязательно аргумент индекса и для контента 
+            //    строковые массивы в компоненте 
                ['k72', 'WEBISOFT', 'HAVEN'].map((e, i) => {
                    return <>
                        <div className={`link_cont linkcont${i + 1}`}>
@@ -283,10 +319,12 @@ useEffect(()=>{
 {/* сюда тоже аргумент */}
                         <div  style={{[`--x`]:0, [`--y`]:0}} className={`work_descr_cont des${i+1}`} data-id={i} onMouseLeave={(event)=>mouseout(event.currentTarget.dataset.id,event)} onMouseEnter={(event)=>mouseenter(event.currentTarget.dataset.id,event)} onMouseMove={(event)=>moveInverse(event.currentTarget.dataset.id,event)} ref={addDesRef}>
                             {/* фон цифры при появлении секции */}
-                            <div className={`title_des titledes${i+1}`}>color
-palette</div>
-<div className={`colors_cont colorscont${i}`}>
-{colors[i].map((e,i)=><div style={{background:e, '--translateColor':i}} className={`des_color_div`}><span className={`des_color_text`}>{e}</span></div>)}
+                            <div ref={toobserve} style={{['--translate']:'100%'}}>
+                            <div className={`title_des titledes${i+1}`} ><span >color
+palette</span></div>
+</div>
+<div className={`colors_cont colorscont${i}`} ref={toobserve} style={{['--translate']:'100%'}}>
+{colors[i].map((e,i)=><div style={{background:e, '--translateColor':i}} className={`des_color_div`} ><span className={`des_color_text`}>{e}</span></div>)}
 </div>
                             <div className={`des_main desmain${i+1}`}>
                                 {des[i].map(e=><span className="des_text">{e}</span>)}
@@ -297,9 +335,9 @@ palette</div>
                         </div> 
                         {/* цифра сбоку */}
 
-                           <div className={`link_inner_cont inner${i + 1}`}>
+                           <div className={`link_inner_cont inner${i + 1}`} ref={toobserve} style={{['--translate']:'100%'}}>
                             
-                                  <a className={`links_title title${i + 1}`}>{e}</a>
+                                  <a href={links[i]} target="_blank" className={`links_title title${i + 1}`}  >{e}</a>
                                {/* имя проекта */}
                            </div>
                             <div className={`bgcont bgcont${i+1}`} ref={addBgRefs}>

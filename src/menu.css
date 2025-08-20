@@ -4,8 +4,8 @@
     overflow: hidden;
     position: fixed;
     top: 0;
-    right: 0;
-    /* transform-origin: right; */
+    /* right: 0; */
+    /* transform-origin: left; */
     z-index: 9;
     transition: transform 1.5s cubic-bezier(0.65, 0, 0.35, 1);
     background: black;

@@ -817,7 +817,7 @@ line-height: 1.5;
     margin-top: 20svh;
     margin-left: auto;
     /* transform: translateY(var(--bgY)); */
-    transform: translateX(1svh);
+    /* transform: translateX(1svh); */
 }
 .bgcont2 {
     margin-left: auto;

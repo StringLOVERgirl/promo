@@ -1,0 +1,33 @@
+/* 7svh на моб  */
+/* right4vw */
+/* position */
+/* top 0 */
+
+/* mini height 4svh */
+/* center cont flex directiob column */
+/* font size 6.5 */
+
+@media (max-width: 500px) {
+    .headder_left_cont {
+        display: none;
+    }
+
+    .header_center_cont {
+        font-size: 6.5vw;
+    }
+
+    .header_right_cont {
+        position: absolute;
+        right: 4vw;
+        top: 0;
+        flex-direction: column;
+    }
+
+    .menu_icon {
+        height: 7svh;
+    }
+
+    .headre_mini_bg {
+        height: 4svh;
+    }
+}

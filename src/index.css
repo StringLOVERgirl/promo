@@ -49,7 +49,7 @@ background: linear-gradient(to right, #D3CCE3,#E9E4F0);
 }
 .menu_icon {
   height: 9svh;
-  width: 9svh;
+  aspect-ratio: 1/1;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -599,59 +599,125 @@ code {
   clip-path: inset(0px 0px 100%);
 }
 
-@media (max-width: 600px) {
-  .inner_area_cont{
-    width: 90%;
-}
-
-  .animateCircles {
-    width: 100%;
-    }
-
-    .bg_circles_cont {
-      height: auto;
-      aspect-ratio: 1/1;
-    }
-
-    .circles{
-      transition: width 1.5s, height 1.5s;
-
-    }
-
-
-
-    .void_cont {
-      padding-left: 0;
-    }
-
-    .footer_area {
-      background-size: 14vw 100%;
-      
-    }
-
-    .footer_blur_cont {
-      left: 50%;
-      transform: translateX(-50%);
-      justify-content: center;
-
-    }
-}
-
-
 
 @media (max-width:600px) {
+
+  .void_cont {
+    padding-left: 0;
+  }
+
+  .footer_blur_cont {
+    left: 50%;
+    transform: translateX(-50%);
+    justify-content: center;
+  }
+
   .footer_area {
     background-size: 14vw 100%;
-     /* clip-path: polygon(20% 0%, 0% 20%, 30% 50%, 0% 80%, 20% 100%, 50% 70%, 80% 100%, 100% 80%, 70% 50%, 100% 20%, 80% 0%, 50% 30%);   */
   } 
   
-    .origin_h2, .fake_h2{
-      font-size: clamp(12svh,8vw,13vw);}
+    /* .origin_h2, .fake_h2{ */
+      /* font-size: clamp(12svh,8vw,13vw);} */
 
       .bottom-cont{
         right: auto;
       }
     
+
+  .header_left_cont {
+    display: none;
 }
+
+.header_center_cont{
+    font-size: 6.5vw;
+    flex-direction: column;
+}
+
+.header_right_cont {
+    position: absolute;
+    right: 4vw;
+    top: 0;
+}
+
+.menu_icon {
+    height: 7svh;
+}
+
+.header_mini_bg {
+    height: 4svh;
+}
+
+
+.decor_cont {
+  display: none;
+}
+
+.running_line_cont {
+  height: 100svh;
+}
+
+
+.toppanel_outter {
+ left: 0;
+}
+
+.toppanel_inner {
+  width: 100vw;
+}
+
+.rinning_line_footer {
+  font-size: 6vw;
+}
+
+.a_cont a {
+width: fit-content;
+box-sizing: content-box;
+padding-inline: 2vw;
+}
+
+.arrow_cont {
+  height: 12svh;
+}
+
+.decor_shadow {
+  display: none;
+}
+
+.work_descr_cont{
+  display: none;
+}
+
+header div:first-child span:first-child {
+  font-size: 4.5vw !important;
+}
+
+.description_cont {
+  font-size: 3vw;
+}
+
+.w_link svg {
+  height: 2.5svh;
+}
+
+.top_line_inspired {
+  flex-direction: column;
+}
+
+.links_text {
+  font-size: 20vw
+}
+
+.logo {
+  height: 10svh;
+  background: url('assets/locomotive_mtl_logo.jpeg') 10% center / 42% auto  no-repeat;
+}
+
+.locomotive {
+  margin-left: unset;
+  font-size: 15vw;
+}
+
+}
+
 
 

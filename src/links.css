@@ -198,12 +198,13 @@ overflow: hidden;
 .inspiredcont {
     mix-blend-mode: difference;
     position: relative;
+    overflow: hidden;
     will-change: transform;
     /* border-radius: 25px; */
     transition: transform 0.5s cubic-bezier(0.17, 0.88, 0.44, 1.25);
     /*  эффект пружины */
     /* cubic-bezier(0.65, 0, 0.35, 1) интересна я лаьтертаивы */
-    transform: translateY(var(--translateY)) translateZ(0);
+    /* transform: translateY(var(--translateY)) translateZ(0); */
 }
 
 .inspired {
@@ -211,6 +212,8 @@ overflow: hidden;
     position: relative;
     mix-blend-mode: difference;
     color: white;
+    transition: transform 0.5s cubic-bezier(0.17, 0.88, 0.44, 1.25);
+    transform: translateY(var(--translateY)) translateZ(0);
 }
 
 .inspiredcont::before {

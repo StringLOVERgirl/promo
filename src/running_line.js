@@ -5,6 +5,7 @@
 import { useEffect, useRef, useState } from "react";
 import video from './assets/7186017_Paint_Ink_1920x1080.mp4'
 import { createObserver } from './observer';
+import { RLInner } from "./components/RLineinner";
 
 export function Runningline({ lenis,cppoint }) {
 // console.log(video)
@@ -28,7 +29,6 @@ export function Runningline({ lenis,cppoint }) {
       || transRef.current <= -width){
         transRef.current = 0
     }
-
   }
   }
 
@@ -198,56 +198,16 @@ observerRef.current.disconnect()
           <span className='aside_text'>void</span>
         </div>
 
-        <div className={`top_line_outter ${cp}`}>
+        <RLInner 
+           lineRefs={lineRefs} 
+           sizeRefs={sizeRefs} 
+           cp={cp}>
+        </RLInner>
 
-          <div className="line_bg">
-
-            <div className={`line_cont line1`}
-              ref={(el) => lineRefs.current.line = el}>
-              {Array.from({ length: 3 }).map((_, i) => {
-                return (
-                  <p ref={i == 0 ? (el) => sizeRefs.current.line = el : null}>
-                    REACT{"\u00A0"}·{"\u00A0"}JS{"\u00A0"}·{"\u00A0"}2025 YEAR{"\u00A0"}·{"\u00A0"}
-                  </p>
-                )
-              })}
-            </div>
-
-            <div className="line_cont line2"
-              ref={(el) => lineRefs.current.line2 = el}
-            >
-              {[1,2,3].map((_,i)=>
-               <p ref={i==0?(el) => sizeRefs.current.line2 = el:null}>
-               {"\u00A0"}·{"\u00A0"}DESIGN{"\u00A0"}·{"\u00A0"}DEVELOPMENT
-               {"\u00A0"}·{"\u00A0"}PROMO
-             </p>
-             )}
-              {/* <p ref={(el) => sizeRefs.current.line2 = el}>
-                {"\u00A0"}·{"\u00A0"}DESIGN{"\u00A0"}·{"\u00A0"}DEVELOPMENT
-                {"\u00A0"}·{"\u00A0"}PROMO
-              </p>
-              <p>
-                {"\u00A0"}·{"\u00A0"}DESIGN{"\u00A0"}·{"\u00A0"}DEVELOPMENT
-                {"\u00A0"}·{"\u00A0"}PROMO
-              </p>
-              <p>
-                {"\u00A0"}·{"\u00A0"}DESIGN{"\u00A0"}·{"\u00A0"}DEVELOPMENT
-                {"\u00A0"}·{"\u00A0"}PROMO
-              </p> */}
-            </div>
-            
-
-            {/* // end of line bg  */}
-          </div>
-          {/* end of line outter */}
-        </div>
-
-        <p className="velocity">
-          {/* {velocity} */}</p>
+        <p className="velocity">{/* {velocity} */}</p>
 
      {/* end of running line cont */}
       </div>
-
 
     </>
   );

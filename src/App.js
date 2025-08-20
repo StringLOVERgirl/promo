@@ -5,10 +5,8 @@ import { Preloader } from './preloader';
 import { src,collectMedia } from './createMedia';
 import { Runningline } from './running_line';
 import { Refs } from './refs'
-import label from './assets/laberl_audio.jpeg'
 import m83 from './assets/M83 - By The Kiss.mp3'
 import video from './assets/0_Sun_Egg_3840x2160 (online-video-cutter.com) (1).mp4'
-import revenant from './assets/The_Revenant_Theme_2.mp3'
 import br2049 from'./assets/2049.mp3'
 import toALPD from './assets/Flight to LAPD.mp3'
 import { Header } from './header';
@@ -32,11 +30,11 @@ function App() {
   let [isPreloader,setIsPreloader] = useState('')
 
 
-  const addRef = (element) => {
+  const addRef = useCallback((element) => {
     if (!mediaRefs.current.includes(element)) {
       mediaRefs.current.push(element)
     }
-  }  // обернули т к это реф при каждом рендере будет пересоздаваться 
+  } ,[]) // обернули т к это реф при каждом рендере будет пересоздаваться 
   // значит рефы потеряют ссылку
 
   const totalCount = useRef()
@@ -67,16 +65,12 @@ function App() {
 
     setprecentage(newpercent)
 
-  },[]) // в колбеке потому при рендере чтобы не пресоздавался 
-  // и хуй знает еще почему чтобы не разрывалась ссылка может быть тк 
-  // это ставится на онлоад элементам 
-  // все что ставится функциональное в реф или обработчики соыбтий - должно 
-  // быть обернуто в юс колбек
-
+  },[]) 
+  
   let elements = collectMedia(src,addRef,updateprecentage)
   console.log(elements[0])
 
-  // totalCount.current = elements.length 
+  totalCount.current = elements.length 
 
 const lenisRef = useRef(new Lenis({
   duration: 2,
@@ -107,21 +101,22 @@ const lenisRef = useRef(new Lenis({
 
     if (mediaRefs.current) {
     
-//     mediaRefs.current.forEach(el => {
-//       if (el.tagName === 'IMG') {
-//         if (el.complete && el.dataset.processed !== 'true') { 
+    mediaRefs.current.forEach(el => {
+      console.log(el)
+      if (el.tagName === 'IMG') {
+        if (el.complete && el.dataset.processed !== 'true') { 
 // // вторая проверка нужна на случай если онлоад сработает первый и не вызвалос
 // // дважды
-//           el.dataset.processed = 'true';
-//           updateprecentage();
-//         }
+          el.dataset.processed = 'true';
+          updateprecentage();
+        }
 //       } else if (el.tagName === 'VIDEO') {
 //         if (el.readyState >= 4 && el.dataset.processed !== 'true') {
 //           el.dataset.processed = 'true';
 //           updateprecentage();
 //         }
-//       }
-//     });
+      }
+    });
 
   }
   

@@ -131,7 +131,8 @@ background: linear-gradient(to right, #D3CCE3,#E9E4F0);
   justify-content: center;
   align-items: center;
   flex-direction: row;
-  font-family: FuturaPTBook;
+  font-family: Futura;
+  letter-spacing: 0px;
 letter-spacing: 0.05em;
   font-size: 3.5vw;
   /* letter-spacing: 1px; */
@@ -392,7 +393,7 @@ padding-inline: 2vw;
 display: flex;
   flex-direction: column;
   position: relative;
-transition: transform 0.5s cubic-bezier(0.65, 0, 0.35, 1);
+transition: transform 0.4s cubic-bezier(0.65, 0, 0.35, 1);
 will-change: transform;
 }
 

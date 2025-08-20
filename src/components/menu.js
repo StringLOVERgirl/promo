@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 
-export function Menu ({menu,setMenu, setLink, link}){
+export function Menu ({menu, setMenu, setLink, link}){
 
     const links = [
       { name: `${"\u00A0"}the boys`, link: "https://the-boys-css3d.vercel.app/", alttext:`canvas${"\u00A0"}·${"\u00A0"}sinus${"\u00A0"}${"\u00A0"}animation${"\u00A0"}·${"\u00A0"}mousemove${"\u00A0"}·${"\u00A0"}3d css${"\u00A0"}·${"\u00A0"}` },

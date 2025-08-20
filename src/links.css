@@ -14,6 +14,7 @@
     --translateX: 100%;
     --scaleX: 0;
     --scale: 0;
+    height: 100svh;
     overflow: hidden;
     padding-top: 30svh;
     padding-bottom: 10svh;
@@ -189,6 +190,10 @@ overflow: hidden;
     display: flex;
     align-items: end;
 }
+.locomotive {
+    font-size: 11vw;
+    font-family: futura;
+}
 
 .inspiredcont {
     mix-blend-mode: difference;
@@ -248,16 +253,6 @@ mix-blend-mode: difference;
     transition: transform 0.5s 0.2s
 }
 
-.e_cont {
-    transform: translateY(-35%);
-}
-.e {
-    margin-left: auto;
-    /* line-height: 0.2; */
-    color: #2e1437;
-    transform: translateY(var(--translateY)) translateZ(0);
-    transition: transform 0.5s 0.3s
-}
 
 .description_cont {
     position: absolute;

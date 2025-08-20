@@ -801,6 +801,7 @@ line-height: 1.5;
     overflow: hidden;
     pointer-events: none;
     will-change: transform;    
+    transition: transform 0.1s;
     
 }
 

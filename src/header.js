@@ -10,7 +10,7 @@ export function Header ({setMenu,setLink}){
     return(
         <>
           <header>
-<div style={{background:'',borderRadius:'50px', height:'15svh',  aspectRatio:1, position:'absolute', top:0, left:'1vw'}}><span style={{fontSize:'2.5vw', color:'#20002c', fontFamily: 'futura'}}>℗</span></div>
+<div style={{background:'',borderRadius:'50px', height:'15svh',  aspectRatio:1, position:'absolute', top:0, left:'1vw'}}><span className="rights" style={{fontSize:'2.5vw', color:'#20002c', fontFamily: 'futura'}}>℗</span></div>
 <div className="header_left_cont">
    
 </div>

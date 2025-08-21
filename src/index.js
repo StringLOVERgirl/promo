@@ -2,9 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './footer.css';
 import './links.css'
-import './index.css';
 import './menu.css'
-
+import './header.css'
+import './index.css';
 
 
 import App from './App';

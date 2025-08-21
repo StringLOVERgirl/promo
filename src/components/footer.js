@@ -1,7 +1,7 @@
 // select ref prps 
 // unmove select можно в футерх хелпер 
 //  логику трека в хелпер
-import { useEffect,useRef,useState } from "react"
+import { useEffect, useState } from "react"
 import { Toppanel } from "./toppanel"
 
 export function Footer (){
@@ -15,75 +15,22 @@ export function Footer (){
       }
     }, [])
 
-
-    const selectRef = useRef(
-      {
-        first:null,
-        middle:null,
-        last:null
-      })
-
-    const distanceRef = useRef(
-      {
-        first:null,
-        middle:null,
-        last:null
-      })
   
   
     const classtypes = [
-      ['right center', 'right', 'right'],
-      ['', 'center', ' '],
-      ['left', 'left', 'right center'],
+      ['center', 'right', 'right'],
+      ['', 'center', ''],
+      ['left', 'left', 'center'],
       [' ', ' ', ' ']
     ]
 
     let [state, setstate] = useState(['','',''])
   
-
-  function select(event){
-    console.log(event.clientX, selectRef.current.first, selectRef.current )
-    if (event.clientX < distanceRef.current.middle){
-      console.log(1111)
-      setstate(classtypes[0])
-    } 
-    if (event.clientX < distanceRef.current.last
-          && event.clientX > distanceRef.current.middle){    
-        console.log(22222)    
-        setstate(classtypes[1])
-
-    } 
-    if (event.clientX > distanceRef.current.last){
-      console.log(3333)
-      setstate(classtypes[2])
-    }}
-
       const unmove = () => {
         setstate(classtypes[3])
       }
   
       
-    useEffect(()=>{
-      
-      function setDistanceSelect(el){
-        let rec = selectRef.current[el].getBoundingClientRect(selectRef.current[el])
-        let distance = Math.floor(rec.left)
-        distanceRef.current[el] = distance 
-      }
-  
-      for (let key in selectRef.current){
-        setDistanceSelect(key)
-      }
-      //end of select 
-
-      window.addEventListener('resize',()=>{
-        for (let key in selectRef.current){
-          setDistanceSelect(key)
-        }
-      })
-
-    },[])
-
   return (
     <>
       <div className='footer_area'></div>
@@ -117,9 +64,9 @@ export function Footer (){
         </div>
 
         <nav className='a_cont' onMouseLeave={unmove}>
-          <a onMouseEnter={select} className={state[0]} ref={(el) => selectRef.current.first = el}>2025 Year</a>
-          <a onMouseEnter={select} className={state[1]} ref={(el) => selectRef.current.middle = el}>Our Products</a>
-          <a onMouseEnter={select} className={state[2]} ref={(el) => selectRef.current.last = el}>In process</a>
+          <a onMouseEnter={()=>setstate(classtypes[0])} className={state[0]}>2025 Year</a>
+          <a onMouseEnter={()=>setstate(classtypes[1])} className={state[1]}>Our Products</a>
+          <a onMouseEnter={()=>setstate(classtypes[2])} className={state[2]}>In process</a>
         </nav>
 
         {/* собственность */}

@@ -362,17 +362,17 @@ left: 5%;
   color: #9471b1;
 }
 
-.rinning_line_footer:hover .bottom-line-elements {
+.running_line_footer:hover .bottom-line-elements {
   opacity: 0;
   /*  */
 }
 
-.rinning_line_footer:hover{
+.running_line_footer:hover{
   transition-delay: 0.15s;
   z-index: 2;
 }
 
-.rinning_line_footer:hover .text_line_bottom:hover  {
+.running_line_footer:hover .text_line_bottom:hover  {
   opacity: 1
   /* убирать через клиппфа */
 }
@@ -391,7 +391,7 @@ background: black;
 
 
 
-.rinning_line_footer {
+.running_line_footer {
   color: #cccccccf;
   white-space: nowrap;
   font-family: Futura;
@@ -566,7 +566,8 @@ overflow: hidden;
 .a_cont  a {
   transition: transform 0.8s, scsle 0.3s, color 0.3s, font-size 0.3s;
   position: relative;
-  width: 10vw;
+  width: fit-content;
+  padding-inline: 2vw;
   will-change: transform;
 }
 

@@ -1,7 +1,9 @@
 .section_links {
     height: fit-content;
-    background: white;
+    background: black;
     position: relative;
+    
+
     /* display: none; */
   }
 
@@ -334,7 +336,8 @@ fill: rgba(0, 0, 0, 0.8);
 /* end of inspired section */
 
 .workds_cont {
-    
+    border-bottom-left-radius: 35px;
+    border-bottom-right-radius: 35px;
         --bg1:50%;
     --bg2:0;
     --bg3:0;

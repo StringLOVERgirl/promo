@@ -6,28 +6,123 @@
 /* mini height 4svh */
 /* center cont flex directiob column */
 /* font size 6.5 */
+header {
+    box-sizing: content-box;
+    padding-top: 4svh;
+    display: flex;
+    position: relative;
+  background: white;
+  z-index: 3;
+  justify-content: center;
+  align-items: center;
+  height: 13svh;
+  background: linear-gradient(to right, #D3CCE3,#E9E4F0);
+  }
 
-@media (max-width: 500px) {
-    .headder_left_cont {
-        display: none;
-    }
+ 
 
-    .header_center_cont {
-        font-size: 6.5vw;
-    }
+  .header_left_cont, .header_right_cont {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
 
-    .header_right_cont {
-        position: absolute;
-        right: 4vw;
-        top: 0;
-        flex-direction: column;
-    }
 
-    .menu_icon {
-        height: 7svh;
-    }
+.header_center_cont{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    font-family: Futura, sans-serif;
+  letter-spacing: 0.05em;
+    font-size: 3.5vw;
+    text-transform: uppercase;
+    height: fit-content;
+    width: auto;
+    border-radius: 25px;
+    background: #10121414;
+    color: #464646;
+    padding-inline: 0.5vw ;
+    /* mix-blend-mode: difference; */
+    
+  }
 
-    .headre_mini_bg {
-        height: 4svh;
-    }
-}
+  .header_text_cont {
+    white-space: nowrap;
+    /* mix-blend-mode: difference; */
+  }
+
+
+.header_mini_bg {
+    height: 7svh;
+  aspect-ratio: 1/1;
+    background: url('assets/chase-yi-MG8tzq0l_0A-unsplash.jpg') center / cover  ;
+    filter: brightness(70%);
+  
+    position: relative;
+    clip-path: polygon(0% 0%, 0% 100%, 25% 100%, 25% 25%, 75% 25%, 75% 75%, 25% 75%, 25% 100%, 100% 100%, 100% 0%);
+  }
+
+
+.menu_desc{
+    display: none;
+    align-items: center;
+    justify-content: center;
+    font-family: futura, sans-serif;
+    flex-direction: column;
+    color: rgb(65, 65, 65);
+  
+  }
+
+  
+.menu_icon {
+    height: 9svh;
+    aspect-ratio: 1/1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: clip-path 0.3s;
+  }
+  
+  .menu_icon:hover .icon::after, .menu_icon:hover .icon::before{
+    background: unset;
+    transform: translateX(0);
+  
+  }
+  
+  .menu_icon:hover .icon{
+    transform: scale(1.7);
+    background: transparent ;
+    border: solid 1px rgba(0, 0, 0, 0.5)
+  }
+  .icon {
+    border-radius: 50%;
+    cursor: pointer;
+    background: #9e8fab;
+    height: 30%;
+    aspect-ratio: 1;
+    position: relative;
+    transition: transform 0.3s 0.1s;
+  
+  } 
+  .icon::before,.icon::after {
+    content: '';
+    display: block;
+    background: #cbbfd3;
+    height: 100%;
+    aspect-ratio: 1;
+    position: absolute;
+    border-radius: 50%;
+    transition: transform 0.3s cubic-bezier(0.65, 0, 0.35, 1), background 0.5s;
+    pointer-events: none;
+  }
+  .icon::before{  transform: translateX(-120%);
+    
+  }
+  .icon::after{  transform: translateX(120%);
+    
+  }
+
+  

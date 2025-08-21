@@ -60,7 +60,7 @@ const play = () => {
           
   
   
-          <div className='rinning_line_footer'>
+          <div className='running_line_footer'>
      {/* возвращаем два одинаковых блока */}
              {[1,2].map(()=> {return(
                [`${"\u00A0"}`,'·',`${"\u00A0"}Dynamic${"\u00A0"}`,'·',

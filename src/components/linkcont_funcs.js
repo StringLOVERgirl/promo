@@ -18,7 +18,6 @@ const newy = (pageY - parentTop ) *0.5 + 'px';
 
 const newx =  event.clientX - parentLeft  + 'px';
 console.log(newx, event.clientX, parentLeft+parentRect.width)
-inverseRef.current[el].style.setProperty(`--y`, newy)
-inverseRef.current[el].style.setProperty(`--x`, newx)
-
+// inverseRef.current[el].style.setProperty(`--y`, newy)
+inverseRef.current[el].style.transform = `translate3d(${newx}, ${newy}, 0)`
 }

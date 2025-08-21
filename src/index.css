@@ -610,9 +610,14 @@ code {
     font-size: 13vw !important;
   }
 
+  .alt_link_cont {
+    display: none;
+  }
+
 .menu_footer {
-  font-size: 3vw;
+  font-size: 4vw !important;
 }
+
 
   .h1cont {
     height: 100lvh;
@@ -653,6 +658,8 @@ code {
 
   .bgcont3 {
     margin-bottom: unset;
+    /* border-bottom-right-radius: 25px; */
+    /* border-bottom-left-radius: 25px; */
   }
   .void_cont {
     padding-left: 0;

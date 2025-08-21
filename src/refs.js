@@ -138,16 +138,16 @@ const flag = useRef(false)
             // if (!flag.current) {
                 // flag.current = true
                 parallaxMetrics.current.distance.forEach((e, i) => {
-                    if (event.targetScroll >= parallaxMetrics.current.distance[i]
+                    // if (event.targetScroll >= parallaxMetrics.current.distance[i]
                         //  - 100 чтобы начиналс движение немного спустя как появится в поле видимости 
                         //  что бы юзер расссмотрел что сверху
-                        && event.targetScroll <= parallaxMetrics.current.distance[i] + parallaxMetrics.current.scrollWay
-                    ) {
+                        // && event.targetScroll <= parallaxMetrics.current.distance[i] + parallaxMetrics.current.scrollWay
+                    // ) {
                         requestAnimationFrame(() => {
                             parallax('--bg' + (i + 1), i)
                             console.log('prarl')
                         })
-                    } 
+                    // } 
                     // else {
                         // flag.current = false
                     // }

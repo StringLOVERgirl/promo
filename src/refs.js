@@ -65,7 +65,7 @@ const bgRefs = useRef([])
         // }
     },{
         root: null,
-        threshold: 0.5,
+        threshold: window.innerWidth > 600 ? 0.7 : 0.4,
     }))
 
     

@@ -143,10 +143,10 @@ const flag = useRef(false)
                         //  что бы юзер расссмотрел что сверху
                         // && event.targetScroll <= parallaxMetrics.current.distance[i] + parallaxMetrics.current.scrollWay
                     // ) {
-                        requestAnimationFrame(() => {
+                        // requestAnimationFrame(() => {
                             parallax('--bg' + (i + 1), i)
                             console.log('prarl')
-                        })
+                        // })
                     // } 
                     // else {
                         // flag.current = false

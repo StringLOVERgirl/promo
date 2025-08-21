@@ -56,7 +56,7 @@ const bgRefs = useRef([])
                 name: '--scale',
                 value: 1
              }] 
-        if (arr[0].intersectionRatio > 0.7){
+        if (arr[0].intersectionRatio > 0.5){
           vars.forEach(e=>textRef.current.style.setProperty(e.name, e.value))
         } 
         // else if (arr[0].intersectionRatio == 0 && textFlag.current){
@@ -65,7 +65,7 @@ const bgRefs = useRef([])
         // }
     },{
         root: null,
-        threshold: 0.7,
+        threshold: 0.5,
     }))
 
     

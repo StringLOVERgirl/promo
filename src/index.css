@@ -602,6 +602,9 @@ code {
 
 @media (max-width:600px) {
 
+  .h1cont {
+    height: 100lvh;
+  }
   @keyframes rotating {
     from {
         transform: rotateY(0deg) scale(0.8);

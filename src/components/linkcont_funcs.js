@@ -8,12 +8,12 @@ export function mouseenter(inverseRef,el,event){
 
 export function moveInverse (inverseRef,el,event) {
 console.log(event)
-let pageY = event.clientY + window.scrollY;
+let pageY = event.clientY + event.targetScroll;
 //    позиция курсора 
 const parentRect = inverseRef.current[el].getBoundingClientRect();
-const parentTop = parentRect.top + window.scrollY; // Координата top родителя относительно всей страницы
+const parentTop = parentRect.top + event.targetScroll; // Координата top родителя относительно всей страницы
 const parentLeft = parentRect.left ; // Координата top родителя относительно всей страницы
-const newy = pageY - parentTop + 'px';
+const newy = (pageY - parentTop ) *0.5 + 'px';
 
 
 const newx =  event.clientX - parentLeft  + 'px';

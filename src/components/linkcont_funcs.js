@@ -13,11 +13,12 @@ let pageY = event.clientY + event.targetScroll;
 const parentRect = inverseRef.current[el].getBoundingClientRect();
 const parentTop = parentRect.top + event.targetScroll; // Координата top родителя относительно всей страницы
 const parentLeft = parentRect.left ; // Координата top родителя относительно всей страницы
-const newy = (pageY - parentTop ) *0.5 + 'px';
+const newy = (pageY - parentTop ) + 'px';
 
 
 const newx =  event.clientX - parentLeft  + 'px';
 console.log(newx, event.clientX, parentLeft+parentRect.width)
-// inverseRef.current[el].style.setProperty(`--y`, newy)
-inverseRef.current[el].style.transform = `translate3d(${newx}, ${newy}, 0)`
+inverseRef.current[el].style.setProperty(`--y`, newy)
+inverseRef.current[el].style.setProperty(`--x`, newx)
+
 }

@@ -669,7 +669,16 @@ code {
     left: 50%;
     transform: translateX(-50%);
     justify-content: center;
+    backdrop-filter: blur(1px);
   }
+
+  .threedspan {
+    font-size: 3em;
+
+    transform: translate(-50%, -50%) /* Центрирование для 3д*/ rotateY(calc(var(--i) * (360deg / 14))) translateZ(300px) scale(0.7);
+    -moz-transform: translate(-50%, -50%) /* Центрирование для 3д*/ rotateY(calc(var(--i) * (360deg / 14))) translateZ(300px) scale(0.7);
+    -webkit-transform: translate(-50%, -50%) /* Центрирование для 3д*/ rotateY(calc(var(--i) * (360deg / 14))) translateZ(300px) scale(0.7);
+}
 
   .footer_area {
     background-size: 14vw 100%;

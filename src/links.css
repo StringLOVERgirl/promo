@@ -383,6 +383,7 @@ fill: rgba(0, 0, 0, 0.8);
 }
 .linkcont3 {
     --cubeX: -40%;
+    height: 100lvh;
 }
 
 .work_descr_cont{

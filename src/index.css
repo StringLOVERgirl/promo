@@ -450,7 +450,7 @@ code {
   }
 
   .linkcont3 {
-    height: 85lvh;
+    height: 92.5lvh;
   }
 
   .bgcont {
@@ -461,7 +461,8 @@ code {
   }
 
   .bgcont3 {
-    /* margin-bottom: unset; */
+    margin-bottom: unset;
+    margin-top: 15lvh;
   }
   .void_cont {
     padding-left: 0;

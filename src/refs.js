@@ -20,6 +20,7 @@ const inverseRef = useRef([])
 const rec = useRef([null,null,null])
 const bgRefs = useRef([])
     const link_cont = useRef(null)
+    let [porog, setporog] = useState(window.innerWidth > 600 ? 0.7 : 0.5)
 
 
     const textobserv = useRef(new IntersectionObserver(elements=>{
@@ -39,7 +40,6 @@ const bgRefs = useRef([])
         observingText.current.forEach(e=>textobserv.current.observe(e))
     },[])
     
-
     const textObserver = useRef(new IntersectionObserver(arr => {
         console.log(arr[0].intersectionRatio)
         let vars = [
@@ -56,7 +56,7 @@ const bgRefs = useRef([])
                 name: '--scale',
                 value: 1
              }] 
-        if (arr[0].intersectionRatio > 0.5){
+        if (arr[0].intersectionRatio > porog){
           vars.forEach(e=>textRef.current.style.setProperty(e.name, e.value))
         } 
         // else if (arr[0].intersectionRatio == 0 && textFlag.current){
@@ -65,7 +65,7 @@ const bgRefs = useRef([])
         // }
     },{
         root: null,
-        threshold: window.innerWidth > 600 ? 0.7 : 0.4,
+        threshold: porog,
     }))
 
     
@@ -168,6 +168,7 @@ console.log(rec.current)
 useEffect(()=>{
 
     function resizedistance(){
+        setporog(window.innerWidth > 600 ? 0.7 : 0.5)
         bgRefs.current.forEach((e,i)=>setMetrics(e,i))
         setDistanceInverse()
     }

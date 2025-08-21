@@ -602,6 +602,18 @@ code {
 
 @media (max-width:600px) {
 
+  .cross_cont {
+    height: 8svh !important;
+  }
+
+  .menu_link {
+    font-size: 13vw !important;
+  }
+
+.menu_footer {
+  font-size: 3vw;
+}
+
   .h1cont {
     height: 100lvh;
   }

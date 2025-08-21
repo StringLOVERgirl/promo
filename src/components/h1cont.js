@@ -47,7 +47,7 @@ export function H1cont({ textRef }) {
 
                 <div className="w_cont">
                     <a className="w_link" target="_blank" href="https://www.awwwards.com/locomotive/">
-                        <svg className="awwwards" width="50" height="28" viewBox="0 0 30 16">
+                        <svg className="awwwards" viewBox="0 0 30 16">
                             <path d="m18.4 0-2.803 10.855L12.951 0H9.34L6.693 
                           10.855 3.892 0H0l5.012 15.812h3.425l2.708-10.228 2.709 
                           10.228h3.425L22.29 0h-3.892ZM24.77 13.365c0 1.506 1.12 

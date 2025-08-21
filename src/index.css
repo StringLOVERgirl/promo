@@ -602,6 +602,43 @@ code {
 
 @media (max-width:600px) {
 
+  @keyframes rotating {
+    from {
+        transform: rotateY(0deg) scale(0.8);
+    }
+        to {
+            transform: rotateY(360deg) scale(0.8);
+        }
+    }
+
+  .link_cont {
+    height: 100lvh;
+    position: relative;
+  }
+
+  .link_inner_cont {
+    margin-top: unset;
+    margin-left: unset;
+    font-size: 10vw;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+  }
+
+  .linkcont3 {
+    height: 85lvh;
+  }
+
+  .bgcont {
+    margin-top: auto;
+    margin-bottom: auto;
+    width: 100%;
+    height: 70lvh;
+  }
+
+  .bgcont3 {
+    margin-bottom: unset;
+  }
   .void_cont {
     padding-left: 0;
   }
@@ -719,5 +756,55 @@ header div:first-child span:first-child {
 
 }
 
+@media (min-width: 1300px) and (max-width:1500px ) {
+  .threedspan {
+    font-size: 4em;
+
+    transform: translate(-50%, -50%) /* Центрирование для 3д*/ rotateY(calc(var(--i) * (360deg / 14))) translateZ(380px) scale(0.7);
+    -moz-transform: translate(-50%, -50%) /* Центрирование для 3д*/ rotateY(calc(var(--i) * (360deg / 14))) translateZ(380px) scale(0.7);
+    -webkit-transform: translate(-50%, -50%) /* Центрирование для 3д*/ rotateY(calc(var(--i) * (360deg / 14))) translateZ(380px) scale(0.7);
+}
+  }
+
+@media (min-width: 2300px)  {
+
+  .awwwards {
+    height: 2vw;
+  }
+
+  @keyframes rotate_footer {
+    from {
+      transform:        translateY(5%) rotateX(20deg) rotateZ(-10deg) rotateY(0);
+      -moz-transform:   translateY(5%)  rotateX(20deg) rotateZ(-10deg) rotateY(0);
+      -webkit-transform:translateY(5%) rotateX(20deg) rotateZ(-10deg) rotateY(0) ;
+    }
+    to {
+      transform:        translateY(5%) rotateX(20deg) rotateZ(-10deg) rotateY(360deg) ;
+      -moz-transform:   translateY(5%)  rotateX(20deg) rotateZ(-10deg) rotateY(360deg) ;
+      -webkit-transform:translateY(5%) rotateX(20deg) rotateZ(-10deg) rotateY(360deg) ;
+  
+    };
+    
+  }
+
+  .footer_blur_cont {
+    filter: blur(2.5px);
+  }
+
+  .decor_shadow {
+    width: 15vw;
+  }
+
+  .threedspan {
+    font-size: 6em;
+    transform: translate(-50%, -50%) /* Центрирование для 3д*/ rotateY(calc(var(--i) * (360deg / 14))) translateZ(22vw) scale(0.7);
+    -moz-transform: translate(-50%, -50%) /* Центрирование для 3д*/ rotateY(calc(var(--i) * (360deg / 14))) translateZ(22vw) scale(0.7);
+    -webkit-transform: translate(-50%, -50%) /* Центрирование для 3д*/ rotateY(calc(var(--i) * (360deg / 14))) translateZ(22vw) scale(0.7);
+}
+
+.a_cont {
+  font-size: 1.3vw;
+}
+  }
 
 

@@ -13,7 +13,7 @@ export function Menu ({menu, setMenu, setLink, link}){
     'before & after', 'keyframes', 'css variables', 'mix-blend-mode'],[
     'react hooks / props / components', 'map', 'raf', 'loops',
      'getBoundingClientRect', 'intobesrver'],
-     ['parallax transform', 'scroll running lines ',  
+     ['parallax transform', 'interractive running lines ',  
      'mouse-tracking elements', 'lenis scroll', 'preloader', 'git / github'] ]
 
     let [opacity,setopacity] = useState(null)

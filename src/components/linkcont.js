@@ -45,8 +45,8 @@ export function LinkCont({bgRefs, observingText, inverseRef, i }) {
     return <div className={`link_cont linkcont${i + 1}`}>
 
         <Cube i={i}/>
-        <Cube i={i}/>
-        <Cube i={i}/>
+        {/* <Cube i={i}/> */}
+        {/* <Cube i={i}/> */}
 
         {/* массив с доминирующими цветами так же сделать почеркивание с тем же цветом под названием цвета  */}
 

@@ -66,7 +66,7 @@ const play = () => {
                [`${"\u00A0"}`,'·',`${"\u00A0"}Dynamic${"\u00A0"}`,'·',
                   `${"\u00A0"}Clean${"\u00A0"}`,
                   '·',`${"\u00A0"}Creative${"\u00A0"}`,`·${"\u00A0"}`,
-                  `Elegant${"\u00A0"}`,`·`,`${"\u00A0"}Advanced${"\u00A0"}`]
+                  `Elegant${"\u00A0"}`,`·`,`${"\u00A0"}Advanced${"\u00A0"}`,`·`,`${"\u00A0"}Interractive${"\u00A0"}`]
                   // есть массив выше - собирем массив по элементам в отдельные блоки по типам - текст или точка
                   .map((e,i)=>{
                        return <p className={`bottom-line-elements ${e.includes('·')?'':"text_line_bottom"}`} 

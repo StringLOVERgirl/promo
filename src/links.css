@@ -851,7 +851,7 @@ line-height: 1.5;
     /* background-image: url('assets/k72.jpeg'); */
 /* background-attachment: fixed; */
 /* transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, -120, 0, 1); */
-background-size: cover;
+background-size: 100% auto;
 background-repeat: no-repeat; 
 background-position: center;;
     /* 160px; */

@@ -892,5 +892,5 @@ background-position: center;;
     background-repeat: no-repeat; 
     background-position: center;;
     transform: translateY(var(--bg3));
-transition: transform 0.1s;
+/* transition: transform 0.1s; */
 }

@@ -587,7 +587,7 @@ overflow: hidden;
 .inner3 {
     margin-left: 65%;
     transform: translateX(-40%) translateY(-10%);
-    margin-top: 50svh;
+    margin-top: 35svh;
     mix-blend-mode: difference;
 
 }

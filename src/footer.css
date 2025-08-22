@@ -1,6 +1,6 @@
 
 .footer {
-    height: 100lvh;
+    height: 100vh;
     width: 100vw;
     perspective: 1000px;
     display: flex;
@@ -460,7 +460,7 @@ background: black;
 
 
 .footer_area {
-  height: 100lvh;
+  height: 100vh;
 
   pointer-events: none;
   width: 50%;

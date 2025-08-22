@@ -396,7 +396,20 @@ code {
 }
 
 
+header::after {
+  content: '';
+  display: block;
+  background: inherit;
+  width: 100%;
+  position: absolute;
+  height: 2px;
+  bottom: -1px;
+}
 @media (max-width:600px) {
+
+  .rights {
+    font-size: 5.5vw !important;
+  }
 
 .header_center_cont {
   border-radius: unset;

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+body {
+    height: 200vh;
+}
+        
+        .cont {
+            height: 100vh;
+            perspective: 1px;
+            overflow: scroll;
+            position: relative;
+        }
+
+        .paralax {
+            position: absolute;
+            transform: translateZ(-1px) scale(2);
+            height: 200%;
+            width: 200%;
+            background: url('../assets/inverse2.jpg');
+            background-size: cover;
+            background-position: center;
+            
+        }
+    </style>
+</head>
+<body>
+    <div class="cont" >
+        <div class="paralax"></div>
+    </div>
+</body>
+</html>

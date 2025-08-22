@@ -836,6 +836,7 @@ line-height: 1.5;
     margin-top: auto;
     margin-bottom: 10svh;
     margin-right: auto;
+    margin-top: 15;
     /* transform: translateY(var(--bgY)); */
     /* transform: translateX(-1svh); */
 }
@@ -891,5 +892,5 @@ background-position: center;;
     background-repeat: no-repeat; 
     background-position: center;;
     transform: translateY(var(--bg3));
-
+transition: transform 0.1s;
 }

@@ -132,28 +132,6 @@ const flag = useRef(false)
         )
 
     },[])
-
-    function throttle(func, delay) {
-        let lastCall = 0;
-      
-        return function (...args) {
-          const now = new Date().getTime();
-      
-          if (now - lastCall >= delay) {
-            lastCall = now;
-            func.apply(this, args);
-          }
-        };
-      }
-      const throttledParallax0 = throttle(() => parallax('--bg1', 0), 100);
-      const throttledParallax1 = throttle(() => parallax('--bg2', 1), 100);
-      const throttledParallax2 = throttle(() => parallax('--bg3', 2), 100);
-      
-      function t() {
-        throttledParallax0();
-        throttledParallax1();
-        throttledParallax2();
-      }
       
     useEffect(()=>{
         lenis.current.on('scroll', event => {

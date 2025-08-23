@@ -95,8 +95,8 @@ export function LinkCont({bgRefs, observingText, inverseRef, i }) {
             {/* имя проекта */}
         </div>
 
-        <div className={`bgcont bgcont${i + 1}`} ref={addBgRefs}>
-            <div className={`linkbg link${i + 1}bg`}></div>
+        <div className={`bgcont bgcont${i + 1}`} >
+            <div className={`linkbg link${i + 1}bg`} ref={addBgRefs}></div>
         </div>
 
     </div>

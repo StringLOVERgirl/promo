@@ -338,9 +338,9 @@ fill: rgba(0, 0, 0, 0.8);
 .workds_cont {
     border-bottom-left-radius: 35px;
     border-bottom-right-radius: 35px;
-    --bg1:30%;
-    --bg2:30%;
-    --bg3:30%;
+    --bg1:-30%;
+    --bg2:-30%;
+    --bg3:-30%;
     /* --bgY:0; */
     height: fit-content;
     /* border: solid 1px rgba(0, 0, 0, 0.335); */

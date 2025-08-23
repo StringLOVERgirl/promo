@@ -846,7 +846,7 @@ line-height: 1.5;
     /* margin-top: 20svh; */
     /* height: 80svh; */
     /* margin-left: auto; */
-    transform: translateY(var(--bg1));
+    transform: translate3d(0px, var(--bg1), 0px);
     /* transform: translateX(1svh); */
 
     background: url('assets/k72.jpeg') ;

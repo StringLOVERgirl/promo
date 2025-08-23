@@ -100,8 +100,8 @@ const bgRefs = useRef([])
         // value-=30
         value +="%"
         // менять на тразишн добавлять оберточны элемент делать этот в 130 процентов высоты от того
-        // link_cont.current.style.setProperty(varbg,value)
-        bgRefs.current[i].style.transform = `translateY(${value})`;
+        link_cont.current.style.setProperty(varbg,value)
+        // bgRefs.current[i].style.transform = `translateY(${value})`;
         flag.current=false
     }
 

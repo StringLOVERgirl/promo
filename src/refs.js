@@ -164,7 +164,7 @@ const flag = useRef(false)
                 })
             // }
         }
-        ,100)
+        ,48)
         )},[])
 
 

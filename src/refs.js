@@ -137,14 +137,14 @@ const flag = useRef(false)
         )
 
     },[])
-      
+      const parallaxf = window.innerWidth < 600 ? '' : 
     useEffect(()=>{
         link_cont.current.style.setProperty('--bg0',0)
         link_cont.current.style.setProperty('--bg1',0)
         link_cont.current.style.setProperty('--bg2',0)
         link_cont.current.style.setProperty('--bg3',0)
-
-        lenis.current.on('scroll',  event => {
+        if (window.innerWidth >= 600) {
+        lenis.current.on('scroll',   event => {
             // if (!flag.current) {
                 // flag.current = true
                 parallaxMetrics.current.distance.forEach((e, i) => {
@@ -164,7 +164,7 @@ const flag = useRef(false)
                 })
             // }
         })
-        },[])
+        }},[])
 
 
 

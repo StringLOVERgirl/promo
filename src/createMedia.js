@@ -39,6 +39,7 @@ export const src = [
            let imgElement = <img
              src={element}
              alt='img'
+            //  как прямо тут онкомплит
               onLoad={listeneralready}
              onError={listeneralready}
              key={'img' + indexInner}

@@ -90,15 +90,16 @@ const bgRefs = useRef([])
     }
 
 
-    const parallax = (varbg,i) => {
+    const parallax = (varbg,i,event) => {
         const speed = 30
-        let value = (window.scrollY - parallaxMetrics.current.distance[i]) / parallaxMetrics.current.step - speed
-        if (value > 0 ){ value = 0} 
-        if (value < -30 ){ value = -30} 
+        let value = (event.targetScroll - parallaxMetrics.current.distance[i] )/8
+        // if (value > 0 ){ value = 0} 
+        // if (value < -30 ){ value = -30} 
         // убираем выше нижний рвыок 
         // ограничтиель до 100
         // value-=30
-        value +="%"
+        value +="px"
+        console.log(event.targetScroll, value)
         // менять на тразишн добавлять оберточны элемент делать этот в 130 процентов высоты от того
         link_cont.current.style.setProperty(varbg,value)
         // bgRefs.current[i].style.transform = `translateY(${value})`;
@@ -145,7 +146,7 @@ const flag = useRef(false)
                         && event.targetScroll <= parallaxMetrics.current.distance[i] + parallaxMetrics.current.scrollWay
                     ) {
                         requestAnimationFrame(() => {
-                            parallax('--bg' + (i + 1), i)
+                            parallax('--bg' + (i + 1), i, event)
                             console.log('prarl')
                         })
                     } 

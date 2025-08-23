@@ -108,6 +108,8 @@ const bgRefs = useRef([])
 const flag = useRef(false)
 
     useLayoutEffect(()=>{
+        link_cont.current.style.setProperty('--bg1',0)
+
         console.log(observingText.current)
 
         console.log('hhhhhhhhhhhhhhhhhhh')

@@ -338,10 +338,10 @@ fill: rgba(0, 0, 0, 0.8);
 .workds_cont {
     border-bottom-left-radius: 35px;
     border-bottom-right-radius: 35px;
-        --bg1:50%;
-    --bg2:0;
-    --bg3:0;
-    --bgY:0;
+        /* --bg1:0; */
+    /* --bg2:0; */
+    /* --bg3:0; */
+    /* --bgY:0; */
     height: fit-content;
     /* border: solid 1px rgba(0, 0, 0, 0.335); */
     /* overflow: hidden; */

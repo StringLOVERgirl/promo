@@ -73,7 +73,7 @@ function App() {
   totalCount.current = elements.length 
 
 const lenisRef = useRef(new Lenis({
-  duration: window.innerWidth < 600 ? 5 : 2,
+  duration: 2,
   smooth: true,
 }))
 

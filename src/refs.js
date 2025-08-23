@@ -166,8 +166,8 @@ const flag = useRef(false)
                         && event.targetScroll <= parallaxMetrics.current.distance[i] + parallaxMetrics.current.scrollWay
                     ) {
                         requestAnimationFrame(() => {
-t()
-                            console.log('prarl')
+                            parallax('--bg'+(i+1), i)
+                                                        console.log('prarl')
                         })
                     } 
                     // else {

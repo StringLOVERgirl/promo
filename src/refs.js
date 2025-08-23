@@ -90,11 +90,15 @@ const bgRefs = useRef([])
     }
 
 
-    const parallax = (varbg,i) => {
+    const parallax = (varbg,i,event) => {
         const speed = 30
-        let value = ((window.scrollY - parallaxMetrics.current.distance[i]) / parallaxMetrics.current.step - speed) 
-        if (value > 0 ){ value = 0} 
+        // let value = ((window.scrollY - parallaxMetrics.current.distance[i]) / parallaxMetrics.current.step - speed) 
+        let value = -(window.scrollY - parallaxMetrics.current.distance[i])/10
+        console.log(value)
+
+        // if (value > 0 ){ value = 0} 
         if (value < -30 ){ value = -30} 
+        console.log(value)
         // убираем выше нижний рвыок 
         // ограничтиель до 100
         // value-=30
@@ -151,7 +155,7 @@ const flag = useRef(false)
                         && event.targetScroll <= parallaxMetrics.current.distance[i] + parallaxMetrics.current.scrollWay
                     ) {
                         requestAnimationFrame(() => {
-                            parallax('--bg'+(i+1), i)
+                            parallax('--bg'+(i+1), i,event)
                                                         console.log('prarl')
                         })
                     } 

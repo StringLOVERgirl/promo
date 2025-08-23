@@ -381,7 +381,15 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
-  background: black;
+  background: white;
+  animation: body 0s 2s forwards;
+}
+
+@keyframes body {
+  to {
+    background: black;
+  }
+  
 }
 
 code {

@@ -140,7 +140,7 @@ const flag = useRef(false)
             // if (!flag.current) {
                 // flag.current = true
                 parallaxMetrics.current.distance.forEach((e, i) => {
-                    if (event.targetScroll >= parallaxMetrics.current.distance[i]
+                    if (event.targetScroll >= parallaxMetrics.current.distance[i] - 20
                         //  - 100 чтобы начиналс движение немного спустя как появится в поле видимости 
                         //  что бы юзер расссмотрел что сверху
                         && event.targetScroll <= parallaxMetrics.current.distance[i] + parallaxMetrics.current.scrollWay

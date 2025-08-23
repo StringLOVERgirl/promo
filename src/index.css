@@ -413,7 +413,7 @@ header::after {
   }
 
   .linkbg {
-    transition: transform 0.25s ease-out;
+    transition: transform 0.18s ease-out;
   }
 
 .header_center_cont {

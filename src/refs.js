@@ -92,7 +92,7 @@ const bgRefs = useRef([])
 
     const parallax = (varbg,i) => {
         const speed = 30
-        let value = ((window.scrollY - parallaxMetrics.current.distance[i]) / parallaxMetrics.current.step - speed) / 1.5
+        let value = ((window.scrollY - parallaxMetrics.current.distance[i]) / parallaxMetrics.current.step - speed)  * 1.5
         if (value > 0 ){ value = 0} 
         if (value < -30 ){ value = -30} 
         // убираем выше нижний рвыок 

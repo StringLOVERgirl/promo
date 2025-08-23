@@ -108,7 +108,6 @@ const bgRefs = useRef([])
 const flag = useRef(false)
 
     useLayoutEffect(()=>{
-        link_cont.current.style.setProperty('--bg1',0)
 
         console.log(observingText.current)
 
@@ -136,6 +135,11 @@ const flag = useRef(false)
     },[])
       
     useEffect(()=>{
+        link_cont.current.style.setProperty('--bg0',0)
+        link_cont.current.style.setProperty('--bg1',0)
+        link_cont.current.style.setProperty('--bg2',0)
+        link_cont.current.style.setProperty('--bg3',0)
+
         lenis.current.on('scroll', event => {
             // if (!flag.current) {
                 // flag.current = true

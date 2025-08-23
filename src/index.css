@@ -416,6 +416,11 @@ header::after {
 }
 @media (max-width:600px) {
 
+  .workds_cont{
+    background: url('./assets/image.jpg') center  / 100%  
+
+  }
+  
   .rights {
     font-size: 5.5vw !important;
   }
@@ -580,7 +585,6 @@ padding-inline: 2vw;
 
 .work_descr_cont{
   display: none;
-  background: url('./assets/image.jpg') center  / 100%  
 }
 
 .right {

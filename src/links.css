@@ -805,7 +805,8 @@ line-height: 1.5;
     width: 100%;
     overflow: hidden;
     pointer-events: none;
-    will-change: transform;    
+    will-change: transform;   
+    transition: transform 0.15s ease; 
 }
 
 .bgcont{

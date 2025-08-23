@@ -1,7 +1,7 @@
 import { useRef, useState,useEffect, useLayoutEffect } from "react";
 import { LinkCont } from "./components/linkcont";
 import { H1cont } from "./components/h1cont";
-
+import { throttle } from 'lodash';
 // скролвей расчтиывается как началао от экрана плюс высота страницы плюс высота элемента
 
 // на мобильном пересчет дистанции паралакс при ресайзе  и вылезает за цвет название номер текста уменьшить фонт 
@@ -92,7 +92,7 @@ const bgRefs = useRef([])
 
     const parallax = (varbg,i,event) => {
         const speed = 30
-        let value = ((window.scrollY - parallaxMetrics.current.distance[i]) / parallaxMetrics.current.step - speed) 
+        let value = ((event.targetScroll - parallaxMetrics.current.distance[i]) / parallaxMetrics.current.step - speed) 
         console.log(value)
 
         if (value > 0 ){ value = 0} 
@@ -144,7 +144,7 @@ const flag = useRef(false)
         link_cont.current.style.setProperty('--bg2',0)
         link_cont.current.style.setProperty('--bg3',0)
 
-        lenis.current.on('scroll', event => {
+        lenis.current.on('scroll', throttle( event => {
             // if (!flag.current) {
                 // flag.current = true
                 parallaxMetrics.current.distance.forEach((e, i) => {
@@ -153,18 +153,19 @@ const flag = useRef(false)
                         //  что бы юзер расссмотрел что сверху
                         && event.targetScroll <= parallaxMetrics.current.distance[i] + parallaxMetrics.current.scrollWay
                     ) {
-                        requestAnimationFrame(() => {
+                        // requestAnimationFrame(() => { нужен без лодаш
                             parallax('--bg'+(i+1), i,event)
                                                         console.log('prarl')
-                        })
+                        // })
                     } 
                     // else {
                         // flag.current = false
                     // }
                 })
             // }
-        })
-    },[])
+        }
+        ,100)
+        )},[])
 
 
 

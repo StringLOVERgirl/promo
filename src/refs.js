@@ -144,7 +144,7 @@ const flag = useRef(false)
         link_cont.current.style.setProperty('--bg2',0)
         link_cont.current.style.setProperty('--bg3',0)
 
-        lenis.current.on('scroll', throttle( event => {
+        lenis.current.on('scroll',  event => {
             // if (!flag.current) {
                 // flag.current = true
                 parallaxMetrics.current.distance.forEach((e, i) => {
@@ -153,19 +153,18 @@ const flag = useRef(false)
                         //  что бы юзер расссмотрел что сверху
                         && event.targetScroll <= parallaxMetrics.current.distance[i] + parallaxMetrics.current.scrollWay
                     ) {
-                        // requestAnimationFrame(() => { нужен без лодаш
+                        requestAnimationFrame(() => { 
                             parallax('--bg'+(i+1), i,event)
                                                         console.log('prarl')
-                        // })
+                        })
                     } 
                     // else {
                         // flag.current = false
                     // }
                 })
             // }
-        }
-        ,48)
-        )},[])
+        })
+        },[])
 
 
 

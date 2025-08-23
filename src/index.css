@@ -580,6 +580,7 @@ padding-inline: 2vw;
 
 .work_descr_cont{
   display: none;
+  background: url('./assets/image.jpg') center  / 100%  
 }
 
 .right {

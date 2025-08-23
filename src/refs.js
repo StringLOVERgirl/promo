@@ -138,10 +138,10 @@ const flag = useRef(false)
 
     },[])
     useEffect(()=>{
-        link_cont.current.style.setProperty('--bg0',0)
-        link_cont.current.style.setProperty('--bg1',0)
-        link_cont.current.style.setProperty('--bg2',0)
-        link_cont.current.style.setProperty('--bg3',0)
+        link_cont.current.style.setProperty('--bg0','30%')
+        link_cont.current.style.setProperty('--bg1','30%')
+        link_cont.current.style.setProperty('--bg2','30%')
+        link_cont.current.style.setProperty('--bg3','30%')
         if (window.innerWidth > 600) {
         lenis.current.on('scroll',   event => {
             // if (!flag.current) {

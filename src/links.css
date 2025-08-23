@@ -816,6 +816,7 @@ line-height: 1.5;
     pointer-events: none;
     position: relative;
     overflow: hidden;
+    perspective: 1000px;
 }
 .bgcont1 {
     margin-top: 20svh;
@@ -845,7 +846,7 @@ line-height: 1.5;
     /* margin-top: 20svh; */
     /* height: 80svh; */
     /* margin-left: auto; */
-    transform: translate3d(0px, var(--bg1), 0px);
+    transform: translate3d(0px, var(--bg1), -1000px) scale(2);
     /* transform: translateX(1svh); */
 
     background: url('assets/k72.jpeg') ;
@@ -882,7 +883,7 @@ background-position: center;;
     background-size: cover;
     background-repeat: no-repeat; 
     background-position: center;;
-    transform: translateY(var(--bg2));
+    transform: translate3d(0px, var(--bg2), -1000px) scale(2);
 
     
 }
@@ -891,6 +892,6 @@ background-position: center;;
     background-size: cover;
     background-repeat: no-repeat; 
     background-position: center;;
-    transform: translateY(var(--bg3));
+    transform: translate3d(0px, var(--bg3), -1000px) scale(2);
 /* transition: transform 0.1s; */
 }

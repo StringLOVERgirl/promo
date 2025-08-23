@@ -98,6 +98,7 @@ const bgRefs = useRef([])
         // убираем выше нижний рвыок 
         // ограничтиель до 100
         // value-=30
+        // value = Math.floor(value)
         value +="%"
         // менять на тразишн добавлять оберточны элемент делать этот в 130 процентов высоты от того
         link_cont.current.style.setProperty(varbg,value)

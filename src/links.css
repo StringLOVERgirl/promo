@@ -806,7 +806,7 @@ line-height: 1.5;
     overflow: hidden;
     pointer-events: none;
     will-change: transform;   
-    transition: transform 0.1s ; 
+    transition: transform 0.3s;
 }
 
 .bgcont{
@@ -816,7 +816,7 @@ line-height: 1.5;
     pointer-events: none;
     position: relative;
     overflow: hidden;
-    perspective: 1000px;
+    /* perspective: 1000px; */
 }
 .bgcont1 {
     margin-top: 20svh;
@@ -846,7 +846,7 @@ line-height: 1.5;
     /* margin-top: 20svh; */
     /* height: 80svh; */
     /* margin-left: auto; */
-    transform: translate3d(0px, var(--bg1), -1000px) scale(2);
+    transform: translate(0, var(--bg1));
     /* transform: translateX(1svh); */
 
     background: url('assets/k72.jpeg') ;
@@ -883,7 +883,7 @@ background-position: center;;
     background-size: cover;
     background-repeat: no-repeat; 
     background-position: center;;
-    transform: translate3d(0px, var(--bg2), -1000px) scale(2);
+    transform: translate(0, var(--bg2));
 
     
 }
@@ -892,6 +892,6 @@ background-position: center;;
     background-size: cover;
     background-repeat: no-repeat; 
     background-position: center;;
-    transform: translate3d(0px, var(--bg3), -1000px) scale(2);
+    transform: translate(0, var(--bg3));
 /* transition: transform 0.1s; */
 }

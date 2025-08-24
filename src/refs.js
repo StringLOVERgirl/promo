@@ -92,7 +92,7 @@ const bgRefs = useRef([])
 
     const parallax = (varbg,i,event) => {
         const speed = 30
-        let value = ((event.targetScroll - parallaxMetrics.current.distance[i]) / parallaxMetrics.current.step - speed) 
+        let value = ((event.targetScroll - parallaxMetrics.current.distance[i]) / parallaxMetrics.current.step - speed)
         console.log(value)
 
         if (value > 0 ){ value = 0} 

@@ -1,6 +1,6 @@
 import { useRef, useState,useEffect, useLayoutEffect } from "react";
-import { LinkCont } from "./components/linkcont";
-import { H1cont } from "./components/h1cont";
+import { LinkCont } from "./linkcont";
+import { H1cont } from "./h1cont";
 import { throttle } from 'lodash';
 // скролвей расчтиывается как началао от экрана плюс высота страницы плюс высота элемента
 

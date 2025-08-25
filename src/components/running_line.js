@@ -3,9 +3,8 @@
 // накинуть сайз на вторую строку - решено
 // ухожу с сайта браузера взвращаюсбь строка леьтит почему  - решено
 import { useEffect, useRef, useState } from "react";
-import video from './assets/7186017_Paint_Ink_1920x1080.mp4'
-import { createObserver } from './observer';
-import { RLInner } from "./components/RLineinner";
+import video from '../assets/7186017_Paint_Ink_1920x1080.mp4'
+import { RLInner } from "./RLineinner";
 
 export function Runningline({ lenis,cppoint }) {
 // console.log(video)

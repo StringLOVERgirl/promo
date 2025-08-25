@@ -567,7 +567,7 @@ header::after {
   font-size: 6vw;
 }
 
-.a_cont a {
+.a_cont span {
 width: fit-content;
 box-sizing: content-box;
 padding-inline: 2vw;

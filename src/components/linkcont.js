@@ -1,6 +1,6 @@
 import { Cube } from "./cube"
 import hiddenvideo from '../assets/locomotive_mtl_logo.jpeg'
-import { mouseenter, mouseout, moveInverse } from "./linkcont_funcs";
+import { mouseenter, mouseout, moveInverse } from "../js/linkcont_funcs";
 
 export function LinkCont({bgRefs, observingText, inverseRef, i }) {
 

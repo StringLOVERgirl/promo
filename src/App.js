@@ -2,14 +2,14 @@ import React, { useCallback, useEffect, useState, useRef} from 'react'
 import Lenis from '@studio-freight/lenis'; // Импортируем Lenis благодаря importmap
 import { createObserver } from './observer';
 import { Preloader } from './preloader';
-import { src,collectMedia } from './createMedia';
-import { Runningline } from './running_line';
-import { Refs } from './refs'
+import { src,collectMedia } from './js/createMedia';
+import { Runningline } from './components/running_line';
+import { Refs } from './components/refs'
 import m83 from './assets/M83 - By The Kiss.mp3'
 import video from './assets/0_Sun_Egg_3840x2160 (online-video-cutter.com) (1).mp4'
 import br2049 from'./assets/2049.mp3'
 import toALPD from './assets/Flight to LAPD.mp3'
-import { Header } from './header';
+import { Header } from './components/header';
 import {Menu} from './components/menu'
 import { Footer } from './components/footer';
 

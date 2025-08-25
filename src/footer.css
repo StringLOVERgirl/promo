@@ -563,7 +563,7 @@ text-align: center;
 overflow: hidden;
 }
 
-.a_cont  a {
+.a_cont  span {
   transition: transform 0.8s, scsle 0.3s, color 0.3s, font-size 0.3s;
   position: relative;
   width: fit-content;

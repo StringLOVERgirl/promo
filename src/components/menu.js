@@ -4,8 +4,8 @@ export function Menu ({menu, setMenu, setLink, link}){
 
     const links = [
       { name: `${"\u00A0"}the boys`, link: "https://the-boys-css3d.vercel.app/", alttext:`canvas${"\u00A0"}·${"\u00A0"}sinus${"\u00A0"}${"\u00A0"}animation${"\u00A0"}·${"\u00A0"}mousemove${"\u00A0"}·${"\u00A0"}3d css${"\u00A0"}·${"\u00A0"}` },
-      { name: `${"\u00A0"}canvas`, link: "", alttext: `unfinished${"\u00A0"}·${"\u00A0"}mousemove${"\u00A0"}·${"\u00A0"}random position${"\u00A0"}·${"\u00A0"}` },
-      { name: `${"\u00A0"}running line`, link: "", alttext: `infinite${"\u00A0"}·${"\u00A0"}video${"\u00A0"}·${"\u00A0"}transition${"\u00A0"}·${"\u00A0"}hover${"\u00A0"}·${"\u00A0"}` },
+      { name: `${"\u00A0"}canvas`, link: "https://find-the-lock.vercel.app/", alttext: `unfinished${"\u00A0"}·${"\u00A0"}mousemove${"\u00A0"}·${"\u00A0"}random position${"\u00A0"}·${"\u00A0"}` },
+      { name: `${"\u00A0"}running line`, link: "https://vercel.com/bellas-projects-7d79f1ed/find-the-lock", alttext: `infinite${"\u00A0"}·${"\u00A0"}video${"\u00A0"}·${"\u00A0"}transition${"\u00A0"}·${"\u00A0"}hover${"\u00A0"}·${"\u00A0"}` },
     //   { name: `${"\u00A0"}another canvas`, link: "", alttext: "" },
     ]
 

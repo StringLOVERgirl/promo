@@ -96,7 +96,7 @@ export function LinkCont({bgRefs, observingText, inverseRef, i }) {
         </div>
 
         <div className={`bgcont bgcont${i + 1}`} ref={addBgRefs}>
-            <div className={`linkbg link${i + 1}bg`} ></div>
+            <div className={`linkbg link${i + 1}bg`} role="img" aria-label="фото проекта студии локомотив"></div>
         </div>
 
     </div>

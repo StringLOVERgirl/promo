@@ -4,7 +4,7 @@ export function Cube({i}) {
         <div className="cube_inner_cont">
             {/* в куб передавать аргумент-пропс  */}
             {Array.from({ length: 6 }).map((_, i_side) => { return <div 
-              className={`side side${i_side + 1} side${i + 1}-` + (i_side + 1)}></div> 
+              className={`side side${i_side + 1} side${i + 1}-` + (i_side + 1)} role="img" aria-label="мини-фото проекта студии"></div> 
             })
             }
         </div>

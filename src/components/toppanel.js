@@ -54,7 +54,7 @@ const play = () => {
               {/* <audio src={br2049} ref={(el)=> tracksRef.current.br2049 = el} onEnded={newTrack}></audio> */}
               <audio src={revenant} ref={(el)=> tracksRef.current.revenant = el} onEnded={newTrack}></audio>
   
-              <img className='label' style={{filter:'hue-rotate(324deg)brightness(0.6)'}} src={label}></img>
+              <img className='label' role='img' aria-label='декоративная картинка-кнопка для музыки' style={{filter:'hue-rotate(324deg)brightness(0.6)'}} src={label}></img>
   
           </button>
           

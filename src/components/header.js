@@ -21,7 +21,7 @@ export function Header ({setMenu,setLink}){
             </div>
 
 
-            <div className="header_mini_bg"></div>
+            <div className="header_mini_bg" role="img" aria-aria-label="декоративная мини-картинка"></div>
                         <div className="header_text_cont">
 
             <span className="header_text ">{"\u00A0"}Development</span>
@@ -34,13 +34,11 @@ export function Header ({setMenu,setLink}){
   {/* end of headet text cont */}
 
   <div className="header_right_cont">
-    <div className="menu_desc">
-    <span className="more">something more</span>
-    <span className="cllickbelow">click below</span>
-    </div>
-  <div className="menu_icon">
-<div className='icon' onClick={()=>{showmenu(); showlink()}}></div>
-  </div>
+
+     <div className="menu_icon">
+        <div className='icon' onClick={()=>{showmenu(); showlink()}}></div>
+     </div>
+     
   </div>
 
 </header>

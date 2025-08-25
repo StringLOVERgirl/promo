@@ -26,7 +26,7 @@ export function H1cont({ textRef }) {
                     <h2 className='links_text inspired'>inspired by</h2>
                 </div>
                 
-                <div className='logo'></div>
+                <div className='logo' role="img" aria-label="лого локомотив"></div>
                 
             </div>
 

@@ -19,6 +19,23 @@ header {
   background: linear-gradient(to right, #D3CCE3,#E9E4F0);
   }
 
+  /* .rights {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: fit-content;
+  }
+
+  .rights::after{
+    content: 'demonstrating';
+    display: block;
+    position: absolute;
+    font-family: futura;
+    font-size: 2vw;
+    left: 120%;
+    background: linear-gradient(rgba(128, 0, 128, 0.228),rgba(128, 0, 128, 0.228)) 0 70% / 100% 30% no-repeat 
+   } */
+
  
 
   .header_left_cont, .header_right_cont {
@@ -37,7 +54,7 @@ header {
     flex-direction: row;
     font-family: Futura, sans-serif;
   letter-spacing: 0.05em;
-    font-size: 3.5vw;
+    font-size: 2.7vw;
     text-transform: uppercase;
     width: auto;
     border-radius: 25px;
@@ -55,14 +72,21 @@ header {
 
 
 .header_mini_bg {
-    height: 7svh;
-  aspect-ratio: 1/1;
+    height: 5.5svh;
+  aspect-ratio: 2/1;
     background: url('assets/chase-yi-MG8tzq0l_0A-unsplash.jpg') center / cover  ;
     filter: brightness(70%);
-  
+  border-radius: 35px;
     position: relative;
-    clip-path: polygon(0% 0%, 0% 100%, 25% 100%, 25% 25%, 75% 25%, 75% 75%, 25% 75%, 25% 100%, 100% 100%, 100% 0%);
+    /* clip-path: polygon(0% 0%, 0% 100%, 25% 100%, 25% 25%, 75% 25%, 75% 75%, 25% 75%, 25% 100%, 100% 100%, 100% 0%); */
   }
+
+  .header_right_cont {
+    position: absolute;
+    right: 5vw;
+  }
+
+
 
 
 .menu_desc{

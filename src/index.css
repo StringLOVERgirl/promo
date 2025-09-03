@@ -139,7 +139,7 @@ overflow: hidden;
   letter-spacing: 0.1px;
   font-size: 
   clamp(13svh,10vw,13vw);
-  font-family: FuturaPTBook;
+  font-family: Futura Light;
   font-weight: 570;
   transform: none;
  
@@ -302,6 +302,10 @@ canvas {display: none;}
 }
 
 
+@font-face {
+  font-family: Futura Light;
+  src: url('../public/FuturaPTLight.otf');
+}
 
 @font-face {
   font-family: FuturaPTBook;

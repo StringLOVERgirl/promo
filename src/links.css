@@ -174,7 +174,7 @@
    /* убратьобщий цвет вынести во тдельные цвета  */
 .links_text {
     font-size: 12vw;
-    font-family: FuturaPTBook;
+    font-family: Futura Light;
     white-space: nowrap;
     line-height: 0.8;
 }
@@ -191,7 +191,7 @@ overflow: hidden;
 }
 .locomotive {
     font-size: 11vw;
-    font-family: FuturaPTBook;
+    font-family: Futura Light;
 }
 
 .inspiredcont {

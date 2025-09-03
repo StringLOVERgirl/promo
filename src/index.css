@@ -574,7 +574,7 @@ header::after {
 .a_cont span {
 width: fit-content;
 box-sizing: content-box;
-padding-inline: 2vw;
+padding-inline: 3vw;
 }
 
 .arrow_cont {

@@ -21,6 +21,11 @@ export const src = [
  export function collectMedia(links, ref, updateprecentage){
     return links.flatMap((tags, indexOutter) => {
        console.log(tags)
+
+       function isIPhone() {
+        return /iPhone/.test(navigator.userAgent) && !window.MSStream;
+      }
+
        const listeneralready = (event) => {
         if (event.target.dataset.processed){
             return //  т е если сработал обработчик
@@ -32,8 +37,10 @@ export const src = [
             event.target.dataset.processed = 'true'
             updateprecentage()
           }
-    } 
-    setTimeout(updateprecentage,2000)
+    }
+     
+    if (isIPhone()){setTimeout(updateprecentage,2000)}
+
        return tags.map((element, indexInner) => {
          if (indexOutter == 0) {   
       
@@ -41,8 +48,8 @@ export const src = [
              src={element}
              alt='img'
             //  как прямо тут онкомплит
-              // onLoad={listeneralready}
-            //  onError={listeneralready}
+              onLoad={isIPhone()?listeneralready:null}
+             onError={isIPhone()?listeneralready:null}
              key={'img' + indexInner}
              ref={ref}></img>
            return imgElement
@@ -50,8 +57,8 @@ export const src = [
            let videoElement = <video src={element}
              key={'video' + indexInner}
              ref={ref}
-            //  onCanPlayThrough={listeneralready}
-            //  onError={listeneralready}
+             onCanPlayThrough={isIPhone()?listeneralready:null}
+             onError={isIPhone()?listeneralready:null}
              ></video>
            return videoElement
          }

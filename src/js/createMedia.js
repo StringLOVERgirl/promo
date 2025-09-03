@@ -30,9 +30,10 @@ export const src = [
             // тут нам не нужен но что бы эфектовыский не сработал ставим тру
         } else {
             event.target.dataset.processed = 'true'
-            updateprecentage()}
+            updateprecentage()
+          }
     } 
-   
+    setTimeout(updateprecentage,2000)
        return tags.map((element, indexInner) => {
          if (indexOutter == 0) {   
       
@@ -40,8 +41,8 @@ export const src = [
              src={element}
              alt='img'
             //  как прямо тут онкомплит
-              onLoad={listeneralready}
-             onError={listeneralready}
+              // onLoad={listeneralready}
+            //  onError={listeneralready}
              key={'img' + indexInner}
              ref={ref}></img>
            return imgElement
@@ -49,8 +50,8 @@ export const src = [
            let videoElement = <video src={element}
              key={'video' + indexInner}
              ref={ref}
-             onCanPlayThrough={listeneralready}
-             onError={listeneralready}
+            //  onCanPlayThrough={listeneralready}
+            //  onError={listeneralready}
              ></video>
            return videoElement
          }

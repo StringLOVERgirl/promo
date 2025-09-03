@@ -209,6 +209,7 @@
     -webkit-background-clip: text;
     font-family: FuturaMedium !important;
     /* font-size: 11vw; */
+    font-weight: 200;
     letter-spacing: 4px;
     top: 50%;
   }

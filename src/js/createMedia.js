@@ -38,6 +38,7 @@ export const src = [
             updateprecentage()
           }
     } 
+    
     if (isIPhone()){setTimeout(updateprecentage,2000)}
     
        return tags.map((element, indexInner) => {
@@ -57,7 +58,7 @@ export const src = [
              key={'video' + indexInner}
              ref={ref}
              onCanPlayThrough={!isIPhone()?listeneralready:null}
-             onError={!sIPhone()?listeneralready:null}
+             onError={!isIPhone()?listeneralready:null}
              ></video>
            return videoElement
          }

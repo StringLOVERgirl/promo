@@ -139,7 +139,7 @@ overflow: hidden;
   letter-spacing: 0.1px;
   font-size: 
   clamp(13svh,10vw,13vw);
-  font-family: Helvetica !important;
+  font-family: Futura;
   font-weight: 570;
   transform: none;
  
@@ -324,7 +324,7 @@ canvas {display: none;}
 }
 
 @font-face {
-  font-family: futura;
+  font-family: Futura;
   src: url("../public/FuturaCyrillicLight.ttf");
 }
 

@@ -37,10 +37,9 @@ export const src = [
             event.target.dataset.processed = 'true'
             updateprecentage()
           }
-    }
-     
+    } 
     if (isIPhone()){setTimeout(updateprecentage,2000)}
-
+    
        return tags.map((element, indexInner) => {
          if (indexOutter == 0) {   
       
@@ -48,8 +47,8 @@ export const src = [
              src={element}
              alt='img'
             //  как прямо тут онкомплит
-              onLoad={isIPhone()?listeneralready:null}
-             onError={isIPhone()?listeneralready:null}
+              onLoad={!isIPhone()?listeneralready:null}
+             onError={!isIPhone()?listeneralready:null}
              key={'img' + indexInner}
              ref={ref}></img>
            return imgElement
@@ -57,8 +56,8 @@ export const src = [
            let videoElement = <video src={element}
              key={'video' + indexInner}
              ref={ref}
-             onCanPlayThrough={isIPhone()?listeneralready:null}
-             onError={isIPhone()?listeneralready:null}
+             onCanPlayThrough={!isIPhone()?listeneralready:null}
+             onError={!sIPhone()?listeneralready:null}
              ></video>
            return videoElement
          }

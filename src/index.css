@@ -139,7 +139,7 @@ overflow: hidden;
   letter-spacing: 0.1px;
   font-size: 
   clamp(13svh,10vw,13vw);
-  font-family: Futura;
+  font-family: Futura !important;
   font-weight: 570;
   transform: none;
  

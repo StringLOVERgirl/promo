@@ -47,8 +47,8 @@ export const src = [
              src={element}
              alt='img'
             //  как прямо тут онкомплит
-              onLoad={!isIPhone()?listeneralready:null}
-             onError={!isIPhone()?listeneralready:null}
+              onLoad={isIPhone()?null:listeneralready}
+             onError={isIPhone()?null:listeneralready}
              key={'img' + indexInner}
              ref={ref}></img>
            return imgElement

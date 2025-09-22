@@ -19,7 +19,7 @@ import { Footer } from './components/footer';
 
 function App() {
 
-  console.log('App is on render')
+  // console.log('App is on render')
 
   const appRef = useRef(null)
 
@@ -65,7 +65,6 @@ function App() {
   },[]) 
   
   let elements = collectMedia(src,addRef,updateprecentage)
-  console.log(elements[0])
 
   totalCount.current = elements.length 
 
@@ -77,10 +76,6 @@ const lenisRef = useRef(new Lenis({
   useEffect(() => {
     totalCount.current = elements.length 
     // чобы не пересоздаваось каждый раз 
-
-
-    console.log(mediaRefs.current[0])
-
 
     function raf(time) {
       lenisRef.current.raf(time)

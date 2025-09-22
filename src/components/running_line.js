@@ -145,7 +145,6 @@ const outter = useRef(null)
 useEffect(()=>{
 
   if (cppoint.current && observerRef.current) {
-    console.log(cppoint.current)
     observerRef.current.observe(cppoint.current)
     }
   

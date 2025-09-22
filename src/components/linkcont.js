@@ -5,19 +5,19 @@ import { mouseenter, mouseout, moveInverse } from "../js/linkcont_funcs";
 export function LinkCont({bgRefs, observingText, inverseRef, i }) {
 
     const addBgRefs = (el) => {
-        if (!bgRefs.current.includes(el)&& el){
+        if (!bgRefs.current.includes(el)&& el) {
             bgRefs.current.push(el)
         }
     }
 
-    const addDesRef = (el)=>{
-        if (!inverseRef.current.includes(el)){
+    const addDesRef = (el) => {
+        if (!inverseRef.current.includes(el)) {
             inverseRef.current.push(el)
         }
     }
 
     function toobserve(el){
-        if (!observingText.current.includes(el)){
+        if (!observingText.current.includes(el)) {
             observingText.current.push(el)
         }
     }

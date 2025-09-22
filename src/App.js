@@ -47,17 +47,14 @@ function App() {
 // к функции с реальынм состоянми данными
     loadedMedia.current+=1
     let delay = loadedMedia.current
-    await new Promise((resolve)=>setTimeout(resolve,delay*100))
-
-    console.log(loadedMedia.current + 'is current' ,typeof loadedMedia.current)
-    console.log('no await')
+    await new Promise((resolve) => setTimeout(resolve,delay*100))
+    // console.log(loadedMedia.current + 'is current' ,typeof loadedMedia.current)
+    // console.log('no await')
     let newpercent = Math.floor(delay/totalCount.current * 100)
-    console.log('new percent '+newpercent)
     if (newpercent >= 100){
       setprecentage(99)
-      setTimeout(()=>{
+      setTimeout(() => {
         setIsContent('')
-        // setDistance(true)
         setIsPreloader('hide_preloader')
       },100)
       return
@@ -102,20 +99,15 @@ const lenisRef = useRef(new Lenis({
     if (mediaRefs.current) {
     
     mediaRefs.current.forEach(el => {
-      console.log(el)
+
       if (el.tagName === 'IMG') {
         if (el.complete && el.dataset.processed !== 'true') { 
 // // вторая проверка нужна на случай если онлоад сработает первый и не вызвалос
 // // дважды
           el.dataset.processed = 'true';
           updateprecentage();
-        }
-//       } else if (el.tagName === 'VIDEO') {
-//         if (el.readyState >= 4 && el.dataset.processed !== 'true') {
-//           el.dataset.processed = 'true';
-//           updateprecentage();
-//         }
-      }
+        }}
+
     });
 
   }

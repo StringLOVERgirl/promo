@@ -4,7 +4,7 @@
 import { useEffect, useState } from "react"
 import { Toppanel } from "./toppanel"
 
-export function Footer (){
+export function Footer () {
 
 
     let [browser,setBrowser] = useState(null)
@@ -64,9 +64,9 @@ export function Footer (){
         </div>
 
         <div className='a_cont' onMouseLeave={unmove}>
-          <span onMouseEnter={()=>setstate(classtypes[0])} className={state[0]}>2025 Year</span>
-          <span onMouseEnter={()=>setstate(classtypes[1])} className={state[1]}>Demonstrating</span>
-          <span onMouseEnter={()=>setstate(classtypes[2])} className={state[2]}>In process</span>
+          <span onMouseEnter={() => setstate(classtypes[0])} className={state[0]}>2025 Year</span>
+          <span onMouseEnter={() => setstate(classtypes[1])} className={state[1]}>Demonstrating</span>
+          <span onMouseEnter={() => setstate(classtypes[2])} className={state[2]}>In process</span>
         </div>
 
         {/* собственность */}

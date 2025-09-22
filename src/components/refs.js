@@ -9,7 +9,7 @@ import { throttle } from 'lodash';
 // узнать как меняется дистанс это при ресайзе?
 // 
 // по компоненту на каждый
-export function Refs ({lenis}){
+export function Refs ({lenis}) {
     
 
     const observingText = useRef([])
@@ -23,10 +23,9 @@ const bgRefs = useRef([])
     let [porog, setporog] = useState(window.innerWidth > 600 ? 0.7 : 0.5)
 
 
-    const textobserv = useRef(new IntersectionObserver(elements=>{
-        elements.forEach(e=>{
-            if (e.isIntersecting){
-                console.log(e)
+    const textobserv = useRef(new IntersectionObserver(elements => {
+        elements.forEach(e => {
+            if (e.isIntersecting) {
                 e.target.style.setProperty('--translate',0)
             }
         })
@@ -36,8 +35,8 @@ const bgRefs = useRef([])
     }))
 
 
-    useEffect(()=>{
-        observingText.current.forEach(e=>textobserv.current.observe(e))
+    useEffect(() => {
+        observingText.current.forEach(e => textobserv.current.observe(e))
     },[])
     
     const textObserver = useRef(new IntersectionObserver(arr => {
@@ -57,12 +56,8 @@ const bgRefs = useRef([])
                 value: 1
              }] 
         if (arr[0].intersectionRatio > porog){
-          vars.forEach(e=>textRef.current.style.setProperty(e.name, e.value))
+          vars.forEach(e => textRef.current.style.setProperty(e.name, e.value))
         } 
-        // else if (arr[0].intersectionRatio == 0 && textFlag.current){
-        //   textRef.current.style.setProperty('--translateY', '100%')
-        //   textRef.current.style.setProperty('--scaleX', 0)
-        // }
     },{
         root: null,
         threshold: porog,
@@ -93,11 +88,9 @@ const bgRefs = useRef([])
     const parallax = (varbg,i,event) => {
         const speed = 30
         let value = ((event.targetScroll - parallaxMetrics.current.distance[i]) / parallaxMetrics.current.step - speed)
-        console.log(value)
 
-        if (value > 0 ){ value = 0} 
-        if (value < -30 ){ value = -30} 
-        console.log(value)
+        if (value > 0 ) { value = 0} 
+        if (value < -30 ) { value = -30} 
         // убираем выше нижний рвыок 
         // ограничтиель до 100
         // value-=30
@@ -106,46 +99,33 @@ const bgRefs = useRef([])
         // менять на тразишн добавлять оберточны элемент делать этот в 130 процентов высоты от того
         link_cont.current.style.setProperty(varbg,value)
         // bgRefs.current[i].style.transform = `translateY(${value})`;
-        flag.current=false
+        flag.current = false
     }
 
 const flag = useRef(false)
 
-    useLayoutEffect(()=>{
-
-        console.log(observingText.current)
-
-        console.log('hhhhhhhhhhhhhhhhhhh')
+    useLayoutEffect(() => {
     
-        bgRefs.current.forEach((e,i)=>setMetrics(e,i))
-        console.log(parallaxMetrics.current.distance)
+        bgRefs.current.forEach((e,i) => setMetrics(e,i))
         parallaxMetrics.current.scrollWay = window.innerHeight*2
         parallaxMetrics.current.step = parallaxMetrics.current.scrollWay / parallaxMetrics.current.targetValue 
 
-        console.log(parallaxMetrics.current.scrollWay )
-
-    
         if(textObserver.current && textRef.current){
             textObserver.current.observe(textRef.current)
         }
 
-        return(()=>{
-            if(textObserver.current){
+        return(() => {
+            if (textObserver.current) {
                 textObserver.current.disconnect()
             }
             }
         )
 
     },[])
-    useEffect(()=>{
-        // link_cont.current.style.setProperty('--bg0','30%')
-        // link_cont.current.style.setProperty('--bg1','30%')
-        // link_cont.current.style.setProperty('--bg2','30%')
-        // link_cont.current.style.setProperty('--bg3','30%')
+    useEffect(() => {
         if (window.innerWidth > 600) {
-        lenis.current.on('scroll',   event => {
-            // if (!flag.current) {
-                // flag.current = true
+        lenis.current.on('scroll', event => {
+
                 parallaxMetrics.current.distance.forEach((e, i) => {
                     if (event.targetScroll >= parallaxMetrics.current.distance[i] - 20
                         //  - 100 чтобы начиналс движение немного спустя как появится в поле видимости 
@@ -154,35 +134,30 @@ const flag = useRef(false)
                     ) {
                         requestAnimationFrame(() => { 
                             parallax('--bg'+(i+1), i,event)
-                                                        console.log('prarl')
                         })
                     } 
-                    // else {
-                        // flag.current = false
-                    // }
                 })
-            // }
+
         })
         }},[])
 
 
 
 function setDistanceInverse(){
-    rec.current = rec.current.map((_,i)=>inverseRef.current[i].getBoundingClientRect())
-console.log(rec.current)
+    rec.current = rec.current.map((_,i) => inverseRef.current[i].getBoundingClientRect())
 }
 //конец эти оставить
     
 
-useEffect(()=>{
+useEffect(() => {
 
     function resizedistance(){
         setporog(window.innerWidth > 600 ? 0.7 : 0.5)
-        bgRefs.current.forEach((e,i)=>setMetrics(e,i))
+        bgRefs.current.forEach((e,i) => setMetrics(e,i))
         setDistanceInverse()
     }
 
-    window.addEventListener('resize',resizedistance
+    window.addEventListener('resize', resizedistance
 )
 },[])
 

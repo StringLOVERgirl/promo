@@ -15,7 +15,7 @@ const tracksRef = useRef({m83:null, revenant:null
 
 const currentTrackRef = useRef('void')
 
-const newTrack = () =>{
+const newTrack = () => {
   currentTrackRef.current = null
 }
 
@@ -23,14 +23,12 @@ const play = () => {
 
   const entry = Object.entries(tracksRef.current)
 
-  if (currentTrackRef.current == 'void' || !currentTrackRef.current ){
+  if (currentTrackRef.current == 'void' || !currentTrackRef.current ) {
     let track_ndex = Math.floor(Math.random() * (entry.length-1 - 0 + 1)) + 0
     currentTrackRef.current = entry[track_ndex][1]
-    console.log(111)
     }
 
-      if (!isPlaying){
-        console.log(currentTrackRef.current)
+      if (!isPlaying) {
         currentTrackRef.current.play()
         setIsPlaying(!isPlaying)
       } else {

@@ -1,10 +1,10 @@
 export function Header ({setMenu,setLink}){
 
-  function showmenu(){
+  function showmenu() {
     setMenu('showmenu')
   }
 
-  function showlink(){
+  function showlink() {
     setLink('showlink')
   }
     return(

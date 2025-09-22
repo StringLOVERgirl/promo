@@ -1,13 +1,7 @@
-
-// на фон канаваса можно докинуть синус через перлин 
-// накинуть сайз на вторую строку - решено
-// ухожу с сайта браузера взвращаюсбь строка леьтит почему  - решено
 import { useEffect, useRef, useState } from "react";
-import video from '../assets/7186017_Paint_Ink_1920x1080.mp4'
 import { RLInner } from "./RLineinner";
 
 export function Runningline({ lenis,cppoint }) {
-// console.log(video)
   const prevScrollRef = useRef(0)
   const scrollDirection = useRef(false)
   const translateRef = useRef(0)
@@ -16,11 +10,9 @@ export function Runningline({ lenis,cppoint }) {
   const lineRefs = useRef({line:null, line2:null})
   const sizeRefs = useRef({line:null,line2:null})
   const velocityRef = useRef(1)
-  const lastTimeRef = useRef(0)
-  // let [velocity,setVelocity] = useState (1)
-  
+  const lastTimeRef = useRef(0)  
 
-  const обнуление = (transRef,line) => {
+  const restart = (transRef,line) => {
     if (transRef.current && sizeRefs.current){
 
     const width = Math.floor(sizeRefs.current[line].clientWidth)
@@ -61,14 +53,13 @@ export function Runningline({ lenis,cppoint }) {
     
     
 
-    обнуление(translateRef,'line')
-    обнуление(translateRef2,'line2')
+    restart(translateRef,'line')
+    restart(translateRef2,'line2')
 
     const line = lineRefs.current.line
-    // console.log(velocity)
     const line2 = lineRefs.current.line2
 
-    if (!scrollDirection.current){
+    if (!scrollDirection.current) {
 
       translateRef.current -= speed 
       + velocityRef.current
@@ -83,8 +74,7 @@ export function Runningline({ lenis,cppoint }) {
     } else {
 
       translateRef.current += speed 
-      + 
-      velocityRef.current // знак заменен на плюс т к модуль это помогло 
+      + velocityRef.current // знак заменен на плюс т к модуль это помогло 
       /5
       line.style.setProperty('--translateLine1', translateRef.current + 'px')
 
@@ -106,55 +96,47 @@ export function Runningline({ lenis,cppoint }) {
 
     if (prevScrollRef.current > targetScroll) {
       state.current = true
-    } else if (targetScroll > prevScrollRef.current) { state.current = false }
+    } else if (targetScroll > prevScrollRef.current) { 
+      state.current = false 
+    }
+    
     prevScrollRef.current = targetScroll // in any case
     // scroll direction + prevscroll logic
-
   }
 
   useEffect(() => {
 
     lenis.current.on('scroll', event => {
 
-      console.log(event.targetScroll)
-  
-    // else {setCp('cp')}
-    
-
       requestAnimationFrame(() => {
 
         if (event.targetScroll < 4) {
           setCp('')
-      } 
-
-
+        } 
 
         velocityRef.current = Math.abs(event.targetScroll - prevScrollRef.current) / 2
         
-        if (velocityRef.current == 0) { velocityRef.current = 1 }
+        if (velocityRef.current == 0) { 
+          velocityRef.current = 1 
+        }
        
         updateDirection(event, scrollDirection)
-
-
-      }) // emd of raf inner
+       }) // emd of raf inner
     }) // end of listener
-requestAnimationFrame(translate)
+    requestAnimationFrame(translate)
   }, [])
 
   const observerRef = useRef(null)
   let [cp,setCp] = useState('')
 
-   observerRef.current = new IntersectionObserver((ar)=>{
-    if  (ar[0].isIntersecting){
-      
+   observerRef.current = new IntersectionObserver((ar) => {
+    if (ar[0].isIntersecting) {
+      null
     } else {
-      
-      setCp('cp') 
-    
+      setCp('cp')    
     }
    },{threshold: 0.5, root: null
    })
-
 
 
 const outter = useRef(null)
@@ -162,19 +144,15 @@ const outter = useRef(null)
 
 useEffect(()=>{
 
-  if (cppoint.current && observerRef.current){
+  if (cppoint.current && observerRef.current) {
     console.log(cppoint.current)
     observerRef.current.observe(cppoint.current)
     }
   
   return(()=>{
-observerRef.current.disconnect()
-
-}
-  )
+    observerRef.current.disconnect()
+  })
 },[])
-
-
 
 
   return (

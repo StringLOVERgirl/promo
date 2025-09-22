@@ -131,7 +131,6 @@ export function Runningline({ lenis,cppoint }) {
 
    observerRef.current = new IntersectionObserver((ar) => {
     if (ar[0].isIntersecting) {
-      null
     } else {
       setCp('cp')    
     }

@@ -424,6 +424,7 @@ fill: rgba(0, 0, 0, 0.8);
     pointer-events: none;
     z-index: 2;
     overflow: hidden;
+    --translate: 100%
 }
 .des_color_div {
     height: 25svh;
@@ -558,13 +559,12 @@ align-items: end;
     position: absolute;
     z-index: 2;
     pointer-events: none;
-    
-    
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-overflow: hidden;
+    overflow: hidden;
+    --translate: 100%
 }
 
 

@@ -1,60 +1,56 @@
-import { useEffect, useRef, useState } from "react";
-import { RLInner } from "./RLineinner";
+import { useEffect, useRef, useState } from "react"
+import { RLInner } from "./RLineinner"
+
 
 export function Runningline({ lenis,cppoint }) {
+
   const prevScrollRef = useRef(0)
   const scrollDirection = useRef(false)
   const translateRef = useRef(0)
   const translateRef2 = useRef(0)
 
   const lineRefs = useRef({line:null, line2:null})
-  const sizeRefs = useRef({line:null,line2:null})
+  const sizeRefs = useRef({line:null, line2:null})
   const velocityRef = useRef(1)
   const lastTimeRef = useRef(0)  
 
-  const restart = (transRef,line) => {
-    if (transRef.current && sizeRefs.current){
+  const restart = (transRef, line) => {
+    if (transRef.current && sizeRefs.current) {
+      const width = Math.floor(sizeRefs.current[line].clientWidth)
+      if (transRef.current >= width || transRef.current <= -width) {
+          transRef.current = 0
+      }
+  }}
 
-    const width = Math.floor(sizeRefs.current[line].clientWidth)
-    if (transRef.current >= width
-      || transRef.current <= -width){
-        transRef.current = 0
-    }
-  }
-  }
-
+  const translateRaf = useRef(null)
   
-  function translate(currentTime) { // нужен аргумент т к обернутый во раф по умолчанию
-    // дает аргумент времене currentTime 
+  function translate(currentTime) { // нужен аргумент т к обернутый в раф по умолчанию
+    // дает аргумент времени currentTime 
 
     const index = window.innerWidth / 1280
-    // вычисляем отношение ширины к ширине монитроа на котором 1.5  была хорошая 
+    // вычисляем отношение ширины к ширине монитроа, на котором было хорошо
     // скорость и индексируем скорость во сколько ширина больше или меньше 
-    // во столько же и сокрость - чтобы всегда была равной
+    // во столько же и скорость - чтобы всегда была равной
   
     let delta = !lastTimeRef.current ? 16 : currentTime - lastTimeRef.current
 
     if (currentTime - lastTimeRef.current > 300) {
       delta = 100
-    } // а тут мы вычисляем если разница большая то пересчет времени 
-    // не 16 ограничтиель потому что бразер не всегда иделально рисует может тормозноуть
-    // быть заержка в анмиции
-    // а когда уходим браузер не обновляет время анмиция застыает
+    } // а тут мы вычисляем если разница большая, то пересчет времени 
+    // не 16 ограничитель потому, что бразер не всегда идеалльно рисует, может тормознуть
+    // а когда уходим браузер не обновляет время - анмиция застыает
     // и перескакивает на значение времени реальное 
-    // узнаем сколько прошло делить на кадры корректируем 
-    // на один кадр и в слеюущем вызове уже будет снова умножить на один тк перезаписали
-    // в конце функции реф на актульное 
-    // console.log(delta, currentTime)
+    // узнаем сколько прошло делить на кадры,
+    // корректируем на один кадр, и в слеюущем вызове уже будет снова умножить на один
+    // т к перезаписали в конце функции реф на актуальное 
      
-    const speed =index * (delta/16) * 0.8
+    const speed = index * (delta/16) * 0.8
     // т е кадр в 1 милесекунд (60 кадров в секунду)
-    // 1000 / 60 =16 с небольшим 
-    // и поэтому обычно это будет ну примерно 1 
-    
-    
+    // 1000 / 60 = 16 с небольшим 
+    // и поэтому обычно это будет примерно 1 
 
-    restart(translateRef,'line')
-    restart(translateRef2,'line2')
+    restart(translateRef,   'line')
+    restart(translateRef2, 'line2')
 
     const line = lineRefs.current.line
     const line2 = lineRefs.current.line2
@@ -82,17 +78,21 @@ export function Runningline({ lenis,cppoint }) {
       + velocityRef.current // знак заменен на плюс т к модуль это помогло 
       /5
       line2.style.setProperty('--translateLine2', translateRef2.current + 'px')
-      
+ 
     }
 
     lastTimeRef.current = currentTime;
     velocityRef.current = 1
 
-    requestAnimationFrame(translate)
+    translateRaf.current = requestAnimationFrame(translate)
   }
 
+  useEffect(() => { 
+    return(() => translateRaf.current.cancel())
+  },[])
 
-  const updateDirection = ({ targetScroll }, state) => {
+
+  const updateDirection = ({targetScroll}, state) => {
 
     if (prevScrollRef.current > targetScroll) {
       state.current = true
@@ -106,51 +106,51 @@ export function Runningline({ lenis,cppoint }) {
 
   useEffect(() => {
 
-    lenis.current.on('scroll', event => {
+      lenis.current.on('scroll', event => {
 
-      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
 
-        if (event.targetScroll < 4) {
-          setCp('')
-        } 
+          if (event.targetScroll < 4) {
+            setCp('')
+          } 
 
-        velocityRef.current = Math.abs(event.targetScroll - prevScrollRef.current) / 2
+          velocityRef.current = Math.abs(event.targetScroll - prevScrollRef.current) / 2
         
-        if (velocityRef.current == 0) { 
-          velocityRef.current = 1 
-        }
+          if (velocityRef.current == 0) { 
+            velocityRef.current = 1 
+          }
        
-        updateDirection(event, scrollDirection)
-       }) // emd of raf inner
-    }) // end of listener
-    requestAnimationFrame(translate)
-  }, [])
+          updateDirection(event, scrollDirection)
+        }) // emd of raf inner
+
+      }) // end of listener
+      requestAnimationFrame(translate)
+    }, [])
+
 
   const observerRef = useRef(null)
   let [cp,setCp] = useState('')
 
-   observerRef.current = new IntersectionObserver((ar) => {
+  observerRef.current = new IntersectionObserver((ar) => {
     if (ar[0].isIntersecting) {
     } else {
       setCp('cp')    
     }
    },{threshold: 0.5, root: null
-   })
-
-
-const outter = useRef(null)
-
-
-useEffect(()=>{
-
-  if (cppoint.current && observerRef.current) {
-    observerRef.current.observe(cppoint.current)
-    }
-  
-  return(()=>{
-    observerRef.current.disconnect()
   })
-},[])
+
+   const outter = useRef(null)
+
+  useEffect(()=>{
+  
+    if (cppoint.current && observerRef.current) {
+      observerRef.current.observe(cppoint.current)
+      }
+    
+    return(()=>{
+      observerRef.current.disconnect()
+    })
+  },[])
 
 
   return (
@@ -183,7 +183,6 @@ useEffect(()=>{
 
      {/* end of running line cont */}
       </div>
-
     </>
-  );
+  )
 }

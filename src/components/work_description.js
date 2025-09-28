@@ -1,5 +1,6 @@
 import hiddenvideo from '../assets/locomotive_mtl_logo.jpeg'
 
+
 export function Work({toobserve, i}) {
 
     const des = [

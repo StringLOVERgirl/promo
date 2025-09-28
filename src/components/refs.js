@@ -2,13 +2,11 @@ import { useRef, useState,useEffect, useLayoutEffect } from "react";
 import { LinkCont } from "./linkcont";
 import { H1cont } from "./h1cont";
 import { throttle } from 'lodash';
-// скролвей расчтиывается как началао от экрана плюс высота страницы плюс высота элемента
+import { refsObserver } from "../js/refsobserver";
+// скролвей расчиnывается как началао от экрана плюс высота страницы плюс высота элемента
 
-// на мобильном пересчет дистанции паралакс при ресайзе  и вылезает за цвет название номер текста уменьшить фонт 
+// на мобильном пересчет дистанции паралакс при ресайзе и вылезает за цвет название номер текста уменьшить фонт 
 
-// узнать как меняется дистанс это при ресайзе?
-// 
-// по компоненту на каждый
 export function Refs ({lenis}) {
 
     const observingText = useRef([])
@@ -23,52 +21,29 @@ export function Refs ({lenis}) {
 
 
     const textobserv = useRef(new IntersectionObserver(elements => {
-        elements.forEach(e => {
-            if (e.isIntersecting) {
-                e.target.style.setProperty('--translate',0)
-            }
+           elements.forEach(e => {
+             if (e.isIntersecting) {
+                e.target.style.setProperty('--translate', 0)
+             }
+           })
+        }, {
+          threshold: 0.5,
+          root:null
         })
-    }, {
-        threshold: 0.5,
-        root:null
-    }))
-
+    )
 
     useEffect(() => {
         observingText.current.forEach(e => textobserv.current.observe(e))
     },[])
     
-    const textObserver = useRef(new IntersectionObserver(arr => {
-        console.log(arr[0].intersectionRatio)
-        let vars = [
-            {
-                name:'--translateY',
-                value: 0
-             },{
-                name:'--translateX',
-                value: 0
-             },{
-                name:'--scaleX',
-                value: 1.2
-             }, {
-                name: '--scale',
-                value: 1
-             }] 
-        if (arr[0].intersectionRatio > porog) {
-          vars.forEach(e => textRef.current.style.setProperty(e.name, e.value))
-        } 
-    }, {
-        root: null,
-        threshold: porog,
-    }))
-
+    const textObserver = useRef(refsObserver(textRef, porog))
     
     // parallax
     const parallaxMetrics = useRef({
         scrollWay: null,
         targetValue: 30,
-        // ускоряем но есть ограничтиель до 100
-        // УМЕНЬШАЕТ ШАГ который отвечате за отношение 1 процент прокрутки к 1 пикселю
+        // ускоряем но есть ограничитель до 100
+        // УМЕНЬШАЕТ ШАГ который отвечает за отношение 1 процент прокрутки к 1 пикселю
         step:null,
         distance:[]
     })
@@ -77,25 +52,24 @@ export function Refs ({lenis}) {
     const setMetrics = (el,i) => {
         let rec = el.getBoundingClientRect()
         // расстояние до элмента топ + скрол игрик 
-        // вычитание высоты экрана для получения координаты скола когда элмент появится снизу
+        // вычитание высоты экрана для получения координаты скhола когда элtмент появится снизу
         parallaxMetrics.current.distance[i] = rec.top - window.innerHeight + window.scrollY
     }
 
 
-    const parallax = (varbg,i,event) => {
+    const parallax = (varbg, i, event) => {
         const speed = 30
         let value = ((event.targetScroll - parallaxMetrics.current.distance[i]) / parallaxMetrics.current.step - speed)
 
         if (value > 0 ) { value = 0} 
         if (value < -30 ) { value = -30} 
-        // убираем выше нижний рвыок 
+        // убираем выше нижний рывок 
         // ограничтиель до 100
         // value-=30
         // value = Math.floor(value)
-        value +="%"
-        // менять на тразишн добавлять оберточны элемент делать этот в 130 процентов высоты от того
-        link_cont.current.style.setProperty(varbg,value)
-        // bgRefs.current[i].style.transform = `translateY(${value})`;
+        value += "%"
+        // менять на транзишн добавлять оберточнйы элемент делать этот в 130 процентов высоты от того
+        link_cont.current.style.setProperty(varbg, value)
         flag.current = false
     }
 
@@ -104,7 +78,7 @@ export function Refs ({lenis}) {
     useLayoutEffect(() => {
     
         bgRefs.current.forEach((e,i) => setMetrics(e,i))
-        parallaxMetrics.current.scrollWay = window.innerHeight*2
+        parallaxMetrics.current.scrollWay = window.innerHeight * 2
         parallaxMetrics.current.step = parallaxMetrics.current.scrollWay / parallaxMetrics.current.targetValue 
 
         if (textObserver.current && textRef.current) {
@@ -123,14 +97,14 @@ export function Refs ({lenis}) {
         if (window.innerWidth > 600) {
            lenis.current.on('scroll', event => {
 
-              parallaxMetrics.current.distance.forEach((e, i) => {
+              parallaxMetrics.current.distance.forEach((_, i) => {
                   if (event.targetScroll >= parallaxMetrics.current.distance[i] - 20
                       //  - 100 чтобы начиналось движение немного спустя как появится в поле видимости 
                       //  что бы юзер расссмотрел что сверху
                       && event.targetScroll <= parallaxMetrics.current.distance[i] + parallaxMetrics.current.scrollWay
                   ) {
                       requestAnimationFrame(() => { 
-                          parallax('--bg'+(i+1), i, event)
+                          parallax('--bg' + (i+1), i, event)
                       })
                   } 
               })
@@ -152,6 +126,8 @@ export function Refs ({lenis}) {
             setDistanceInverse()
         }
         window.addEventListener('resize', resizedistance)
+
+        return(() => window.removeEventListener('resize', resizedistance))
     },[])
 
 
@@ -160,7 +136,6 @@ export function Refs ({lenis}) {
         <section className="section_links">
 
             <H1cont textRef={textRef}></H1cont>
-
 
             <div className="workds_cont" ref={link_cont}>
 

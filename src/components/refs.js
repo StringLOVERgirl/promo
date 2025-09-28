@@ -10,15 +10,14 @@ import { throttle } from 'lodash';
 // 
 // по компоненту на каждый
 export function Refs ({lenis}) {
-    
 
     const observingText = useRef([])
     const textRef = useRef(null)
     // эти ооставить в родительском копоненте передаать ссылку на реф 
-const inverseRef = useRef([])
-// передавать ад реф как пропс чтобы добавлять туда рефы 
-const rec = useRef([null,null,null])
-const bgRefs = useRef([])
+    const inverseRef = useRef([])
+    // передавать ад реф как пропс чтобы добавлять туда рефы 
+    const rec = useRef([null,null,null])
+    const bgRefs = useRef([])
     const link_cont = useRef(null)
     let [porog, setporog] = useState(window.innerWidth > 600 ? 0.7 : 0.5)
 
@@ -55,18 +54,16 @@ const bgRefs = useRef([])
                 name: '--scale',
                 value: 1
              }] 
-        if (arr[0].intersectionRatio > porog){
+        if (arr[0].intersectionRatio > porog) {
           vars.forEach(e => textRef.current.style.setProperty(e.name, e.value))
         } 
-    },{
+    }, {
         root: null,
         threshold: porog,
     }))
 
     
-// parallax
-
-    
+    // parallax
     const parallaxMetrics = useRef({
         scrollWay: null,
         targetValue: 30,
@@ -102,7 +99,7 @@ const bgRefs = useRef([])
         flag.current = false
     }
 
-const flag = useRef(false)
+    const flag = useRef(false)
 
     useLayoutEffect(() => {
     
@@ -110,7 +107,7 @@ const flag = useRef(false)
         parallaxMetrics.current.scrollWay = window.innerHeight*2
         parallaxMetrics.current.step = parallaxMetrics.current.scrollWay / parallaxMetrics.current.targetValue 
 
-        if(textObserver.current && textRef.current){
+        if (textObserver.current && textRef.current) {
             textObserver.current.observe(textRef.current)
         }
 
@@ -118,52 +115,48 @@ const flag = useRef(false)
             if (textObserver.current) {
                 textObserver.current.disconnect()
             }
-            }
-        )
-
-    },[])
-    useEffect(() => {
-        if (window.innerWidth > 600) {
-        lenis.current.on('scroll', event => {
-
-                parallaxMetrics.current.distance.forEach((e, i) => {
-                    if (event.targetScroll >= parallaxMetrics.current.distance[i] - 20
-                        //  - 100 чтобы начиналс движение немного спустя как появится в поле видимости 
-                        //  что бы юзер расссмотрел что сверху
-                        && event.targetScroll <= parallaxMetrics.current.distance[i] + parallaxMetrics.current.scrollWay
-                    ) {
-                        requestAnimationFrame(() => { 
-                            parallax('--bg'+(i+1), i,event)
-                        })
-                    } 
-                })
-
         })
-        }},[])
+    },[])
+
+    useEffect(() => {
+
+        if (window.innerWidth > 600) {
+           lenis.current.on('scroll', event => {
+
+              parallaxMetrics.current.distance.forEach((e, i) => {
+                  if (event.targetScroll >= parallaxMetrics.current.distance[i] - 20
+                      //  - 100 чтобы начиналось движение немного спустя как появится в поле видимости 
+                      //  что бы юзер расссмотрел что сверху
+                      && event.targetScroll <= parallaxMetrics.current.distance[i] + parallaxMetrics.current.scrollWay
+                  ) {
+                      requestAnimationFrame(() => { 
+                          parallax('--bg'+(i+1), i, event)
+                      })
+                  } 
+              })
+           // end of lenis func
+           })
+        }
+    },[])
 
 
-
-function setDistanceInverse(){
-    rec.current = rec.current.map((_,i) => inverseRef.current[i].getBoundingClientRect())
-}
-//конец эти оставить
+    function setDistanceInverse() {
+        rec.current = rec.current.map((_,i) => inverseRef.current[i].getBoundingClientRect())
+    }
     
 
-useEffect(() => {
+    useEffect(() => { 
+        function resizedistance() {
+            setporog(window.innerWidth > 600 ? 0.7 : 0.5)
+            bgRefs.current.forEach((e,i) => setMetrics(e,i))
+            setDistanceInverse()
+        }
+        window.addEventListener('resize', resizedistance)
+    },[])
 
-    function resizedistance(){
-        setporog(window.innerWidth > 600 ? 0.7 : 0.5)
-        bgRefs.current.forEach((e,i) => setMetrics(e,i))
-        setDistanceInverse()
-    }
 
-    window.addEventListener('resize', resizedistance
-)
-},[])
-
-// осталось логику смещение реализовать через переменные и настроить инверсию
-    return (<>
-
+    return (
+    <>
         <section className="section_links">
 
             <H1cont textRef={textRef}></H1cont>
@@ -171,13 +164,14 @@ useEffect(() => {
 
             <div className="workds_cont" ref={link_cont}>
 
-                {[1, 2, 3].map((_, i) => <LinkCont bgRefs={bgRefs}
+                {[1, 2, 3].map((_, i) => 
+                    <LinkCont 
+                    bgRefs={bgRefs}
                     observingText={observingText}
                     inverseRef={inverseRef}
-                    i={i}></LinkCont>)}
-
-
-                {/* end of works cont */}
+                    i={i}>
+                    </LinkCont>
+                )}
             </div>
 
         </section>

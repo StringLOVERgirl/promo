@@ -1,7 +1,7 @@
 // выделить компоненты
 import { useState } from "react";
 
-export function Menu ({menu, setMenu, setLink, link}){
+export function Menu ({menu, setMenu, setLink, link}) {
 
     const links = [
       { name: `${"\u00A0"}running line`, link: "https://running-line.vercel.app/", alttext: `infinite${"\u00A0"}·${"\u00A0"}video${"\u00A0"}·${"\u00A0"}transition${"\u00A0"}·${"\u00A0"}hover${"\u00A0"}·${"\u00A0"}` },
@@ -17,13 +17,13 @@ export function Menu ({menu, setMenu, setLink, link}){
      ['parallax transform', 'interractive running lines ',  
      'mouse-tracking elements', 'lenis scroll', 'preloader', 'git / github'] ]
 
-    let [opacity,setopacity] = useState(null)
+    let [opacity, setopacity] = useState(null)
 
-    function hidemenu(){
+    function hidemenu() {
         setMenu('hidemenu')
     }
 
-    function showalt(i){
+    function showalt(i) {
         setopacity(i)
     }
 
@@ -31,7 +31,7 @@ export function Menu ({menu, setMenu, setLink, link}){
        setLink('hidelink')
     }
 
-    function hidealt(){
+    function hidealt() {
         setopacity(null)
     }
 
@@ -75,7 +75,7 @@ export function Menu ({menu, setMenu, setLink, link}){
 
                   <div className={`alt_link_cont`}
                  style={{ opacity: opacity == i ? 1 : 0 }}>
-                    {[1, 2].map((_) => (
+                    {[1, 2].map(_ => (
                       <div className="alt_inner_cont">
                         <span className="alt_text">{e.alttext}</span>
                       </div>))
@@ -93,7 +93,7 @@ export function Menu ({menu, setMenu, setLink, link}){
               {instruments.map(el => {
                 return (
                   <div className="menu_footer">
-                    {el.map((e) => (
+                    {el.map(e => (
                       <span className="menu_footer_text">
                         {e}{"\u00A0"}{"\u00A0"}
                       </span>

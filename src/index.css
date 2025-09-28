@@ -427,10 +427,6 @@ header::after {
     font-size: 5.5vw !important;
   }
 
-  .linkbg {
-    /* transition: transform 0.15s; */
-  }
-
 .header_center_cont {
   border-radius: unset;
   background: unset;

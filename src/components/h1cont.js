@@ -10,7 +10,6 @@ export function H1cont({ textRef }) {
             <span class="ball"></span>
             <span class="ball"></span>
 
-
             <div className="decor_snow_outter">
 
                 <div className="decor_snow_inner">
@@ -21,13 +20,11 @@ export function H1cont({ textRef }) {
 
 
             <div className="top_line_inspired">
-                {/* нужно для микс бленд контейнер и псевдоэлемент с фоном а нимаицей ховер */}
                 <div className='inspiredcont'>
                     <h2 className='links_text inspired'>inspired by</h2>
                 </div>
-                
-                <div className='logo' role="img" aria-label="лого локомотив"></div>
-                
+                                
+                <div className='logo' role="img" aria-label="лого локомотив"></div>                
             </div>
 
             <div className="lokomotive_cont">
@@ -36,7 +33,6 @@ export function H1cont({ textRef }) {
 
 
             <div className="description_cont">
-
                 <div className="description des_top_cont">
                     <span>Digital Design Agency</span>
                 </div>
@@ -60,7 +56,6 @@ export function H1cont({ textRef }) {
 
                 {/* end of desxription cont */}
             </div>
-
 
             {/* end of h1 cont */}
         </div>

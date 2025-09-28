@@ -7,7 +7,7 @@ import { Toppanel } from "./toppanel"
 export function Footer () {
 
 
-    let [browser,setBrowser] = useState(null)
+    let [browser, setBrowser] = useState(null)
 
     useEffect(() => {
       if (navigator.userAgent.includes("Firefox")) {
@@ -43,7 +43,7 @@ export function Footer () {
 
         <Toppanel></Toppanel>
 
-        {/* стрелка навернх */}
+        {/* стрелка наверх */}
         <a href='#' aria-label='скрол наверх'>
           <div className='arrow_cont'>
             <svg className="arrow" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -74,7 +74,7 @@ export function Footer () {
           <p className='bottom_text'> Design and Development by Megan </p>
         </div>
 
-        {/* вращенеи */}
+        {/* вращение */}
         <div className='middle'>
           {Array.from({ length: 14 }).map((_, i) => {
             return <span style={{ '--i': `${i + 1}` }}

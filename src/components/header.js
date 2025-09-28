@@ -1,4 +1,4 @@
-export function Header ({setMenu,setLink}){
+export function Header ({setMenu,setLink}) {
 
   function showmenu() {
     setMenu('showmenu')
@@ -8,40 +8,31 @@ export function Header ({setMenu,setLink}){
     setLink('showlink')
   }
     return(
-        <>
-          <header>
-<div style={{background:'',borderRadius:'50px', height:'15svh',  aspectRatio:1, position:'absolute', top:0, left:'1vw'}}><span className="rights" style={{fontSize:'2.5vw', color:'#20002c', fontFamily: 'futura'}}>℗</span></div>
-
-  {/* <div className="header_left_cont"></div> */}
-
-  <div className="header_center_cont">
-
-    <div className="header_text_cont">
-            <span className="header_text">design, expression {"\u00A0"}</span>
+         <>
+         <header>
+            <div className="rights_cont">
+              <span className="rights">℗</span>
             </div>
 
 
-            <div className="header_mini_bg" role="img" aria-aria-label="декоративная мини-картинка"></div>
-                        <div className="header_text_cont">
+            <div className="header_center_cont">
 
-            <span className="header_text ">{"\u00A0"}Development</span>
+               <div className="header_text_cont">
+                 <span className="header_text">design, expression {"\u00A0"}</span>
+               </div>
+
+               <div className="header_mini_bg" role="img" aria-aria-label="декоративная мини-картинка"></div>
+                 <div className="header_text_cont">
+                   <span className="header_text ">{"\u00A0"}Development</span>
+                 </div>
+               </div>
+
+               <div className="header_right_cont">
+                  <div className="menu_icon">
+                     <div className='icon' onClick={()=>{showmenu(); showlink()}}></div>
+               </div>
+               {/* enf of header center cont */}
             </div>
-
-        </div>
-    
-    
-
-  {/* end of headet text cont */}
-
-  <div className="header_right_cont">
-
-     <div className="menu_icon">
-        <div className='icon' onClick={()=>{showmenu(); showlink()}}></div>
-     </div>
-     
-  </div>
-
-</header>
-</>
-    )
+         </header>
+        </>)
 }
